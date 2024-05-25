@@ -44,6 +44,7 @@
     "generoi/sage-woocommerce": "^1.1",
     "log1x/acf-composer": "^3.0",
     "roots/acorn": "^4.2",
+    "roots/acorn-prettify": "^1.0",
     "saade/blade-iconsax": "^1.2"
   },
   "require-dev": {

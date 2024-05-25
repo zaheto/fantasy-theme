@@ -7,6 +7,15 @@ const config = {
       Oswald: ['Oswald', 'sans-serif'],
     },
     extend: {
+        backgroundImage: {
+          'menu-arrow-down': "url('/images/icons/arrow-down.svg')",
+          'arrow-right': "url('/images/icons/arrow-right.svg')",
+          'arrow-left': "url('/images/icons/arrow-left.svg')",
+          'menu-arrow-image': "url('/images/icons/add.svg')",
+          'delete-icon': "url('/images/icons/add.svg')",
+          'table-size': "url('/images/ruler.svg')",
+          'cart-icon': "url('/images/cart-icon.svg')",
+        },
         fontSize: {
           '12': ['.75rem', '20px'], //12px
           '13': ['.8125rem', '20px'], //13px
@@ -29,6 +38,9 @@ const config = {
           'h3': ['2.375rem', '40px'], //38px
           'h2': ['2.875rem', '56px'], //46px
           'h1': ['3.875rem', '86px'], //66px
+      },
+      borderRadius: {
+        '4xl': '2rem',
       },
       container: {
           center: true,

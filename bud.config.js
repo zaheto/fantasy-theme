@@ -16,14 +16,15 @@ export default async (app) => {
   app
     .entry('app', ['@scripts/app', '@styles/app'])
     .entry('editor', ['@scripts/editor', '@styles/editor'])
-    .assets(['images']);
+    .assets(['images', 'icons'])
+
 
   /**
    * Set public path
    *
    * @see {@link https://bud.js.org/reference/bud.setPublicPath}
    */
-  app.setPublicPath('/app/themes/sage/public/');
+  app.setPublicPath('/wp-content/themes/fantasy-theme/public/');
 
   /**
    * Development server settings
@@ -76,5 +77,9 @@ export default async (app) => {
     })
     .useTailwindColors()
     .useTailwindFontFamily()
-    .useTailwindFontSize();
+    .useTailwindFontSize()
+    .enable();
 };
+
+
+

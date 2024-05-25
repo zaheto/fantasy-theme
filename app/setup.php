@@ -26,6 +26,7 @@ add_action('enqueue_block_editor_assets', function () {
     bundle('editor')->enqueue();
 }, 100);
 
+
 /**
  * Register the initial theme setup.
  *
@@ -39,13 +40,26 @@ add_action('after_setup_theme', function () {
      */
     remove_theme_support('block-templates');
 
+    load_theme_textdomain('sage', get_template_directory() . '/resources/lang');
+
+
+    add_theme_support('woocommerce');
+    add_theme_support('wc-product-gallery-zoom');
+    add_theme_support('wc-product-gallery-lightbox');
+    add_theme_support('wc-product-gallery-slider');
+
     /**
      * Register the navigation menus.
      *
      * @link https://developer.wordpress.org/reference/functions/register_nav_menus/
      */
     register_nav_menus([
-        'primary_navigation' => __('Primary Navigation', 'sage'),
+        'main_menu' => __('Main navigation', 'sage'),
+        'second_menu_right' => __('Header second navigation ', 'sage'),
+        'footer_pages1' => __('Footer Problems', 'sage'),
+        'footer_pages2' => __('Footer Categories', 'sage'),
+        'footer_pages5' => __('Footer Categories2', 'sage'),
+        'footer_pages3' => __('Footer Pages', 'sage'),
     ]);
 
     /**
@@ -118,15 +132,16 @@ add_action('widgets_init', function () {
     ] + $config);
 
     register_sidebar([
+        'name' => __('Shop sidebar', 'sage'),
+        'id' => 'sidebar-shop',
+    ] + $config);
+
+    register_sidebar([
         'name' => __('Footer', 'sage'),
         'id' => 'sidebar-footer',
     ] + $config);
 });
 
-add_action('after_setup_theme', function () {
-    load_theme_textdomain('sage', get_template_directory() . '/resources/lang');
-});
 
-add_theme_support('wc-product-gallery-zoom');
-add_theme_support('wc-product-gallery-lightbox');
-add_theme_support('wc-product-gallery-slider');
+
+
