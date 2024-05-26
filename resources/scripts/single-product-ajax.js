@@ -1,4 +1,4 @@
-// zah ajax add to cart js.
+// fantasy ajax add to cart js.
 
 document.addEventListener( 'DOMContentLoaded', function() {
 	var cart_forms = document.querySelectorAll( '.summary form.cart' );
@@ -16,7 +16,7 @@ document.addEventListener( 'DOMContentLoaded', function() {
 			var atc_elem = cart_form.querySelector( '.single_add_to_cart_button' );
 			var formData = new FormData( cart_form );
 
-			/* formData.append( 'action', 'zah_pdp_ajax_atc' ); */
+			/* formData.append( 'action', 'fantasy_pdp_ajax_atc' ); */
 
 			if ( atc_elem.value ) {
 				formData.append( 'add-to-cart', atc_elem.value );
@@ -28,7 +28,7 @@ document.addEventListener( 'DOMContentLoaded', function() {
 			var wce_add_cart = new Event( 'adding_to_cart' );
 			document.body.dispatchEvent( wce_add_cart );
 
-			fetch( wc_add_to_cart_params.wc_ajax_url.toString().replace( '%%endpoint%%', 'zah_pdp_ajax_atc' ), {
+			fetch( wc_add_to_cart_params.wc_ajax_url.toString().replace( '%%endpoint%%', 'fantasy_pdp_ajax_atc' ), {
 				method: 'POST',
 				body: formData
 			} ).then( function( resp ) {

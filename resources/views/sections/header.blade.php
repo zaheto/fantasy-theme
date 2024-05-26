@@ -1,11 +1,11 @@
 @if(get_field('footer_phone', 'options'))<a href="tel:{{ get_field('footer_phone', 'options') }}" class="scroll-phone-number"> <x-iconsax-lin-call-calling class="icon" /></a>@endif
 @php
-do_action( 'zah_before_site' );
-do_action( 'zah_before_header' );
+do_action( 'fantasy_before_site' );
+do_action( 'fantasy_before_header' );
 @endphp
 <header id="header" class="header header-white header-2">
   @if(!is_page('checkout'))
-    @php do_action( 'zah_announce_bar' ); @endphp
+    @php do_action( 'fantasy_announce_bar' ); @endphp
 
     @if(get_field('announce_bar_header', 'option'))
       <section class="announce-bar">
@@ -65,14 +65,14 @@ do_action( 'zah_before_header' );
     <li>
       <a href="{{ get_permalink( wc_get_page_id( 'myaccount' ) ) }}">
         <x-iconsax-lin-user-octagon class="icon" />
-        {{ __('Your account', 'zah') }}
+        {{ __('Your account', 'fantasy') }}
       </a>
     </li>
     @else
     <li>
       <a href="{{ home_url('/login') }}">
       <x-iconsax-lin-user-octagon class="icon" />
-      {{ __('Your account', 'zah') }}
+      {{ __('Your account', 'fantasy') }}
       </a>
     </li>
     @endif

@@ -2,7 +2,7 @@
 # This file is distributed under the MIT License.
 msgid ""
 msgstr ""
-"Project-Id-Version: Sage Starter Theme 10.8.2\n"
+"Project-Id-Version: Fantasy Theme 10.8.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/fantasy-theme\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,1375 +34,149 @@ msgstr ""
 msgid "https://fantasysoft.co/"
 msgstr ""
 
-#: app/filters.php:15
-msgid "Continued"
-msgstr ""
-
-#: app/setup.php:48
-msgid "Primary Navigation"
-msgstr ""
-
-#: app/setup.php:116
-msgid "Primary"
-msgstr ""
-
-#: app/setup.php:121
-msgid "Footer"
-msgstr ""
-
-#. translators: %1$s is replaced with the number of comments and %2$s with the post title
-#: app/View/Composers/Comments.php:44
-msgctxt "comments title"
-msgid "%1$s response to &ldquo;%2$s&rdquo;"
-msgid_plural "%1$s responses to &ldquo;%2$s&rdquo;"
-msgstr[0] ""
-msgstr[1] ""
-
-#: app/View/Composers/Comments.php:45
-msgctxt "comments title"
-msgid "One"
-msgstr ""
-
-#: app/View/Composers/Comments.php:80
-msgid "&larr; Older comments"
-msgstr ""
-
-#: app/View/Composers/Comments.php:96
-msgid "Newer comments &rarr;"
-msgstr ""
-
-#: app/View/Composers/Post.php:49
-msgid "Latest Posts"
-msgstr ""
-
-#. translators: %s is replaced with the search query
-#: app/View/Composers/Post.php:59
-msgid "Search Results for %s"
-msgstr ""
-
-#: app/View/Composers/Post.php:65
-msgid "Not Found"
-msgstr ""
-
-#: app/View/Composers/Post.php:80
-msgid "Pages:"
-msgstr ""
-
-#. Template Name of the theme
-msgid "Custom Template"
-msgstr ""
-
-#: theme.json
-msgctxt "Font size name"
-msgid "xs"
-msgstr ""
-
-#: theme.json
-msgctxt "Font size name"
-msgid "sm"
-msgstr ""
-
-#: theme.json
-msgctxt "Font size name"
-msgid "base"
-msgstr ""
-
-#: theme.json
-msgctxt "Font size name"
-msgid "lg"
-msgstr ""
-
-#: theme.json
-msgctxt "Font size name"
-msgid "xl"
-msgstr ""
-
-#: theme.json
-msgctxt "Font size name"
-msgid "2xl"
-msgstr ""
-
-#: theme.json
-msgctxt "Font size name"
-msgid "3xl"
-msgstr ""
-
-#: theme.json
-msgctxt "Font size name"
-msgid "4xl"
-msgstr ""
-
-#: theme.json
-msgctxt "Font size name"
-msgid "5xl"
-msgstr ""
-
-#: theme.json
-msgctxt "Font size name"
-msgid "6xl"
-msgstr ""
-
-#: theme.json
-msgctxt "Font size name"
-msgid "7xl"
-msgstr ""
-
-#: theme.json
-msgctxt "Font size name"
-msgid "8xl"
-msgstr ""
-
-#: theme.json
-msgctxt "Font size name"
-msgid "9xl"
-msgstr ""
-
-#: theme.json
-msgctxt "Font family name"
-msgid "Ui-sans-serif"
-msgstr ""
-
-#: theme.json
-msgctxt "Font family name"
-msgid "Ui-serif"
-msgstr ""
-
-#: theme.json
-msgctxt "Font family name"
-msgid "Ui-monospace"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Inherit"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Current"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Transparent"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Black"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "White"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Slate 50"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Slate 100"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Slate 200"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Slate 300"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Slate 400"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Slate 500"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Slate 600"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Slate 700"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Slate 800"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Slate 900"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Slate 950"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Gray 50"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Gray 100"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Gray 200"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Gray 300"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Gray 400"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Gray 500"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Gray 600"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Gray 700"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Gray 800"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Gray 900"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Gray 950"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Zinc 50"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Zinc 100"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Zinc 200"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Zinc 300"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Zinc 400"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Zinc 500"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Zinc 600"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Zinc 700"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Zinc 800"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Zinc 900"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Zinc 950"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Neutral 50"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Neutral 100"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Neutral 200"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Neutral 300"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Neutral 400"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Neutral 500"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Neutral 600"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Neutral 700"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Neutral 800"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Neutral 900"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Neutral 950"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Stone 50"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Stone 100"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Stone 200"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Stone 300"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Stone 400"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Stone 500"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Stone 600"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Stone 700"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Stone 800"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Stone 900"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Stone 950"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Red 50"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Red 100"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Red 200"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Red 300"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Red 400"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Red 500"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Red 600"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Red 700"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Red 800"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Red 900"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Red 950"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Orange 50"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Orange 100"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Orange 200"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Orange 300"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Orange 400"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Orange 500"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Orange 600"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Orange 700"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Orange 800"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Orange 900"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Orange 950"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Amber 50"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Amber 100"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Amber 200"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Amber 300"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Amber 400"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Amber 500"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Amber 600"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Amber 700"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Amber 800"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Amber 900"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Amber 950"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Yellow 50"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Yellow 100"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Yellow 200"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Yellow 300"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Yellow 400"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Yellow 500"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Yellow 600"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Yellow 700"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Yellow 800"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Yellow 900"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Yellow 950"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Lime 50"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Lime 100"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Lime 200"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Lime 300"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Lime 400"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Lime 500"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Lime 600"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Lime 700"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Lime 800"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Lime 900"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Lime 950"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Green 50"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Green 100"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Green 200"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Green 300"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Green 400"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Green 500"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Green 600"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Green 700"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Green 800"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Green 900"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Green 950"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Emerald 50"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Emerald 100"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Emerald 200"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Emerald 300"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Emerald 400"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Emerald 500"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Emerald 600"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Emerald 700"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Emerald 800"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Emerald 900"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Emerald 950"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Teal 50"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Teal 100"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Teal 200"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Teal 300"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Teal 400"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Teal 500"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Teal 600"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Teal 700"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Teal 800"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Teal 900"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Teal 950"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Cyan 50"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Cyan 100"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Cyan 200"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Cyan 300"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Cyan 400"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Cyan 500"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Cyan 600"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Cyan 700"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Cyan 800"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Cyan 900"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Cyan 950"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Sky 50"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Sky 100"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Sky 200"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Sky 300"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Sky 400"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Sky 500"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Sky 600"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Sky 700"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Sky 800"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Sky 900"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Sky 950"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Blue 50"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Blue 100"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Blue 200"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Blue 300"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Blue 400"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Blue 500"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Blue 600"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Blue 700"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Blue 800"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Blue 900"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Blue 950"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Indigo 50"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Indigo 100"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Indigo 200"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Indigo 300"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Indigo 400"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Indigo 500"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Indigo 600"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Indigo 700"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Indigo 800"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Indigo 900"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Indigo 950"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Violet 50"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Violet 100"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Violet 200"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Violet 300"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Violet 400"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Violet 500"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Violet 600"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Violet 700"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Violet 800"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Violet 900"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Violet 950"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Purple 50"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Purple 100"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Purple 200"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Purple 300"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Purple 400"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Purple 500"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Purple 600"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Purple 700"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Purple 800"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Purple 900"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Purple 950"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Fuchsia 50"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Fuchsia 100"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Fuchsia 200"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Fuchsia 300"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Fuchsia 400"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Fuchsia 500"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Fuchsia 600"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Fuchsia 700"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Fuchsia 800"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Fuchsia 900"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Fuchsia 950"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Pink 50"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Pink 100"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Pink 200"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Pink 300"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Pink 400"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Pink 500"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Pink 600"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Pink 700"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Pink 800"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Pink 900"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Pink 950"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Rose 50"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Rose 100"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Rose 200"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Rose 300"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Rose 400"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Rose 500"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Rose 600"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Rose 700"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Rose 800"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Rose 900"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Rose 950"
-msgstr ""
+
+#: resources/views/woocommerce/single-product/tabs/description.php:40
+msgid "Read More"
+msgstr "Прочети повече"
+
+#. Description of the theme
+msgid "Sage is a WordPress starter theme."
+msgstr "Sage is a WordPress starter theme."
+
+#. Author of the theme
+msgid "Viktor Zahov"
+msgstr "Viktor Zahov"
+
+#. Name of the theme
+msgid "Zah Theme"
+msgstr "Zah Theme"
+
+msgid "Email address"
+msgstr "Имейл адрес"
+
+msgid "Call us now"
+msgstr "Позвънете на"
+
+msgid "copy footer"
+msgstr "©2024 XXXXXXX. Всички права запазени."
+
+msgid "Your account"
+msgstr "Твоят профил"
+
+msgid "Filters"
+msgstr "Филтри"
+
+msgid "Loading..."
+msgstr "Зарежда…"
+
+msgid "My Cart"
+msgstr "Моята количка"
+
+msgid "Your bag is empty"
+msgstr "Количката е празна"
+
+msgid "Continue shopping"
+msgstr "Продължете с пазаруването"
+
+msgid "To cart"
+msgstr "Продължи с пазаруването"
+
+msgid "Remove"
+msgstr "Премахни"
+
+msgid "Calculate at checkout"
+msgstr "Цената за доставка се начислява при плащане."
+
+msgid "Free shipping"
+msgstr "Безплатна доставка"
+
+msgid "Checkout"
+msgstr "ЗАВЪРШИ ПОРЪЧКАТА"
+
+msgid "You are "
+msgstr "Остават ви"
+
+msgid " away from free delivery"
+msgstr "до БЕЗПЛАТНА ДОСТАВКА"
+
+msgid "Congrats! You've reached free shipping."
+msgstr "Честито! Достигнахте безплатна доставка."
+
+msgid "Related products"
+msgstr "Подобни продукти"
+
+msgid "You may also like"
+msgstr "Може да харесате"
+
+msgid "You may be interested in"
+msgstr "Може да харесате, още"
+
+msgid "Information"
+msgstr "Информация"
+
+msgid "Reviews"
+msgstr "Ревюта"
+
+msgid "Gallery"
+msgstr "Галерия"
+
+msgid "In the box"
+msgstr "В кутията"
+
+msgid "Video"
+msgstr "Видео"
+
+msgid "BUY NOW"
+msgstr "ДОБАВИ В КОЛИЧКАТА"
+
+msgid "Prices from:"
+msgstr "Цени от:"
+
+msgid "Quick order with phone"
+msgstr "Бърза поръчка"
+
+msgid "Landing Feature 1"
+msgstr "Бързи и сигурни покупки"
+
+msgid "Landing Feature 2"
+msgstr "14 дни гаранция за връщане на парите"
+
+msgid "Landing Feature 3"
+msgstr "Доставка до куриерска фирма или адрес"
+
+msgid "Landing Feature 4"
+msgstr "Срок на доставка 1-3 работни дни"
+
+msgid "Add to cart"
+msgstr "Добави"
+
+msgid "Quick View"
+msgstr "Бърз преглед"
+
+msgid "Your cart"
+msgstr "Твоята количка"
+
+msgid "Shopping Cart"
+msgstr "Количка"
+
+msgid "Shipping and Checkout"
+msgstr "Доставка и плащане"
+
+msgid "Confirmation"
+msgstr "Потвърждение"
+
+#: includes/class-frontend.php:58
+msgid "Select options"
+msgstr "TTTT"
+
+msgid "Apply Coupon"
+msgstr "Приложи"
+
+msgid "Enter Coupon Code"
+msgstr "Въведи промо код"
+
+msgid "In stock"
+msgstr "Наличено"
+
+msgid "Out of stock"
+msgstr "Изчерпано"

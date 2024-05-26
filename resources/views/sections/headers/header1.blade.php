@@ -20,7 +20,7 @@
           <div class="header-info">
             <x-iconsax-lin-call-calling class="info-icon text-second" />
             <div class="header-info--wrap">
-              {{ __('Call us now','zah') }}
+              {{ __('Call us now','fantasy') }}
 
                 <a href="call:{{ get_field('footer_phone', 'options') }}">
                     {{ get_field('footer_phone', 'options') }}
@@ -34,7 +34,7 @@
             <x-iconsax-lin-sms class="info-icon text-second" />
             <div class="header-info--wrap">
 
-              {{ __('Email address','zah') }}
+              {{ __('Email address','fantasy') }}
 
                 <a href="mailto:{{ get_field('footer_email', 'options') }}">
                     {{ get_field('footer_email', 'options') }}

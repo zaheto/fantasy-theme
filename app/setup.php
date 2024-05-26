@@ -40,7 +40,7 @@ add_action('after_setup_theme', function () {
      */
     remove_theme_support('block-templates');
 
-    load_theme_textdomain('sage', get_template_directory() . '/resources/lang');
+    load_theme_textdomain('fantasy', get_template_directory() . '/resources/lang');
 
 
     add_theme_support('woocommerce');

@@ -356,12 +356,12 @@ function njengah_display_stock_availability( $availability, $_product ) {
 
    // Change In Stock Text
     if ( $_product->is_in_stock() ) {
-        $availability['availability'] = __('In stock', 'zah');
+        $availability['availability'] = __('In stock', 'fantasy');
     }
 
     // Change Out of Stock Text
     if ( ! $_product->is_in_stock() ) {
-    	$availability['availability'] = __('Out of stock', 'zah');
+    	$availability['availability'] = __('Out of stock', 'fantasy');
     }
 
     return $availability;
@@ -369,8 +369,8 @@ function njengah_display_stock_availability( $availability, $_product ) {
 
 
 //Product page breadcrumb
-add_action( 'woocommerce_before_single_product', 'zah_breadcumb' );
-function zah_breadcumb() {
+add_action( 'woocommerce_before_single_product', 'fantasy_breadcumb' );
+function fantasy_breadcumb() {
    if ( function_exists('yoast_breadcrumb') ) {
      yoast_breadcrumb( '<p id="breadcrumbs">','</p>' );
    }
@@ -379,33 +379,33 @@ function zah_breadcumb() {
 
 
 //Product loop open main container
-add_action( 'woocommerce_before_shop_loop_item', 'zah_product_loop_main_container_open' );
-function zah_product_loop_main_container_open() {
+add_action( 'woocommerce_before_shop_loop_item', 'fantasy_product_loop_main_container_open' );
+function fantasy_product_loop_main_container_open() {
   echo '<div class="product-loop--container">';
 }
 
 //Product loop open div
-add_action( 'woocommerce_shop_loop_item_title', 'zah_product_loop_open' );
-function zah_product_loop_open() {
+add_action( 'woocommerce_shop_loop_item_title', 'fantasy_product_loop_open' );
+function fantasy_product_loop_open() {
   echo '<div class="product-loop-title-container">';
 }
 
 //Product loop close div
-add_action( 'woocommerce_after_shop_loop_item', 'zah_product_loop_close' );
-function zah_product_loop_close() {
+add_action( 'woocommerce_after_shop_loop_item', 'fantasy_product_loop_close' );
+function fantasy_product_loop_close() {
   echo '</div></div>';
 }
 
 
 //Product loop open div
-add_action( 'woocommerce_before_add_to_cart_quantity', 'zah_product_button_open' );
-function zah_product_button_open() {
+add_action( 'woocommerce_before_add_to_cart_quantity', 'fantasy_product_button_open' );
+function fantasy_product_button_open() {
   echo '<section class="inside-product--buy-buttons">';
 }
 
 //Product loop open div
-add_action( 'woocommerce_after_add_to_cart_button', 'zah_product_button_close' );
-function zah_product_button_close() {
+add_action( 'woocommerce_after_add_to_cart_button', 'fantasy_product_button_close' );
+function fantasy_product_button_close() {
   echo '</section>';
 }
 
@@ -648,7 +648,7 @@ function calculate_wpcpo_price_adjustment($options) {
 
 function filter_woocommerce_product_cross_sells_products_heading( $string ) {
     // New text
-    $string = __( 'My new text', 'zah' );
+    $string = __( 'My new text', 'fantasy' );
 
     return $string;
 }
@@ -687,24 +687,24 @@ add_filter( 'body_class', 'add_product_tags_to_body_class' );
 
 /////NEW CODE
 
-if ( ! function_exists( 'zah_woo_cart_available' ) ) {
+if ( ! function_exists( 'fantasy_woo_cart_available' ) ) {
 	/**
 	 * Validates whether the Woo Cart instance is available in the request
 	 *
 	 * @since 2.6.0
 	 * @return bool
 	 */
-	function zah_woo_cart_available() {
+	function fantasy_woo_cart_available() {
 		$woo = WC();
 		return $woo instanceof \WooCommerce && $woo->cart instanceof \WC_Cart;
 	}
 }
 
-if ( ! function_exists( 'zah_is_woocommerce_activated' ) ) {
+if ( ! function_exists( 'fantasy_is_woocommerce_activated' ) ) {
 	/**
 	 * Query WooCommerce activation
 	 */
-	function zah_is_woocommerce_activated() {
+	function fantasy_is_woocommerce_activated() {
 		$activated = class_exists( 'WooCommerce' ) ? true : false;
 		if (!$activated) {
 			error_log('WooCommerce is not activated');
@@ -716,12 +716,12 @@ if ( ! function_exists( 'zah_is_woocommerce_activated' ) ) {
 /**
  * Enqueue quantity.js script only on single product and cart pages.
  */
-function zah_enqueue_quantity_script() {
+function fantasy_enqueue_quantity_script() {
     if ( is_product() || is_cart() ) {
-        wp_enqueue_script( 'zah-quantity', get_template_directory_uri() . '/resources/scripts/quantity.js', array(), '1.1.4', true );
+        wp_enqueue_script( 'fantasy-quantity', get_template_directory_uri() . '/resources/scripts/quantity.js', array(), '1.1.4', true );
     }
 }
-add_action( 'wp_enqueue_scripts', 'zah_enqueue_quantity_script' );
+add_action( 'wp_enqueue_scripts', 'fantasy_enqueue_quantity_script' );
 
 
 
@@ -730,16 +730,16 @@ add_action( 'wp_enqueue_scripts', 'zah_enqueue_quantity_script' );
 *
 * @return boolean
 */
-if ( ! function_exists( 'zah_is_acf_activated' ) ) {
+if ( ! function_exists( 'fantasy_is_acf_activated' ) ) {
 	/**
 	 * Query ACF activation.
 	 */
-	function zah_is_acf_activated() {
+	function fantasy_is_acf_activated() {
 		return class_exists( 'acf' ) ? true : false;
 	}
 }
 
-if ( ! function_exists( 'zah_cart_link_fragment' ) ) {
+if ( ! function_exists( 'fantasy_cart_link_fragment' ) ) {
 	/**
 	 * Cart Fragments
 	 * Ensure cart contents update when products are added to the cart via AJAX
@@ -747,18 +747,18 @@ if ( ! function_exists( 'zah_cart_link_fragment' ) ) {
 	 * @param  array $fragments Fragments to refresh via AJAX.
 	 * @return array            Fragments to refresh via AJAX
 	 */
-	function zah_cart_link_fragment( $fragments ) {
+	function fantasy_cart_link_fragment( $fragments ) {
 		global $woocommerce;
 
 		ob_start();
-		zah_cart_link();
+		fantasy_cart_link();
 		$fragments['div.cart-click'] = ob_get_clean();
 
 		return $fragments;
 	}
 }
 
-if ( ! function_exists( 'zah_cart_link' ) ) {
+if ( ! function_exists( 'fantasy_cart_link' ) ) {
 	/**
 	 * Cart Link
 	 * Displayed a link to the cart including the number of items present and the cart total
@@ -766,10 +766,10 @@ if ( ! function_exists( 'zah_cart_link' ) ) {
 	 * @return void
 	 * @since  1.0.0
 	 */
-	function zah_cart_link() {
+	function fantasy_cart_link() {
 
 
-		if ( ! zah_woo_cart_available() ) {
+		if ( ! fantasy_woo_cart_available() ) {
 			error_log('WooCommerce cart is not available');
 			return;
 		}
@@ -782,7 +782,7 @@ if ( ! function_exists( 'zah_cart_link' ) ) {
 		?>
 
         <div class="cart-click">
-            <a class="cart-contents" href="#" title="<?php esc_attr_e( 'View your shopping cart', 'zah' ); ?>">
+            <a class="cart-contents" href="#" title="<?php esc_attr_e( 'View your shopping cart', 'fantasy' ); ?>">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M8.5 14.25C8.5 16.17 10.08 17.75 12 17.75C13.92 17.75 15.5 16.17 15.5 14.25" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                     <path d="M8.81 2L5.19 5.63" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
@@ -793,54 +793,53 @@ if ( ! function_exists( 'zah_cart_link' ) ) {
                 <!-- <span class="amount"> -->
                     <?php //echo wp_kses_post( WC()->cart->get_cart_subtotal() ); ?>
                 <!-- </span> -->
-                <span class="count"><?php echo wp_kses_post( /* translators: cart count */ sprintf( _n( '%d', '%d', WC()->cart->get_cart_contents_count(), 'zah' ), WC()->cart->get_cart_contents_count() ) ); ?></span>
+                <span class="count"><?php echo wp_kses_post( /* translators: cart count */ sprintf( _n( '%d', '%d', WC()->cart->get_cart_contents_count(), 'fantasy' ), WC()->cart->get_cart_contents_count() ) ); ?></span>
             </a>
         </div>
 		<?php
 	}
 }
 
-if ( ! function_exists( 'zah_header_cart' ) ) {
+if ( ! function_exists( 'fantasy_header_cart' ) ) {
 	/**
 	 * Display Header Cart
 	 *
 	 * @since  1.0.0
-	 * @uses  zah_is_woocommerce_activated() check if WooCommerce is activated
+	 * @uses  fantasy_is_woocommerce_activated() check if WooCommerce is activated
 	 * @return void
 	 */
-	function zah_header_cart() {
+	function fantasy_header_cart() {
 			?>
 		<ul class="site-header-cart menu">
-			<li><?php zah_cart_link(); ?></li>
+			<li><?php fantasy_cart_link(); ?></li>
 		</ul>
 			<?php
 	}
 }
 
 // Hook the header cart function to an action hook
-add_action( 'zah_minicart_header', 'zah_header_cart' );
+add_action( 'fantasy_minicart_header', 'fantasy_header_cart' );
 
 
 
 
-if ( ! function_exists( 'zah_header_cart_drawer' ) ) {
+if ( ! function_exists( 'fantasy_header_cart_drawer' ) ) {
 	/**
 	 * Display Header Cart Drawer
 	 *
 	 * @since  1.0.0
-	 * @uses  zah_is_woocommerce_activated() check if WooCommerce is activated
+	 * @uses  fantasy_is_woocommerce_activated() check if WooCommerce is activated
 	 * @return void
 	 */
-	function zah_header_cart_drawer() {
+	function fantasy_header_cart_drawer() {
 
         ?>
 
 
-
-		<div tabindex="-1" id="zahCartDrawer" class="cart-popup" role="dialog" aria-label="Cart drawer">
+		<div tabindex="-1" id="CartDrawer" class="cart-popup" role="dialog" aria-label="Cart drawer">
 
 			<div id="ajax-loading">
-				<div class="zah-loader">
+				<div class="fantasy-loader">
 					<div class="spinner">
 					<div class="bounce1"></div>
 					<div class="bounce2"></div>
@@ -849,8 +848,8 @@ if ( ! function_exists( 'zah_header_cart_drawer' ) ) {
 				</div>
 			</div>
 
-            <?php do_action( 'zah_before_cart_popup' ); ?>
-			<div class="cart-heading"><?php echo __('Your cart', 'zah'); ?></div>
+            <?php do_action( 'fantasy_before_cart_popup' ); ?>
+			<div class="cart-heading"><?php echo __('Your cart', 'fantasy'); ?></div>
 			<button type="button" aria-label="Close drawer" class="close-drawer">
 				<span aria-hidden="true"><svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 19L19 7" stroke="#292D32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M19 19L7 7" stroke="#292D32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
 			</button>
@@ -871,7 +870,7 @@ function get_mini_cart_settings() {
 /**
  * Output the announcement bar at the end of the mini cart.
  */
-function zah_add_announce_bar_to_mini_cart() {
+function fantasy_add_announce_bar_to_mini_cart() {
     // Check if the cart is not empty
     if (!WC()->cart->is_empty() && get_field('add_announce_to_mini_cart', 'option')) {
         if (get_field('announce_bar_header', 'option')) : ?>
@@ -887,14 +886,14 @@ function zah_add_announce_bar_to_mini_cart() {
 }
 
 // Hook into the mini cart to add the announcement bar at the end.
-add_action('woocommerce_before_mini_cart', 'zah_add_announce_bar_to_mini_cart');
+add_action('woocommerce_before_mini_cart', 'fantasy_add_announce_bar_to_mini_cart');
 
 
 
 /**
  * Display cross-sell products in the mini cart.
  */
-function zah_minicart_cross_sells() {
+function fantasy_minicart_cross_sells() {
     $cross_sells = WC()->cart->get_cross_sells();
     if (empty($cross_sells)) {
         return;
@@ -913,7 +912,7 @@ function zah_minicart_cross_sells() {
     }
 
     echo '<div class="cross-sells">';
-    echo '<h2>' . __('You may be interested in', 'zah') . '</h2>';
+    echo '<h2>' . __('You may be interested in', 'fantasy') . '</h2>';
     echo '<ul class="products">';
 
     while ($cross_sells_query->have_posts()) {
@@ -928,30 +927,30 @@ function zah_minicart_cross_sells() {
 }
 
 // Hook cross-sell display into the mini cart.
-add_action('woocommerce_mini_cart_contents', 'zah_minicart_cross_sells', 20);
+add_action('woocommerce_mini_cart_contents', 'fantasy_minicart_cross_sells', 20);
 
 /**
  * Remove view cart button from mini cart.
  */
-// function zah_remove_view_cart_minicart() {
+// function fantasy_remove_view_cart_minicart() {
 
 //         remove_action( 'woocommerce_widget_shopping_cart_buttons', 'woocommerce_widget_shopping_cart_button_view_cart', 10 );
 
 // }
-// add_action( 'woocommerce_widget_shopping_cart_buttons', 'zah_remove_view_cart_minicart', 1 );
+// add_action( 'woocommerce_widget_shopping_cart_buttons', 'fantasy_remove_view_cart_minicart', 1 );
 
 if ( class_exists( 'WooCommerce' ) ) {
 	/**
 	 * Adds a body class to just the Shop landing page.
 	 */
-	function zah_shop_body_class( $classes ) {
+	function fantasy_shop_body_class( $classes ) {
 		if ( is_shop() ) {
 			$classes[] = 'shop';
 		}
 		return $classes;
 	}
 
-	add_filter( 'body_class', 'zah_shop_body_class' );
+	add_filter( 'body_class', 'fantasy_shop_body_class' );
 }
 
 
@@ -959,7 +958,7 @@ if ( class_exists( 'WooCommerce' ) ) {
 /**
  * Ajax get variable product sale label prices.
  */
-function zah_get_sale_prices() {
+function fantasy_get_sale_prices() {
 	$product_id = isset( $_POST['product_id'] ) ? sanitize_text_field( $_POST['product_id'] ) : 0;
 	$ajax       = array();
 	$percents   = array();
@@ -985,13 +984,13 @@ function zah_get_sale_prices() {
 
 	wp_send_json( $ajax );
 }
-add_action( 'wp_ajax_zah_get_sale_prices', 'zah_get_sale_prices' );
-add_action( 'wp_ajax_nopriv_zah_get_sale_prices', 'zah_get_sale_prices' );
+add_action( 'wp_ajax_fantasy_get_sale_prices', 'fantasy_get_sale_prices' );
+add_action( 'wp_ajax_nopriv_fantasy_get_sale_prices', 'fantasy_get_sale_prices' );
 
 /**
  * Get variable product sale label prices script.
  */
-function zah_get_sale_prices_script(){
+function fantasy_get_sale_prices_script(){
 	global $product;
 	if ( ! is_product() ) {
 		return;
@@ -1011,35 +1010,35 @@ function zah_get_sale_prices_script(){
 
 	?>
 <script type="text/javascript">
-var zah_sales = null;
+var fantasy_sales = null;
 jQuery( document ).ready( function( $ ) {
-	var zah_sale_lbl = $( '.summary .sale-item.product-label' );
-	zah_sale_lbl.css( 'visibility', 'hidden' );
+	var fantasy_sale_lbl = $( '.summary .sale-item.product-label' );
+	fantasy_sale_lbl.css( 'visibility', 'hidden' );
 	$.ajax( {
 		type: 'POST',
 		url: '<?php echo esc_url( admin_url( 'admin-ajax.php' ) ); ?>',
-		data: { 'action': 'zah_get_sale_prices', 'product_id': <?php echo esc_attr( $product->get_id() ); ?> },
+		data: { 'action': 'fantasy_get_sale_prices', 'product_id': <?php echo esc_attr( $product->get_id() ); ?> },
 		success: function( json ) {
-			zah_sales = json.percents;
-			zah_update_variable_sale_badge();
+			fantasy_sales = json.percents;
+			fantasy_update_variable_sale_badge();
 		}
 	} );
 	$( '.summary input.variation_id' ).change( function() {
-		zah_update_variable_sale_badge();
+		fantasy_update_variable_sale_badge();
 	} );
-	function zah_update_variable_sale_badge() {
+	function fantasy_update_variable_sale_badge() {
 		var variation_id = $( '.summary input.variation_id' ).val();
-		if ( '' != variation_id && zah_sales && zah_sales.hasOwnProperty( variation_id ) ) {
-			zah_sale_lbl.html( zah_sales[variation_id] ).css( 'visibility', 'visible' );
+		if ( '' != variation_id && fantasy_sales && fantasy_sales.hasOwnProperty( variation_id ) ) {
+			fantasy_sale_lbl.html( fantasy_sales[variation_id] ).css( 'visibility', 'visible' );
 		} else {
-			zah_sale_lbl.css( 'visibility', 'hidden' );
+			fantasy_sale_lbl.css( 'visibility', 'hidden' );
 		}
 	}
 } );
 </script>
 	<?php
 }
-add_action( 'wp_footer', 'zah_get_sale_prices_script', 999 );
+add_action( 'wp_footer', 'fantasy_get_sale_prices_script', 999 );
 
 /**
  * Single Product - exclude from Jetpack's Lazy Load.
@@ -1057,12 +1056,12 @@ add_filter( 'lazyload_is_enabled', 'is_lazyload_activated', 10, 3 );
 /**
  * Show cart widget on all pages.
  */
-add_filter( 'woocommerce_widget_cart_is_hidden', 'zah_always_show_cart', 40, 0 );
+add_filter( 'woocommerce_widget_cart_is_hidden', 'fantasy_always_show_cart', 40, 0 );
 
 /**
  * Function to always show cart.
  */
-function zah_always_show_cart() {
+function fantasy_always_show_cart() {
 	return false;
 }
 
@@ -1072,26 +1071,26 @@ add_action( 'woocommerce_before_shop_loop_item_title', 'woocommerce_show_product
 /**
  * Single Product Page - Add a section wrapper start.
  */
-add_action( 'woocommerce_before_single_product_summary', 'zah_product_content_wrapper_start', 5 );
-function zah_product_content_wrapper_start() {
+add_action( 'woocommerce_before_single_product_summary', 'fantasy_product_content_wrapper_start', 5 );
+function fantasy_product_content_wrapper_start() {
 	echo '<div class="product-details-wrapper">';
 }
 
 /**
  * Single Product Page - Add a section wrapper end.
  */
-add_action( 'woocommerce_single_product_summary', 'zah_product_content_wrapper_end', 60 );
-function zah_product_content_wrapper_end() {
+add_action( 'woocommerce_single_product_summary', 'fantasy_product_content_wrapper_end', 60 );
+function fantasy_product_content_wrapper_end() {
 	echo '</div><!--/product-details-wrapper-end-->';
 }
 
-add_action( 'woocommerce_after_single_product_summary', 'zah_related_content_wrapper_start', 10 );
-add_action( 'woocommerce_after_single_product_summary', 'zah_related_content_wrapper_end', 60 );
+add_action( 'woocommerce_after_single_product_summary', 'fantasy_related_content_wrapper_start', 10 );
+add_action( 'woocommerce_after_single_product_summary', 'fantasy_related_content_wrapper_end', 60 );
 
 /**
  * Single Product Page - Related products section wrapper start.
  */
-function zah_related_content_wrapper_start() {
+function fantasy_related_content_wrapper_start() {
 	echo '<section class="related-wrapper">';
 }
 
@@ -1099,16 +1098,16 @@ function zah_related_content_wrapper_start() {
 /**
  * Single Product Page - Related products section wrapper end.
  */
-function zah_related_content_wrapper_end() {
+function fantasy_related_content_wrapper_end() {
 	echo '</section>';
 }
 
 
-if ( ! function_exists( 'zah_pdp_ajax_atc' ) ) {
+if ( ! function_exists( 'fantasy_pdp_ajax_atc' ) ) {
 	/**
 	 * PDP/Single product ajax add to cart.
 	 */
-	function zah_pdp_ajax_atc() {
+	function fantasy_pdp_ajax_atc() {
 		$sku = '';
 		if ( isset( $_POST['variation_id'] ) ) {
 			$sku = $_POST['variation_id'];
@@ -1123,13 +1122,13 @@ if ( ! function_exists( 'zah_pdp_ajax_atc' ) ) {
 		$notices = ob_get_clean();
 		ob_start();
 		woocommerce_mini_cart();
-		$zah_mini_cart = ob_get_clean();
-		$zah_atc_data  = array(
+		$fantasy_mini_cart = ob_get_clean();
+		$fantasy_atc_data  = array(
 			'notices'   => $notices,
 			'fragments' => apply_filters(
 				'woocommerce_add_to_cart_fragments',
 				array(
-					'div.widget_shopping_cart_content' => '<div class="widget_shopping_cart_content">' . $zah_mini_cart . '</div>',
+					'div.widget_shopping_cart_content' => '<div class="widget_shopping_cart_content">' . $fantasy_mini_cart . '</div>',
 				)
 			),
 			'cart_hash' => apply_filters( 'woocommerce_add_to_cart_hash', WC()->cart->get_cart_for_session() ? md5( json_encode( WC()->cart->get_cart_for_session() ) ) : '', WC()->cart->get_cart_for_session() ),
@@ -1140,26 +1139,26 @@ if ( ! function_exists( 'zah_pdp_ajax_atc' ) ) {
 		//}
 		do_action( 'woocommerce_ajax_added_to_cart', $sku );
 
-		wp_send_json( $zah_atc_data );
+		wp_send_json( $fantasy_atc_data );
 		die();
 	}
 }
 
-add_action( 'wc_ajax_zah_pdp_ajax_atc', 'zah_pdp_ajax_atc' );
-add_action( 'wc_ajax_nopriv_zah_pdp_ajax_atc', 'zah_pdp_ajax_atc' );
+add_action( 'wc_ajax_fantasy_pdp_ajax_atc', 'fantasy_pdp_ajax_atc' );
+add_action( 'wc_ajax_nopriv_fantasy_pdp_ajax_atc', 'fantasy_pdp_ajax_atc' );
 
 
-if ( ! function_exists( 'zah_pdp_ajax_atc_enqueue' ) ) {
+if ( ! function_exists( 'fantasy_pdp_ajax_atc_enqueue' ) ) {
 
     /**
      * Enqueue assets for PDP/Single product ajax add to cart.
      */
-    function zah_pdp_ajax_atc_enqueue() {
+    function fantasy_pdp_ajax_atc_enqueue() {
         if ( is_product() ) {
-            wp_enqueue_script( 'zah-ajax-script', get_template_directory_uri() . '/resources/scripts/single-product-ajax.js', array( 'jquery' ), '1.0.0', true );
+            wp_enqueue_script( 'fantasy-ajax-script', get_template_directory_uri() . '/resources/scripts/single-product-ajax.js', array( 'jquery' ), '1.0.0', true );
             wp_localize_script(
-                'zah-ajax-script',
-                'zah_ajax_obj',
+                'fantasy-ajax-script',
+                'fantasy_ajax_obj',
                 array(
                     'ajaxurl' => admin_url( 'admin-ajax.php' ),
                     'nonce'   => wp_create_nonce( 'ajax-nonce' ),
@@ -1170,7 +1169,7 @@ if ( ! function_exists( 'zah_pdp_ajax_atc_enqueue' ) ) {
 }
 
 // Hook the function to enqueue scripts
-add_action( 'wp_enqueue_scripts', 'zah_pdp_ajax_atc_enqueue' );
+add_action( 'wp_enqueue_scripts', 'fantasy_pdp_ajax_atc_enqueue' );
 
 
 
@@ -1178,7 +1177,7 @@ add_action( 'wp_enqueue_scripts', 'zah_pdp_ajax_atc_enqueue' );
 /**
  * Custom markup around cart field.
  */
-// function zah_cart_custom_field() {
+// function fantasy_cart_custom_field() {
 
 // 	if ( is_active_sidebar( 'cart-field' ) ) :
 // 		echo '<div class="cart-custom-field">';
@@ -1191,11 +1190,11 @@ add_action( 'wp_enqueue_scripts', 'zah_pdp_ajax_atc_enqueue' );
 
 
 /**
- *  Quantity selectors for zah mini cart
+ *  Quantity selectors for fantasy mini cart
  *
- * @package zah
+ * @package fantasy
  *
- * Description: Adds quantity buttons for the zah mini cart
+ * Description: Adds quantity buttons for the fantasy mini cart
  * Version: 1.0
  */
 
@@ -1213,15 +1212,15 @@ function add_minicart_quantity_fields( $html, $cart_item, $cart_item_key ) {
     $_product      = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
     $max_qty       = $_product->get_max_purchase_quantity();
 
-    $out = '<div class="zah-custom-quantity-mini-cart_container">
-                <div class="zah-custom-quantity-mini-cart">
-                <span tabindex="0" role="button" aria-label="Reduce quantity" class="zah-custom-quantity-mini-cart_button quantity-down">
+    $out = '<div class="fantasy-custom-quantity-mini-cart_container">
+                <div class="fantasy-custom-quantity-mini-cart">
+                <span tabindex="0" role="button" aria-label="Reduce quantity" class="fantasy-custom-quantity-mini-cart_button quantity-down">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" class="w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12h-15" />
                     </svg>
                 </span>
-                <input aria-label="' . esc_attr( __( 'Quantity input', 'zah' ) ) . '" class="zah-custom-quantity-mini-cart_input" data-cart_item_key="' . $cart_item_key . '" type="number" min="1" ' . ( -1 !== $max_qty ? 'max="' . $max_qty . '"' : '' ) . ' step="1" value="' . $cart_item['quantity'] . '">
-                <span tabindex="0" role="button" aria-label="Increase quantity" class="zah-custom-quantity-mini-cart_button quantity-up">
+                <input aria-label="' . esc_attr( __( 'Quantity input', 'fantasy' ) ) . '" class="fantasy-custom-quantity-mini-cart_input" data-cart_item_key="' . $cart_item_key . '" type="number" min="1" ' . ( -1 !== $max_qty ? 'max="' . $max_qty . '"' : '' ) . ' step="1" value="' . $cart_item['quantity'] . '">
+                <span tabindex="0" role="button" aria-label="Increase quantity" class="fantasy-custom-quantity-mini-cart_button quantity-up">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" class="w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                     </svg>
@@ -1240,15 +1239,15 @@ function add_minicart_quantity_fields( $html, $cart_item, $cart_item_key ) {
 add_filter( 'woocommerce_widget_cart_item_quantity', 'add_minicart_quantity_fields', 10, 3 );
 
 
-if ( ! function_exists( 'minicart_zah_update_mini_cart' ) ) {
+if ( ! function_exists( 'minicart_fantasy_update_mini_cart' ) ) {
 
 
 
 
     /**
-     * Minicart zah update mini cart.
+     * Minicart fantasy update mini cart.
      */
-    function minicart_zah_update_mini_cart() {
+    function minicart_fantasy_update_mini_cart() {
 
         $data = $_POST['data']; // phpcs:ignore
         if ( ! WC()->cart->is_empty() ) {
@@ -1271,23 +1270,23 @@ if ( ! function_exists( 'minicart_zah_update_mini_cart' ) ) {
 
 }
 
-add_action( 'wp_ajax_cg_zah_update_mini_cart', 'minicart_zah_update_mini_cart' );
-add_action( 'wp_ajax_nopriv_cg_zah_update_mini_cart', 'minicart_zah_update_mini_cart' );
+add_action( 'wp_ajax_cg_fantasy_update_mini_cart', 'minicart_fantasy_update_mini_cart' );
+add_action( 'wp_ajax_nopriv_cg_fantasy_update_mini_cart', 'minicart_fantasy_update_mini_cart' );
 
 
-if ( ! function_exists( 'minicart_zah_get_styles' ) ) {
+if ( ! function_exists( 'minicart_fantasy_get_styles' ) ) {
 /**
  * Enqueue scripts
  */
-function minicart_zah_get_scripts() {
+function minicart_fantasy_get_scripts() {
 
 
 
-        wp_enqueue_script( 'custom-zah-quantity-js', get_theme_file_uri( '/resources/scripts/minicart-quantity.js' ), array( 'jquery' ), time(), true );
+        wp_enqueue_script( 'custom-fantasy-quantity-js', get_theme_file_uri( '/resources/scripts/minicart-quantity.js' ), array( 'jquery' ), time(), true );
 
 }
 }
-add_action( 'wp_enqueue_scripts', 'minicart_zah_get_scripts', 30 );
+add_action( 'wp_enqueue_scripts', 'minicart_fantasy_get_scripts', 30 );
 
 
 /**
@@ -1295,9 +1294,9 @@ add_action( 'wp_enqueue_scripts', 'minicart_zah_get_scripts', 30 );
 *
 * @since 2.6.6
 */
-add_action( 'wp_footer', 'zah_cart_ajax_update_quantity' );
+add_action( 'wp_footer', 'fantasy_cart_ajax_update_quantity' );
 
-function zah_cart_ajax_update_quantity() {
+function fantasy_cart_ajax_update_quantity() {
 
     if ( is_cart() || ( is_cart() && is_checkout() ) ) {
         wc_enqueue_js('
@@ -1314,11 +1313,11 @@ function zah_cart_ajax_update_quantity() {
     }
 }
 
-add_filter( 'body_class', 'zah_cart_ajax_update_quantity_class');
-function zah_cart_ajax_update_quantity_class( $classes ) {
+add_filter( 'body_class', 'fantasy_cart_ajax_update_quantity_class');
+function fantasy_cart_ajax_update_quantity_class( $classes ) {
 
     if ( is_cart() || ( is_cart() && is_checkout() ) ) {
-            $classes[] = 'zah-ajax-cart';
+            $classes[] = 'fantasy-ajax-cart';
     }
 
 return $classes;
@@ -1342,12 +1341,12 @@ if (!WC()->cart->is_empty()) {
         custom_free_shipping_notification('mini-cart');
     }
 } else {
-    zah_empty_mini_cart($mini_cart_settings);
+    fantasy_empty_mini_cart($mini_cart_settings);
 }
 }
 add_action('woocommerce_before_mini_cart', 'custom_fsn_add_mini_cart', 20);
 
-if ( ! function_exists( 'zah_upsell_display' ) ) {
+if ( ! function_exists( 'fantasy_upsell_display' ) ) {
 /**
  * Upsells
  * Replace the default upsell function with our own which displays the correct number product columns
@@ -1356,8 +1355,8 @@ if ( ! function_exists( 'zah_upsell_display' ) ) {
  * @return  void
  * @uses    woocommerce_upsell_display()
  */
-function zah_upsell_display() {
-    $columns = apply_filters( 'zah_upsells_columns', 4 );
+function fantasy_upsell_display() {
+    $columns = apply_filters( 'fantasy_upsells_columns', 4 );
     woocommerce_upsell_display( -1, $columns );
 }
 }
@@ -1413,12 +1412,12 @@ if ($free_shipping_available) {
             <div class="bar-body">
                 <span style="width: <?php echo esc_attr($progressPercentage); ?>%;"></span>
             </div>
-            <p>👋 <?php esc_html_e('You are ', 'zah'); ?> <span data-min="<?php echo esc_attr($min_amount); ?>" data-total="<?php echo esc_attr(WC()->cart->total); ?>" data-shipping="<?php echo esc_attr(WC()->cart->shipping_total); ?>"><?php echo wc_price($awayFromFreeDelivery); ?></span> <?php esc_html_e(' away from free delivery', 'zah'); ?></p>
+            <p>👋 <?php esc_html_e('You are ', 'fantasy'); ?> <span data-min="<?php echo esc_attr($min_amount); ?>" data-total="<?php echo esc_attr(WC()->cart->total); ?>" data-shipping="<?php echo esc_attr(WC()->cart->shipping_total); ?>"><?php echo wc_price($awayFromFreeDelivery); ?></span> <?php esc_html_e(' away from free delivery', 'fantasy'); ?></p>
         <?php else : ?>
             <div class="bar-body">
                 <span style="width: 100%;"></span>
             </div>
-            <p class="unlocked flex gap-2 items-center"><span class="icon icon-tick-circle"></span> <?php esc_html_e('Congrats! You\'ve reached free shipping.', 'zah'); ?></p>
+            <p class="unlocked flex gap-2 items-center"><span class="icon icon-tick-circle"></span> <?php esc_html_e('Congrats! You\'ve reached free shipping.', 'fantasy'); ?></p>
         <?php endif; ?>
     </div>
     <?php
@@ -1428,10 +1427,10 @@ if ($free_shipping_available) {
 /**
  * Display custom content when mini cart is empty.
  */
-function zah_empty_mini_cart($mini_cart_settings) {
+function fantasy_empty_mini_cart($mini_cart_settings) {
 if (WC()->cart->is_empty()) {
-    echo '<div class="zah-empty-mini-cart">';
-    echo '<h4>'. __('Your bag is empty', 'zah') .'</h4>';
+    echo '<div class="fantasy-empty-mini-cart">';
+    echo '<h4>'. __('Your bag is empty', 'fantasy') .'</h4>';
 
     // Display the selected categories
     if (!empty($mini_cart_settings['choose_emtpy_cart_category'])) {
@@ -1470,10 +1469,10 @@ add_action('wp_enqueue_scripts', 'custom_fsn_enqueue_scripts');
  *
  * @see get_the_permalink()
  */
-function zah_remove_woocommerce_template_loop_product_link_open() {
+function fantasy_remove_woocommerce_template_loop_product_link_open() {
 remove_action( 'woocommerce_before_shop_loop_item', 'woocommerce_template_loop_product_link_open', 10 );
 }
-add_action( 'wp_head', 'zah_remove_woocommerce_template_loop_product_link_open' );
+add_action( 'wp_head', 'fantasy_remove_woocommerce_template_loop_product_link_open' );
 
 
 /**
@@ -1481,10 +1480,10 @@ add_action( 'wp_head', 'zah_remove_woocommerce_template_loop_product_link_open' 
  *
  * @see get_the_permalink()
  */
-function zah_remove_woocommerce_template_loop_product_link_close() {
+function fantasy_remove_woocommerce_template_loop_product_link_close() {
 remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_product_link_close', 5 );
 }
-add_action( 'wp_head', 'zah_remove_woocommerce_template_loop_product_link_close' );
+add_action( 'wp_head', 'fantasy_remove_woocommerce_template_loop_product_link_close' );
 
 
 /**
@@ -1492,10 +1491,10 @@ add_action( 'wp_head', 'zah_remove_woocommerce_template_loop_product_link_close'
  *
  * @see get_the_permalink()
  */
-function zah_template_loop_image_link_open() {
+function fantasy_template_loop_image_link_open() {
 echo '<a href="' . get_the_permalink() . '" title="' . get_the_title() . '" class="woocommerce-LoopProduct-link woocommerce-loop-product__link">';
 }
-add_action( 'woocommerce_before_shop_loop_item_title', 'zah_template_loop_image_link_open', 5 );
+add_action( 'woocommerce_before_shop_loop_item_title', 'fantasy_template_loop_image_link_open', 5 );
 
 
 /**
@@ -1503,20 +1502,20 @@ add_action( 'woocommerce_before_shop_loop_item_title', 'zah_template_loop_image_
  *
  * @see get_the_permalink()
  */
-function zah_template_loop_image_link_close() {
+function fantasy_template_loop_image_link_close() {
 echo '</a>';
 }
-add_action( 'woocommerce_before_shop_loop_item_title', 'zah_template_loop_image_link_close', 20 );
+add_action( 'woocommerce_before_shop_loop_item_title', 'fantasy_template_loop_image_link_close', 20 );
 
-add_action( 'woocommerce_shop_loop_item_title', 'zah_loop_product_content_header_open', 5 );
+add_action( 'woocommerce_shop_loop_item_title', 'fantasy_loop_product_content_header_open', 5 );
 
-function zah_loop_product_content_header_open() {
+function fantasy_loop_product_content_header_open() {
 echo '<div class="woocommerce-card__header">';
 }
 
-add_action( 'woocommerce_after_shop_loop_item', 'zah_loop_product_content_header_close', 60 );
+add_action( 'woocommerce_after_shop_loop_item', 'fantasy_loop_product_content_header_close', 60 );
 
-function zah_loop_product_content_header_close() {
+function fantasy_loop_product_content_header_close() {
 echo '</div>';
 }
 
@@ -1524,9 +1523,9 @@ echo '</div>';
  * Within Product Loop - remove title hook and create a new one with the category displayed above it.
  */
 remove_action( 'woocommerce_shop_loop_item_title', 'woocommerce_template_loop_product_title', 10 );
-add_action( 'woocommerce_shop_loop_item_title', 'zah_loop_product_title', 10 );
+add_action( 'woocommerce_shop_loop_item_title', 'fantasy_loop_product_title', 10 );
 
-function zah_loop_product_title() {
+function fantasy_loop_product_title() {
 
 global $post;
 
@@ -1548,18 +1547,18 @@ global $post;
 /**
  * Display discounted % on product loop.
  */
-add_action( 'woocommerce_before_shop_loop_item_title', 'zah_change_displayed_sale_price_html', 7 );
-add_action( 'woocommerce_single_product_summary', 'zah_change_displayed_sale_price_html', 10 );
-add_action( 'woocommerce_single_product_summary', 'zah_clear_product_price', 11 );
+add_action( 'woocommerce_before_shop_loop_item_title', 'fantasy_change_displayed_sale_price_html', 7 );
+add_action( 'woocommerce_single_product_summary', 'fantasy_change_displayed_sale_price_html', 10 );
+add_action( 'woocommerce_single_product_summary', 'fantasy_clear_product_price', 11 );
 
-if ( ! function_exists( 'zah_clear_product_price' ) ) {
+if ( ! function_exists( 'fantasy_clear_product_price' ) ) {
 /**
  * Clear product price
  *
  * @since   1.0.0
  * @return  void
  */
-function zah_clear_product_price() {
+function fantasy_clear_product_price() {
     echo '<div class="clear"></div>';
 }
 }
@@ -1567,7 +1566,7 @@ function zah_clear_product_price() {
 /**
  * Shop page - Out of Stock
  */
-if ( ! function_exists( 'zah_shop_out_of_stock' ) ) :
+if ( ! function_exists( 'fantasy_shop_out_of_stock' ) ) :
 /**
  * Add Out of Stock to the Shop page
  *
@@ -1575,9 +1574,9 @@ if ( ! function_exists( 'zah_shop_out_of_stock' ) ) :
  *
  * @since 1.8.5
  */
-function zah_shop_out_of_stock() {
+function fantasy_shop_out_of_stock() {
     $out_of_stock        = get_post_meta( get_the_ID(), '_stock_status', true );
-    $out_of_stock_string = apply_filters( 'zah_shop_out_of_stock_string', __( 'Out of stock', 'zah' ) );
+    $out_of_stock_string = apply_filters( 'fantasy_shop_out_of_stock_string', __( 'Out of stock', 'fantasy' ) );
 
     if ( 'outofstock' === $out_of_stock && ! empty( $out_of_stock_string ) ) {
         ?>
@@ -1588,10 +1587,10 @@ function zah_shop_out_of_stock() {
 
 endif;
 
-function zah_change_displayed_sale_price_html() {
+function fantasy_change_displayed_sale_price_html() {
 
 global $product, $price;
-$zah_sale_badge = '';
+$fantasy_sale_badge = '';
 
 
 if ( $product->is_on_sale() && ! $product->is_type( 'grouped' ) && ! $product->is_type( 'bundle' ) ) {
@@ -1626,13 +1625,13 @@ if ( $product->is_on_sale() && ! $product->is_type( 'grouped' ) && ! $product->i
     if ( isset( $percentage ) && $percentage > 0 ) {
 
 
-            $zah_sale_badge .= sprintf( __( '<span class="sale-item product-label type-rounded">-%s</span>', 'zah' ), $percentage );
+            $fantasy_sale_badge .= sprintf( __( '<span class="sale-item product-label type-rounded">-%s</span>', 'fantasy' ), $percentage );
 
     }
 }
 
 
-    echo zah_safe_html( $zah_sale_badge );
+    echo fantasy_safe_html( $fantasy_sale_badge );
 
 
 }
@@ -1642,9 +1641,9 @@ if ( $product->is_on_sale() && ! $product->is_type( 'grouped' ) && ! $product->i
  *
  * @since 1.6.1
  */
-add_action( 'woocommerce_before_add_to_cart_quantity', 'zah_highlight_selected_variation' );
+add_action( 'woocommerce_before_add_to_cart_quantity', 'fantasy_highlight_selected_variation' );
 
-function zah_highlight_selected_variation() {
+function fantasy_highlight_selected_variation() {
 
 global $product;
 
@@ -1690,20 +1689,20 @@ document.addEventListener('click', function( event ){
 /**
  * Single Product Page - Added to cart message.
  */
-add_filter( 'wc_add_to_cart_message_html', 'zah_add_to_cart_message_filter', 10, 2 );
+add_filter( 'wc_add_to_cart_message_html', 'fantasy_add_to_cart_message_filter', 10, 2 );
 
-function zah_add_to_cart_message_filter( $message ) {
+function fantasy_add_to_cart_message_filter( $message ) {
 
-$zah_message = sprintf(
+$fantasy_message = sprintf(
     '<div class="message-inner"><div class="message-content">%s </div><div class="buttons-wrapper"><a href="%s" class="button checkout"><span>%s</span></a> <a href="%s" class="button cart"><span>%s</span></a></div></div>',
-    zah_safe_html( $message ),
+    fantasy_safe_html( $message ),
     esc_url( wc_get_page_permalink( 'checkout' ) ),
-    esc_html__( 'Checkout', 'zah' ),
+    esc_html__( 'Checkout', 'fantasy' ),
     esc_url( wc_get_page_permalink( 'cart' ) ),
-    esc_html__( 'View Cart', 'zah' )
+    esc_html__( 'View Cart', 'fantasy' )
 	);
 
-	return $zah_message;
+	return $fantasy_message;
 
 }
 
@@ -1712,29 +1711,29 @@ $zah_message = sprintf(
 /**
  * Cart wrapper open.
  */
-function zah_cart_wrapper_open() {
-	echo '<section class="zah-cart-wrapper">';
+function fantasy_cart_wrapper_open() {
+	echo '<section class="fantasy-cart-wrapper">';
 }
 
 /**
  * Cart wrapper close.
  */
 
-function zah_cart_wrapper_close() {
+function fantasy_cart_wrapper_close() {
 	echo '</section>';
 }
 
-add_action( 'woocommerce_before_cart', 'zah_cart_wrapper_open', 20 );
-add_action( 'woocommerce_after_cart', 'zah_cart_wrapper_close', 10 );
+add_action( 'woocommerce_before_cart', 'fantasy_cart_wrapper_open', 20 );
+add_action( 'woocommerce_after_cart', 'fantasy_cart_wrapper_close', 10 );
 
 
 /**
  * Add Progress Bar to the Cart and Checkout pages.
  */
-add_action( 'woocommerce_before_cart', 'zah_cart_progress' );
-add_action( 'woocommerce_before_checkout_form', 'zah_cart_progress', 5 );
+add_action( 'woocommerce_before_cart', 'fantasy_cart_progress' );
+add_action( 'woocommerce_before_checkout_form', 'fantasy_cart_progress', 5 );
 
-if ( ! function_exists( 'zah_cart_progress' ) ) {
+if ( ! function_exists( 'fantasy_cart_progress' ) ) {
 
 	/**
 	 * More product info
@@ -1743,7 +1742,7 @@ if ( ! function_exists( 'zah_cart_progress' ) ) {
 	 * @return void
 	 * @since  1.0.0
 	 */
-	function zah_cart_progress() {
+	function fantasy_cart_progress() {
 
 
 
@@ -1752,12 +1751,12 @@ if ( ! function_exists( 'zah_cart_progress' ) ) {
 			<div class="checkout-wrap">
 			<ul class="checkout-bar">
 				<li class="active first"><span>
-				<a href="<?php echo get_permalink( wc_get_page_id( 'cart' ) ); ?>"><?php esc_html_e( 'Shopping Cart', 'zah' ); ?></a></span>
+				<a href="<?php echo get_permalink( wc_get_page_id( 'cart' ) ); ?>"><?php esc_html_e( 'Shopping Cart', 'fantasy' ); ?></a></span>
 				</li>
 				<li class="next">
 				<span>
-				<a href="<?php echo get_permalink( wc_get_page_id( 'checkout' ) ); ?>"><?php esc_html_e( 'Shipping and Checkout', 'zah' ); ?></a></span></li>
-				<li><span><?php esc_html_e( 'Confirmation', 'zah' ); ?></span></li>
+				<a href="<?php echo get_permalink( wc_get_page_id( 'checkout' ) ); ?>"><?php esc_html_e( 'Shipping and Checkout', 'fantasy' ); ?></a></span></li>
+				<li><span><?php esc_html_e( 'Confirmation', 'fantasy' ); ?></span></li>
 
 			</ul>
 			</div>
@@ -1781,9 +1780,9 @@ add_action( 'woocommerce_single_product_summary', 'woocommerce_show_product_sale
 /**
  * Appearance > Widgets > Custom Thank You Area. Loads at the bottom of the thank you page after an order has been placed.
  */
-// add_action( 'woocommerce_thankyou', 'zah_custom_thankyou_section' );
+// add_action( 'woocommerce_thankyou', 'fantasy_custom_thankyou_section' );
 
-// function zah_custom_thankyou_section() {
+// function fantasy_custom_thankyou_section() {
 // 	echo '<div class="thankyou-custom-field">';
 // 	dynamic_sidebar( 'thankyou-field' );
 // 	echo '</div>';
@@ -1800,7 +1799,7 @@ add_action( 'woocommerce_single_product_summary', 'woocommerce_show_product_sale
 // Change add to cart text on product archives page
 add_filter( 'woocommerce_product_add_to_cart_text', 'woocommerce_add_to_cart_button_text_archives' );
 function woocommerce_add_to_cart_button_text_archives() {
-    return __( 'Add to cart', 'zah' );
+    return __( 'Add to cart', 'fantasy' );
 }
 
 // Rename the coupon field on the cart page
@@ -1809,10 +1808,10 @@ function woocommerce_rename_coupon_field_on_cart( $translated_text, $text, $doma
     if ( $domain === 'woocommerce' ) {
         switch ( $text ) {
             case 'Apply coupon':
-                $translated_text = __( 'Apply Coupon', 'zah' );
+                $translated_text = __( 'Apply Coupon', 'fantasy' );
                 break;
             case 'Coupon code':
-                $translated_text = __( 'Enter Coupon Code', 'zah' );
+                $translated_text = __( 'Enter Coupon Code', 'fantasy' );
                 break;
         }
     }

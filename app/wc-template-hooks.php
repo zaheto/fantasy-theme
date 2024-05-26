@@ -141,7 +141,7 @@ remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_r
 add_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_related_products', 30 );
 
 
-add_action( 'woocommerce_before_shop_loop_item_title', 'zah_shop_out_of_stock', 8 );
+add_action( 'woocommerce_before_shop_loop_item_title', 'fantasy_shop_out_of_stock', 8 );
 
 remove_action( 'woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_rating', 5 );
 add_action( 'woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_rating', 6 );
@@ -309,7 +309,7 @@ remove_action('woocommerce_cart_collaterals', 'woocommerce_cross_sell_display');
 // remove_action('woocommerce_auth_page_header', 'woocommerce_output_auth_header', 10);
 // remove_action('woocommerce_auth_page_footer', 'woocommerce_output_auth_footer', 10);
 
-add_action( 'zah_before_site', 'zah_header_cart_drawer', 5 );
+add_action( 'fantasy_before_site', 'fantasy_header_cart_drawer', 5 );
 
 /**
  * Comments.
@@ -348,7 +348,7 @@ add_action( 'zah_before_site', 'zah_header_cart_drawer', 5 );
 // remove_action('before_woocommerce_pay', 'woocommerce_output_all_notices', 10);
 // remove_action('woocommerce_before_reset_password_form', 'woocommerce_output_all_notices', 10);
 
-add_filter( 'woocommerce_add_to_cart_fragments', 'zah_cart_link_fragment' );
+add_filter( 'woocommerce_add_to_cart_fragments', 'fantasy_cart_link_fragment' );
 
 
 

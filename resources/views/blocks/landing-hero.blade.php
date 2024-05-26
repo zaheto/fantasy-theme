@@ -30,7 +30,7 @@ if ( ! $product instanceof WC_Product ) {
         <a href="mailto:{{ get_field('footer_email', 'options') }}"><x-iconsax-lin-sms class="text-main mr-2 w-[32px] h-[32px]" /></a>
         <div class="flex flex-col text-12 text-black/60 font-medium whitespace-nowrap">
 
-          {{-- {{ __('Email address','zah') }} --}}
+          {{-- {{ __('Email address','fantasy') }} --}}
 
             <a href="mailto:{{ get_field('footer_email', 'options') }}" class="hidden lg:flex text-black text-15 font-semibold whitespace-nowrap">
                 {{ get_field('footer_email', 'options') }}
@@ -48,7 +48,7 @@ if ( ! $product instanceof WC_Product ) {
       <div class="header-corners right flex items-center">
 
         <div class="flex flex-col text-12 text-black/60 font-medium whitespace-nowrap">
-          {{-- {{ __('Call us now','zah') }} --}}
+          {{-- {{ __('Call us now','fantasy') }} --}}
             <a href="callto:{{ get_field('footer_phone', 'options') }}" class="hidden lg:flex text-black text-15 font-semibold whitespace-nowrap">
                 {{ get_field('footer_phone', 'options') }}
             </a>
@@ -64,13 +64,13 @@ if ( ! $product instanceof WC_Product ) {
     <span class="heading">{{ $heading_landing_hero }} </span>
     <div class="right">
       <ul>
-        <li><a href="#overview">{{ __('Information', 'zah') }}</a></li>
-        <li><a href="#video">{{ __('Video', 'zah') }}</a></li>
-        <li><a href="#gallery">{{ __('Gallery', 'zah') }}</a></li>
-        <li><a href="#reviews">{{ __('Reviews', 'zah') }}</a></li>
-        <li><a href="#box">{{ __('In the box', 'zah') }}</a></li>
+        <li><a href="#overview">{{ __('Information', 'fantasy') }}</a></li>
+        <li><a href="#video">{{ __('Video', 'fantasy') }}</a></li>
+        <li><a href="#gallery">{{ __('Gallery', 'fantasy') }}</a></li>
+        <li><a href="#reviews">{{ __('Reviews', 'fantasy') }}</a></li>
+        <li><a href="#box">{{ __('In the box', 'fantasy') }}</a></li>
       </ul>
-      <a href="#buy-bottom" class="btn btn-green btn-small"> {{ __('BUY NOW', 'zah') }} </a>
+      <a href="#buy-bottom" class="btn btn-green btn-small"> {{ __('BUY NOW', 'fantasy') }} </a>
     </div>
   </div>
 </section>
@@ -111,14 +111,14 @@ if ( ! $product instanceof WC_Product ) {
                     $max_price = end($prices['price']);
                 @endphp
 
-                <div class="price-from">{{ __('Prices from:', 'zah') }} <p class="price"> {!! wc_price($min_price) !!}</div>
+                <div class="price-from">{{ __('Prices from:', 'fantasy') }} <p class="price"> {!! wc_price($min_price) !!}</div>
             @endif
 
           @else
-          <div class="price-from">{{ __('Prices from:', 'zah') }} <p class="price"> {!! wc_price($product->get_price()) !!}</p></div>
+          <div class="price-from">{{ __('Prices from:', 'fantasy') }} <p class="price"> {!! wc_price($product->get_price()) !!}</p></div>
           @endif
 
-          <a href="#buy-bottom" class="btn btn-green"> <x-iconsax-lin-bag-happy class="text-white w-[28px]  h-[28px] transition-all duration-200 scale-100 hover:scale-95 transform" />  {{ __('BUY NOW', 'zah') }} </a>
+          <a href="#buy-bottom" class="btn btn-green"> <x-iconsax-lin-bag-happy class="text-white w-[28px]  h-[28px] transition-all duration-200 scale-100 hover:scale-95 transform" />  {{ __('BUY NOW', 'fantasy') }} </a>
         </div>
       </div>
 
@@ -134,28 +134,28 @@ if ( ! $product instanceof WC_Product ) {
         <div class="swiper-slide">
           <div class="box">
             <x-iconsax-lin-shield-tick class="text-green w-[28px] md:w-[40px] min-w-[28px] md:min-w-[40px] h-[40px] transition-all duration-200 scale-100 hover:scale-95 transform" />
-            <p>{{ __('Landing Feature 1', 'zah') }}</p>
+            <p>{{ __('Landing Feature 1', 'fantasy') }}</p>
           </div>
         </div>
 
         <div class="swiper-slide">
           <div class="box">
             <x-iconsax-lin-empty-wallet-tick class="text-green w-[28px] md:w-[40px] min-w-[28px] md:min-w-[40px] h-[40px] transition-all duration-200 scale-100 hover:scale-95 transform" />
-            <p>{{ __('Landing Feature 2', 'zah') }}</p>
+            <p>{{ __('Landing Feature 2', 'fantasy') }}</p>
           </div>
         </div>
 
         <div class="swiper-slide">
           <div class="box">
             <x-iconsax-bro-truck-fast class="text-green w-[28px] md:w-[40px] min-w-[28px] md:min-w-[40px] h-[40px] transition-all duration-200 scale-100 hover:scale-95 transform" />
-            <p>{{ __('Landing Feature 3', 'zah') }}</p>
+            <p>{{ __('Landing Feature 3', 'fantasy') }}</p>
           </div>
         </div>
 
         <div class="swiper-slide">
           <div class="box">
             <x-iconsax-lin-box-time class="text-green w-[28px] md:w-[40px] min-w-[28px] md:min-w-[40px] h-[40px] transition-all duration-200 scale-100 hover:scale-95 transform" />
-            <p>{{ __('Landing Feature 4', 'zah') }}</p>
+            <p>{{ __('Landing Feature 4', 'fantasy') }}</p>
           </div>
         </div>
 

@@ -38,7 +38,7 @@
               @php global $woocommerce; @endphp
 
 
-              @php do_action( 'zah_minicart_header' ); @endphp
+              @php do_action( 'fantasy_minicart_header' ); @endphp
 
 
 

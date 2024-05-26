@@ -1,8 +1,8 @@
 /**
  *
- * zah quantity custom script
+ * fantasy quantity custom script
  *
- * @package zah
+ * @package fantasy
  */
 
 let changEv   = new Event( 'change' );
@@ -11,22 +11,22 @@ let timerId;
 let miniItems;
 const shopWidget = document.querySelector( '.widget_shopping_cart' );
 
-const zahDelayFunction = function( func, delay ) {
+const fantasyDelayFunction = function( func, delay ) {
 	clearTimeout( timerId );
 	timerId = setTimeout( func, delay );
 };
-function zahInitMiniCartQty() {
+function fantasyInitMiniCartQty() {
 	if ( ! shopWidget ) {
 		return;
 	}
 	sidebarEl = [];
-	miniItems = shopWidget.querySelectorAll( '.zah-custom-quantity-mini-cart' );
+	miniItems = shopWidget.querySelectorAll( '.fantasy-custom-quantity-mini-cart' );
 	miniItems.forEach(
 		function( item ) {
 			sidebarEl.push(
 				{
 					qtInput: item.querySelector( 'input' ),
-					qtButtons: Array.from( item.querySelectorAll( '.zah-custom-quantity-mini-cart_button' ) )
+					qtButtons: Array.from( item.querySelectorAll( '.fantasy-custom-quantity-mini-cart_button' ) )
 				}
 			);
 		}
@@ -35,14 +35,14 @@ function zahInitMiniCartQty() {
 		function( item ) {
 			item.qtButtons.forEach(
 				function( btn ) {
-					btn.addEventListener( 'click', zahEachSideBtnListener );
+					btn.addEventListener( 'click', fantasyEachSideBtnListener );
 				}
 			);
-			item.qtInput.addEventListener( 'change', zahUpdateMiniCart );
+			item.qtInput.addEventListener( 'change', fantasyUpdateMiniCart );
 		}
 	);
 }
-function zahEachSideBtnListener() {
+function fantasyEachSideBtnListener() {
 	const item   = sidebarEl.find( ( el ) => el.qtButtons.includes( this ) );
 	let value    = parseInt( item.qtInput.value, 10 );
 	value        = isNaN( value ) ? 1 : value;
@@ -65,11 +65,11 @@ function zahEachSideBtnListener() {
 		item.qtInput.dispatchEvent( changEv );
 	}
 }
-function zahUpdateMiniCart() {
-	zahDelayFunction(
+function fantasyUpdateMiniCart() {
+	fantasyDelayFunction(
 		function() {
 			var formData = new FormData();
-			miniItems    = document.querySelectorAll( '.zah-custom-quantity-mini-cart' );
+			miniItems    = document.querySelectorAll( '.fantasy-custom-quantity-mini-cart' );
 			miniItems.forEach(
 				function( item ) {
 					let input   = item.querySelector( 'input' );
@@ -79,7 +79,7 @@ function zahUpdateMiniCart() {
 					formData.append( 'data[' + itemKey + ']', qty );
 				}
 			);
-			formData.append( 'action', 'cg_zah_update_mini_cart' );
+			formData.append( 'action', 'cg_fantasy_update_mini_cart' );
 			var ajax_loader = document.querySelector( '#ajax-loading' );
 			if ( ajax_loader ) {
 				ajax_loader.style.display = 'block';
@@ -109,5 +109,5 @@ function zahUpdateMiniCart() {
 		600
 	);
 }
-jQuery( 'body' ).on( 'wc_fragments_refreshed wc_fragments_loaded', zahInitMiniCartQty );
-zahInitMiniCartQty();
+jQuery( 'body' ).on( 'wc_fragments_refreshed wc_fragments_loaded', fantasyInitMiniCartQty );
+fantasyInitMiniCartQty();

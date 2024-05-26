@@ -27,10 +27,8 @@
                   $product = wc_get_product($product_id);
                   setup_postdata($post);
               @endphp
-              @include('woocommerce.content-product')
-              @php
-                  wp_reset_postdata();
-              @endphp
+              @php  wc_get_template_part('content', 'product'); @endphp
+              @php  wp_reset_postdata();  @endphp
 
               @if($is_slider)</div>@endif
           @endforeach

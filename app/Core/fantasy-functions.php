@@ -22,7 +22,7 @@ if ( ! function_exists( 'shoptimizer_is_woocommerce_activated' ) ) {
  * @param $input - accepts a string.
  * @return string
  */
-function zah_safe_html( $input ) {
+function fantasy_safe_html( $input ) {
 
 	$args = array(
 		// formatting.

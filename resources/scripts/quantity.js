@@ -1,22 +1,22 @@
 // Quantity buttons on the single product and cart pages.
 jQuery( document ).ready( function( $ ) {
 	$( document ).ajaxComplete( function() {
-		zahWooQuantityButtons();
+		fantasyWooQuantityButtons();
 	} );
 	$( document.body ).on( 'wc_fragments_refreshed', function() {
-		zahWooQuantityButtons();
+		fantasyWooQuantityButtons();
 	} );
 } );
 document.addEventListener( 'DOMContentLoaded', function() {
 	window.addEventListener( 'load', function( event ) {
-		zahWooQuantityButtons();
+		fantasyWooQuantityButtons();
 	} );
 } );
 
 /**
 * WooCommerce quantity buttons
 */
-function zahWooQuantityButtons() {
+function fantasyWooQuantityButtons() {
 	var quantityBoxes = document.querySelectorAll( '.woocommerce-cart-form div.quantity:not(.buttons_added) .qty, .summary div.quantity:not(.buttons_added) .qty' );
 	if ( 0 < quantityBoxes.length ) {
 
