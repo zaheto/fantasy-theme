@@ -6,7 +6,8 @@
   @apply bg-red-600 text-white text-13 py-0.5 px-2 z-10 rounded-sm;
 }
 
-.products .product .product-label {
+.products .product .product-label,
+.swiper .product .product-label {
   @apply absolute top-2 right-2;
 }
 
@@ -14,6 +15,7 @@
   @apply bg-black/50 text-white py-0.5 px-2 text-13 text-center inline-block  rounded-sm;
 }
 
-.products .product .product-out-of-stock {
+.products .product .product-out-of-stock,
+.swiper .product .product-out-of-stock {
   @apply absolute top-2 left-1/2 -translate-x-1/2 z-10 ;
 }

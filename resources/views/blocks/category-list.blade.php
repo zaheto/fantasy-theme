@@ -24,8 +24,8 @@
             @endforeach
         </div>
 
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev category-list-prev"></div>
+        <div class="swiper-button-next category-list-next"></div>
 
     </section>
 @endif

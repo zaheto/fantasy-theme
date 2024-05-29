@@ -79,6 +79,7 @@ domReady(async () => {
       var is_inner = event.target.closest('.cart-popup');
       if (!event.target.classList.contains('cart-popup') && !is_inner) {
         document.querySelector('body').classList.remove('drawer-open');
+        document.querySelector('body').classList.remove('disable-scroll');
       }
       var is_inner2 = event.target.closest('.cart-click');
       if (event.target.classList.contains('cart-click') || is_inner2) {
@@ -86,11 +87,13 @@ domReady(async () => {
         if (is_header) {
           event.preventDefault();
           document.querySelector('body').classList.toggle('drawer-open');
+          document.querySelector('body').classList.toggle('disable-scroll');
           document.getElementById('CartDrawer').focus();
         }
       }
       if (event.target.classList.contains('close-drawer')) {
         document.querySelector('body').classList.remove('drawer-open');
+        document.querySelector('body').classList.remove('disable-scroll');
       }
       makeTouchstartWithClick(event);
     });
@@ -103,6 +106,7 @@ domReady(async () => {
     $('body').on('added_to_cart', function(event, fragments, cart_hash) {
       if (!$('body').hasClass('elementor-editor-active')) {
         $('body').addClass('drawer-open');
+        $('body').addClass('disable-scroll');
         $('#CartDrawer').focus();
       }
     });

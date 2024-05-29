@@ -35,9 +35,9 @@
         </div> <!-- Close the swiper-wrapper or products div -->
       @if($is_slider)
             <div class="mt-6 gap-2 flex w-full h-6 relative items-center content-center justify-center">
-              <div class="small-swiper-button-prev"><x-iconsax-lin-arrow-left class="text-black w-[24px] h-[24px] hover:text-main transition-all duration-200 scale-100 hover:scale-95 transform " /></div>
+              <div class="small-swiper-button-prev more-products-prev"><x-iconsax-lin-arrow-left class="text-black w-[24px] h-[24px] hover:text-main transition-all duration-200 scale-100 hover:scale-95 transform " /></div>
               <div class="swiper-pagination"></div>
-              <div class="small-swiper-button-next"><x-iconsax-lin-arrow-right class="text-black w-[24px] h-[24px] hover:text-main transition-all duration-200 scale-100 hover:scale-95 transform " /></div>
+              <div class="small-swiper-button-next more-products-next"><x-iconsax-lin-arrow-right class="text-black w-[24px] h-[24px] hover:text-main transition-all duration-200 scale-100 hover:scale-95 transform " /></div>
             </div>
           </div> <!-- Close the swiper-container div -->
       @else

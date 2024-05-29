@@ -8,6 +8,37 @@ export default function initSliders() {
   jQuery(function($) {
 
 
+    // Initialize the homepage slider
+    var homepageSlider = new Swiper(".slider-home", {
+      loop: true,
+      slidesPerView: 1,
+      keyboardControl: true,
+      keyboard: true,
+      pagination: {
+        el: '.swiper-pagination',
+      },
+      navigation: {
+        nextEl: '.slider-home-next',
+        prevEl: '.slider-home-prev',
+      },
+    });
+
+    // Check the number of slides
+    var numberOfSlides = document.querySelectorAll('.slider-home .swiper-slide').length;
+
+    // Hide navigation buttons if there's only one slide
+    if (numberOfSlides <= 1) {
+      var nextButton = document.querySelector('.slider-home-next');
+      var prevButton = document.querySelector('.slider-home-prev');
+
+      if (nextButton) {
+        nextButton.style.display = 'none';
+      }
+      if (prevButton) {
+        prevButton.style.display = 'none';
+      }
+    }
+
     var productList = new Swiper(".product-list-slider", {
       freeMode: true,
       watchSlidesProgress: true,
@@ -26,16 +57,14 @@ export default function initSliders() {
       },
     });
 
-
-
-    var nextEl = ".swiper-button-next";
-    var prevEl = ".swiper-button-prev";
+    // Define the necessary variables first
+    var nextEl = ".slider-subcategories-next";
+    var prevEl = ".slider-subcategories-prev";
     var numberOfSlides = document.querySelectorAll('.subcategories-slider .swiper-slide').length;
     var maxSlidesPerView = 7;
     var slidesPerView = numberOfSlides < maxSlidesPerView ? 'auto' : maxSlidesPerView;
 
-
-
+    // Initialize the Swiper
     var gallerySubcategories = new Swiper(".subcategories-slider", {
       loop: true,
       slidesPerView: numberOfSlides < 2 ? 'auto' : 2,
@@ -46,28 +75,25 @@ export default function initSliders() {
       breakpoints: {
         768: {
           slidesPerView: numberOfSlides < 7 ? 'auto' : 7,
+          spaceBetween: 8 // Add spaceBetween inside the breakpoints as well
         },
       },
     });
 
+    // Show navigation buttons if there are more slides than the maxSlidesPerView
     if (numberOfSlides > maxSlidesPerView) {
-      document.querySelector(nextEl).style.display = "flex";
-      document.querySelector(prevEl).style.display = "flex";
+      var nextButton = document.querySelector(nextEl);
+      var prevButton = document.querySelector(prevEl);
+
+      if (nextButton) {
+        nextButton.style.display = "flex";
+      }
+      if (prevButton) {
+        prevButton.style.display = "flex";
+      }
     }
 
-    var homepageSlider = new Swiper(".slider-home", {
-      loop: true,
-      slidesPerView: 1,
-      keyboardControl: true,
-      keyboard: true,
-      pagination: {
-        el: '.swiper-pagination',
-      },
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
-    });
+
 
     var categorySlider = new Swiper(".category-list-builder", {
       autoHeight: true,
@@ -76,8 +102,8 @@ export default function initSliders() {
       slidesPerView: 2,
       spaceBetween: 12,
       navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
+        nextEl: '.category-list-next',
+        prevEl: '.category-list-prev',
       },
       breakpoints: {
         760: {
@@ -135,8 +161,8 @@ export default function initSliders() {
             clickable: true,
           },
           navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
+            nextEl: '.more-products-next',
+            prevEl: '.more-products-prev',
           }
         },
         1280: {
@@ -147,20 +173,20 @@ export default function initSliders() {
             clickable: true,
           },
           navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
+            nextEl: '.more-products-next',
+            prevEl: '.more-products-prev',
           }
         },
         1440: {
           spaceBetween: 16,
-          slidesPerView: 6,
+          slidesPerView: 5,
           pagination: {
             el: '.swiper-pagination',
             clickable: true,
           },
           navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
+            nextEl: '.more-products-next',
+            prevEl: '.more-products-prev',
           }
         },
       },

@@ -1430,6 +1430,7 @@ if ($free_shipping_available) {
 function fantasy_empty_mini_cart($mini_cart_settings) {
 if (WC()->cart->is_empty()) {
     echo '<div class="fantasy-empty-mini-cart">';
+    echo '<svg width="60" height="60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M13.39 17.36L10.64 14.61" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/> <path d="M13.36 14.64L10.61 17.39" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/> <path d="M8.81 2L5.19 5.63" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/> <path d="M15.19 2L18.81 5.63" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/> <path d="M2 7.84998C2 5.99998 2.99 5.84998 4.22 5.84998H19.78C21.01 5.84998 22 5.99998 22 7.84998C22 9.99998 21.01 9.84998 19.78 9.84998H4.22C2.99 9.84998 2 9.99998 2 7.84998Z" stroke="#292D32" stroke-width="1.5"/> <path d="M3.5 10L4.91 18.64C5.23 20.58 6 22 8.86 22H14.89C18 22 18.46 20.64 18.82 18.76L20.5 10" stroke="#292D32" stroke-width="1.5" stroke-linecap="round"/> </svg>';
     echo '<h4>'. __('Your bag is empty', 'fantasy') .'</h4>';
 
     // Display the selected categories
@@ -1438,7 +1439,7 @@ if (WC()->cart->is_empty()) {
         foreach ($mini_cart_settings['choose_emtpy_cart_category'] as $category_id) {
             $category = get_term($category_id, 'product_cat');
             if ($category) {
-                echo '<li><a class="btn btn-main btn-block" href="' . esc_url(get_term_link($category)) . '">' . esc_html($category->name) . '</a></li>';
+                echo '<li><a class="btn btn-main btn-block whitespace-nowrap" href="' . esc_url(get_term_link($category)) . '">' . esc_html($category->name) . '</a></li>';
             }
         }
         echo '</ul>';
@@ -1446,7 +1447,7 @@ if (WC()->cart->is_empty()) {
 
     // Display the custom button
     if (!empty($mini_cart_settings['add_custom_button'])) {
-        echo '<a href="' . esc_url($mini_cart_settings['add_custom_button']['url']) . '" class="custom-button btn btn-main-o btn-block">' . esc_html($mini_cart_settings['add_custom_button']['title']) . '</a>';
+        echo '<a href="' . esc_url($mini_cart_settings['add_custom_button']['url']) . '" class="custom-button btn btn-main-o btn-block whitespace-nowrap">' . esc_html($mini_cart_settings['add_custom_button']['title']) . '</a>';
     }
 
     echo '</div>';

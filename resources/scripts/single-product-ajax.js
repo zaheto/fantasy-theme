@@ -58,6 +58,7 @@ document.addEventListener( 'DOMContentLoaded', function() {
 				} else {
 					atc_elem.classList.add( 'added' );
 					document.querySelector( 'body' ).classList.toggle( 'drawer-open' );
+          document.querySelector( 'body' ).classList.toggle( 'disable-scroll' );
 					if ( jQuery ) {
 						jQuery( document.body ).trigger( 'added_to_cart', [ resp.fragments, resp.cart_hash, jQuery( atc_elem ) ] );
 					}

@@ -9,6 +9,7 @@
 
 
 .inside-product--top-wrap {
+  @apply pt-6 md:pt-10;
   .product-details-wrapper {
     @apply flex flex-col xl:flex-row w-full items-start relative pb-0 gap-1 md:gap-10;
   }

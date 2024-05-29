@@ -25,7 +25,11 @@ the readme will list any important changes.
   @while(have_posts())
     @php
       the_post();
-      wc_get_template_part('content', 'single-product');
+      try {
+        wc_get_template_part('content', 'single-product');
+      } catch (Exception $e) {
+        echo '<img src="' . get_template_directory_uri() . '/resources/images/no-image.svg" alt="No Image Available">';
+      }
     @endphp
   @endwhile
 

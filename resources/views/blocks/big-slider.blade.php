@@ -1,4 +1,7 @@
 @if($big_slider)
+
+  @if($boxed_slider)  <div class="container"> @endif
+
   <section class="swiper slider-home">
 
     <div class="swiper-wrapper">
@@ -12,10 +15,11 @@
     @endforeach
     </div>
 
-    <div class="swiper-pagination"></div>
+    {{-- <div class="swiper-pagination"></div> --}}
 
-    <div class="swiper-button-prev"></div>
-    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev slider-home-prev"></div>
+    <div class="swiper-button-next slider-home-next"></div>
 
   </section>
+  @if($boxed_slider) </div> @endif
 @endif

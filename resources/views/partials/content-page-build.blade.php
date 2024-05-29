@@ -5,7 +5,10 @@
         @endif
 
         @if($row['acf_fc_layout'] == 'big_slider_section')
-            @include('blocks.big-slider', ['big_slider' => $row['big_slider']])
+            @include('blocks.big-slider', [
+                'big_slider' => $row['big_slider'],
+                'boxed_slider' => $row['boxed_slider'] // Add this line
+            ])
         @endif
 
         @if($row['acf_fc_layout'] == 'product_list_section')

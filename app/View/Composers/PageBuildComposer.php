@@ -31,6 +31,7 @@ class PageBuildComposer extends Composer
         $id = get_the_ID();
         $page_build = get_field('page_build', $id);
         $big_slider = get_field('big_slider', $id);
+        $boxed_slider = get_field('boxed_slider', $id); // Add this line
         $product_list_builder = get_field('product_list_builder', $id);
         $section_heading_product_list = get_field('section_heading_product_list', $id);
         $heading_color = get_field('heading_color', $id);
