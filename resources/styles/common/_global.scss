@@ -6,7 +6,8 @@ body {
 body {
   @apply pt-[86px] lg:pt-[155px] overflow-x-hidden overflow-y-auto;
 
-  &.disable-scroll {
+  &.disable-scroll,
+  &.drawer-open {
     @apply overflow-hidden;
   }
 

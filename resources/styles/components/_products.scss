@@ -14,7 +14,7 @@
 }
 
 .related-wrapper {
-  @apply w-full md:w-auto;
+  @apply w-full ;
 }
 
 .products {
@@ -23,7 +23,7 @@
 
 .products .product,
 .swiper-products .product {
-  @apply relative rounded-md flex flex-col content-start items-center justify-start bg-white  mt-0 pt-0 transition-all duration-200 hover:transition-all hover:duration-200 hover:shadow-xl hover:z-20 before:hidden md:before:block md:before:content-[''] before:bg-white before:shadow-xl before:invisible before:absolute before:left-0 before:opacity-0 before:w-full before:h-[calc(100%+50px)] hover:before:visible hover:before:opacity-100;
+  @apply relative rounded-md flex flex-col content-start items-center justify-start bg-white  mt-0 pt-0 transition-all duration-200 hover:transition-all hover:duration-200 hover:shadow-xl hover:z-20 before:hidden hover:before:block md:before:content-[''] before:bg-white before:shadow-xl before:invisible before:absolute before:-left-2 before:-right-2 before:-bottom-2 before:-top-2 before:opacity-0 before:rounded-md  hover:before:visible hover:before:opacity-100;
 }
 
 .products .product .product-loop--container,
@@ -53,7 +53,17 @@
 
 .products .product .woocommerce-card__header,
 .swiper-products .product .woocommerce-card__header {
-  @apply px-4 pt-0 pb-4 w-full;
+  @apply pt-1 pb-4 w-full relative;
+}
+
+.products .product,
+.swiper-products .product  {
+  .wishlist-button-wrapper {
+    @apply absolute top-2 right-2;
+    .woosw-btn {
+      @apply bg-white/90 hover:bg-main/20 text-black hover:text-main text-24 p-2 rounded-sm;
+    }
+  }
 }
 
 .woocommerce-loop-product__title {
@@ -62,7 +72,7 @@
 
 .products .product .button,
 .swiper-products .product .button {
-  @apply absolute left-4 right-4 -bottom-[40px] border-none bg-main text-white hover:bg-black py-2 px-6 opacity-0 invisible whitespace-nowrap transition-all duration-200 hover:transition-all hover:duration-200;
+  @apply absolute left-4 right-4 -top-[60px] border-none bg-main text-white hover:bg-black py-2 px-6 invisible opacity-0 whitespace-nowrap transition-all duration-200 hover:transition-all hover:duration-200;
 }
 
 .products .product:hover .button,
@@ -99,22 +109,25 @@
 .cross-sells,
 .related.products,
 .upsells.products {
-  @apply block text-center relative pt-10 md:pt-16 pb-2 md:pb-14 bg-white before:content-[''] before:block before:absolute before:top-0 before:bottom-0 before:-left-full before:w-full before:bg-white after:block after:absolute after:top-0 after:bottom-0 after:-right-full after:w-full after:bg-white;
+  @apply block text-center border-t border-black/10 relative pt-10 md:pt-16 pb-2 md:pb-14 bg-white before:content-[''] before:block before:absolute before:top-0 before:bottom-0 before:-left-full before:w-full before:bg-white after:block after:absolute after:top-0 after:bottom-0 after:-right-full after:w-full after:bg-white;
   .swiper {
     @apply pb-8;
   }
   > h2 {
-    @apply text-black uppercase  text-22 md:text-32 xl:text-36 text-center mb-2 md:mb-6 relative before:absolute before:content-[''] before:block before:left-0 before:right-0 before:-top-2 pt-2 before:h-[4px] before:bg-blue-300 inline-block mx-auto;
+    @apply text-black uppercase font-bold text-22 md:text-32 xl:text-36 text-center mb-2 md:mb-6 relative before:absolute before:content-[''] before:block before:left-0 before:right-0 before:-top-2 pt-2 before:h-[4px] before:bg-blue-300 inline-block mx-auto;
   }
 
   .products {
-    @apply flex gap-3 flex-1 overflow-x-scroll md:overflow-x-hidden h-full flex-nowrap touch-auto md:touch-none -ml-4 md:ml-0 pl-4 md:pl-0 pb-6 md:pb-0 snap-x md:snap-none overscroll-contain md:overscroll-none;
+    @apply flex gap-4 lg:grid-cols-4 lg:grid flex-1 overflow-x-scroll md:overflow-x-hidden h-full flex-nowrap touch-auto md:touch-none -ml-4 md:ml-0 pl-4 md:pl-0 pb-6 md:pb-0 lg:m-0 snap-x md:snap-none overscroll-contain md:overscroll-none;
   }
 
   .product {
     @apply md:mb-0 pb-0 before:hidden hover:before:hidden max-w-[320px] min-w-[320px] lg:max-w-none lg:min-w-0 flex-col snap-center flex-1;
+    .woocommerce-card__header {
+      @apply flex flex-col-reverse gap-2;
+    }
     .button {
-      @apply opacity-100 visible relative left-auto right-auto bottom-auto w-full;
+      @apply opacity-100 visible relative left-auto right-auto top-auto bottom-auto w-full;
     }
   }
 
@@ -129,9 +142,9 @@
   }
 
 }
-.related.products {
-  @apply bg-[#f2f2f2] before:bg-[#f2f2f2] after:bg-[#f2f2f2];
-}
+// .related.products {
+//   @apply bg-[#f2f2f2] before:bg-[#f2f2f2] after:bg-[#f2f2f2];
+// }
 
 
 .more-products-slider {

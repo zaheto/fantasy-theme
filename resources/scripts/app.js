@@ -65,52 +65,55 @@ domReady(async () => {
     }
   }
 
+  function removeBodyClasses() {
+    const body = document.querySelector('body');
+    body.classList.remove('drawer-open', 'filter-open', 'mobile-toggled');
+  }
+
   document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('load', function(event) {
       var vh = window.innerHeight * 0.01;
       document.documentElement.style.setProperty('--vh', vh + 'px');
     });
+
     window.addEventListener('resize', function(event) {
       var vh = window.innerHeight * 0.01;
       document.documentElement.style.setProperty('--vh', vh + 'px');
     });
 
     document.addEventListener('click', function(event) {
-      var is_inner = event.target.closest('.cart-popup');
-      if (!event.target.classList.contains('cart-popup') && !is_inner) {
-        document.querySelector('body').classList.remove('drawer-open');
-        document.querySelector('body').classList.remove('disable-scroll');
+      const target = event.target;
+
+      if (target.classList.contains('close-drawer')) {
+        removeBodyClasses();
+      } else if (target.closest('.cart-popup') === null) {
+        removeBodyClasses();
       }
-      var is_inner2 = event.target.closest('.cart-click');
-      if (event.target.classList.contains('cart-click') || is_inner2) {
-        var is_header = event.target.closest('.site-header-cart');
-        if (is_header) {
+
+      if (target.classList.contains('cart-click') || target.closest('.cart-click')) {
+        const isHeader = target.closest('.site-header-cart');
+        if (isHeader) {
           event.preventDefault();
-          document.querySelector('body').classList.toggle('drawer-open');
-          document.querySelector('body').classList.toggle('disable-scroll');
+          const body = document.querySelector('body');
+          body.classList.toggle('drawer-open');
           document.getElementById('CartDrawer').focus();
         }
       }
-      if (event.target.classList.contains('close-drawer')) {
-        document.querySelector('body').classList.remove('drawer-open');
-        document.querySelector('body').classList.remove('disable-scroll');
-      }
+
       makeTouchstartWithClick(event);
     });
 
-    // initSingleProductAjax();
+    jQuery(document).ready(function($) {
+      $('body').on('added_to_cart', function(event, fragments, cart_hash) {
+        if (!$('body').hasClass('elementor-editor-active')) {
+          $('body').addClass('drawer-open');
+          $('#CartDrawer').focus();
+        }
+      });
+    });
+
   });
 
-    // jQuery part for WooCommerce cart events
-  jQuery(document).ready(function($) {
-    $('body').on('added_to_cart', function(event, fragments, cart_hash) {
-      if (!$('body').hasClass('elementor-editor-active')) {
-        $('body').addClass('drawer-open');
-        $('body').addClass('disable-scroll');
-        $('#CartDrawer').focus();
-      }
-    });
-  });
 
   // XMLHttpRequest interceptor for AJAX loading indicator
   var interceptor = (function(open) {
@@ -274,7 +277,6 @@ domReady(async () => {
     $('.mobile-nav .dropdown-products').detach().insertAfter('.header .products a')
 
     $(document).on('click', '#close-cart-popup', function () {
-      $('.overlay, .cart-popup').removeClass('active')
       $('.overlay, .mobile-nav').removeClass('active')
       $(document.body).removeClass('disable-scroll');
     });
@@ -286,7 +288,6 @@ domReady(async () => {
 
     $('.overlay').on('click', function() {
       $(document.body).removeClass('disable-scroll');
-      $('#close-cart-popup').trigger('click')
       $('.cart-content .popup, .popup-video').removeClass('active')
       if($(window).width() <= 768) {
           $('.hamburger-button').removeClass('active')
@@ -304,12 +305,6 @@ domReady(async () => {
       e.preventDefault()
       $('#tableSizeModal').removeClass('open')
       $(document.body).removeClass('disable-scroll');
-    });
-
-    $('#mini-cart').on("click", function (e) {
-      e.preventDefault()
-      $('.overlay, .cart-popup').addClass('open')
-      $(document.body).addClass('disable-scroll');
     });
 
     $('#mobile-menu').on("click", function (e) {
@@ -330,12 +325,6 @@ domReady(async () => {
           $(document.body).addClass('auto');
       })
     }
-
-    $('.cart-info').click(function (e) {
-      e.preventDefault()
-      $('.overlay, .cart-popup').addClass('active')
-      $(document.body).addClass('disable-scroll');
-    })
 
     $('#play-video').click(function(e) {
       e.preventDefault(); // Prevent default action of the link

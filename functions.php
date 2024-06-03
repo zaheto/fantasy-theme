@@ -1066,7 +1066,7 @@ function fantasy_always_show_cart() {
 }
 
 remove_action( 'woocommerce_before_shop_loop_item_title', 'woocommerce_show_product_loop_sale_flash', 10 );
-add_action( 'woocommerce_before_shop_loop_item_title', 'woocommerce_show_product_loop_sale_flash', 7 );
+//add_action( 'woocommerce_before_shop_loop_item_title', 'woocommerce_show_product_loop_sale_flash', 7 );
 
 /**
  * Single Product Page - Add a section wrapper start.
@@ -1506,7 +1506,7 @@ add_action( 'woocommerce_before_shop_loop_item_title', 'fantasy_template_loop_im
 function fantasy_template_loop_image_link_close() {
 echo '</a>';
 }
-add_action( 'woocommerce_before_shop_loop_item_title', 'fantasy_template_loop_image_link_close', 20 );
+add_action( 'woocommerce_before_shop_loop_item_title', 'fantasy_template_loop_image_link_close', 30 );
 
 add_action( 'woocommerce_shop_loop_item_title', 'fantasy_loop_product_content_header_open', 5 );
 
@@ -1576,66 +1576,78 @@ if ( ! function_exists( 'fantasy_shop_out_of_stock' ) ) :
  * @since 1.8.5
  */
 function fantasy_shop_out_of_stock() {
-    $out_of_stock        = get_post_meta( get_the_ID(), '_stock_status', true );
-    $out_of_stock_string = apply_filters( 'fantasy_shop_out_of_stock_string', __( 'Out of stock', 'fantasy' ) );
+    $out_of_stock = get_post_meta(get_the_ID(), '_stock_status', true);
+    $out_of_stock_string = apply_filters('fantasy_shop_out_of_stock_string', __('Out of stock', 'fantasy'));
 
-    if ( 'outofstock' === $out_of_stock && ! empty( $out_of_stock_string ) ) {
-        ?>
-        <span class="product-out-of-stock"><?php echo esc_html( $out_of_stock_string ); ?></span>
-        <?php
+    if ('outofstock' === $out_of_stock && !empty($out_of_stock_string)) {
+        return '<span class="product-out-of-stock">' . esc_html($out_of_stock_string) . '</span>';
     }
+
+    return '';
 }
+
 
 endif;
 
 function fantasy_change_displayed_sale_price_html() {
+    global $product;
+    $fantasy_sale_badge = '';
 
-global $product, $price;
-$fantasy_sale_badge = '';
-
-
-if ( $product->is_on_sale() && ! $product->is_type( 'grouped' ) && ! $product->is_type( 'bundle' ) ) {
-
-    if ( $product->is_type( 'variable' ) ) {
-        $percentages = array();
-
-        // Get all variation prices.
-        $prices = $product->get_variation_prices();
-
-        // Loop through variation prices.
-        foreach ( $prices['price'] as $key => $price ) {
-            // Only on sale variations.
-            if ( $prices['regular_price'][ $key ] !== $price && $prices['regular_price'][ $key ] > 0.005) {
-                // Calculate and set in the array the percentage for each variation on sale.
-                $percentages[] = round( 100 - ( $prices['sale_price'][ $key ] / $prices['regular_price'][ $key ] * 100 ) );
+    if ($product->is_on_sale() && !$product->is_type('grouped') && !$product->is_type('bundle')) {
+        if ($product->is_type('variable')) {
+            $percentages = array();
+            $prices = $product->get_variation_prices();
+            foreach ($prices['price'] as $key => $price) {
+                if ($prices['regular_price'][$key] !== $price && $prices['regular_price'][$key] > 0.005) {
+                    $percentages[] = round(100 - ($prices['sale_price'][$key] / $prices['regular_price'][$key] * 100));
+                }
+            }
+            if (!empty($percentages)) {
+                $percentage = max($percentages) . '%';
+            }
+        } else {
+            $percentage = 0;
+            $regular_price = (float) $product->get_regular_price();
+            if ($regular_price > 0.005) {
+                $sale_price = (float) $product->get_price();
+                $percentage = round(100 - ($sale_price / $regular_price * 100), 0) . '%';
             }
         }
-        // Keep the highest value.
-        if ( ! empty( $percentages ) ) {
-            $percentage = max( $percentages ) . '%';
-        }
-    } else {
-        $percentage = 0;
-        $regular_price = (float) $product->get_regular_price();
-        if ( $regular_price > 0.005 ) {
-            $sale_price    = (float) $product->get_price();
-            $percentage = round( 100 - ( $sale_price / $regular_price * 100 ), 0 ) . '%';
+        if (isset($percentage) && $percentage > 0) {
+            $fantasy_sale_badge .= sprintf(__('<span class="sale-item product-label type-rounded">-%s</span>', 'fantasy'), $percentage);
         }
     }
 
-    if ( isset( $percentage ) && $percentage > 0 ) {
+    return fantasy_safe_html($fantasy_sale_badge);
+}
 
+function fantasy_product_badges() {
+    global $product;
 
-            $fantasy_sale_badge .= sprintf( __( '<span class="sale-item product-label type-rounded">-%s</span>', 'fantasy' ), $percentage );
+    // Capture the sale badge
+    $sale_badge = fantasy_change_displayed_sale_price_html();
 
+    // Capture the out of stock badge
+    $out_of_stock_badge = fantasy_shop_out_of_stock();
+
+    // Get the default WooCommerce sale flash
+    ob_start();
+    woocommerce_show_product_loop_sale_flash();
+    $default_sale_flash = ob_get_clean();
+
+    // Combine all badges
+    $all_badges = $sale_badge . $out_of_stock_badge . $default_sale_flash;
+
+    // Output badges inside a container
+    if (!empty($all_badges)) {
+        echo '<div class="products-badges">' . $all_badges . '</div>';
     }
 }
 
+// Hook into appropriate WooCommerce actions
+add_action('woocommerce_before_shop_loop_item_title', 'fantasy_product_badges', 7);
+add_action('woocommerce_single_product_summary', 'fantasy_product_badges', 10);
 
-    echo fantasy_safe_html( $fantasy_sale_badge );
-
-
-}
 
 /**
  * Variation selected highlight
@@ -1818,5 +1830,25 @@ function woocommerce_rename_coupon_field_on_cart( $translated_text, $text, $doma
     }
     return $translated_text;
 }
+
+
+// Hook into the product listing loop to add the wishlist button
+add_action('woocommerce_before_shop_loop_item_title', 'add_wishlist_button_to_product_listing', 10);
+
+function add_wishlist_button_to_product_listing() {
+    global $product;
+    $product_id = $product->get_id();
+
+    // Generate the wishlist button shortcode
+    $wishlist_button = do_shortcode('[woosw id="' . $product_id . '"]');
+
+    // Output the wishlist button
+    echo '<div class="wishlist-button-wrapper">' . $wishlist_button . '</div>';
+}
+
+
+// Remove default WooCommerce Add to Cart button
+remove_action('woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 10);
+add_action('woocommerce_shop_loop_item_title', 'woocommerce_template_loop_add_to_cart', 5);
 
 

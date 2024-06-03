@@ -7,11 +7,11 @@
 }
 
 .announce-bar ul li {
-  @apply m-0 text-13 text-white;
+  @apply m-0 text-13 text-white text-center w-full;
 }
 
 .announce-bar ul li p {
-  @apply m-0 text-white text-13;
+  @apply m-0 text-white text-13 text-center;
 }
 
 .announce-bar ul li a {

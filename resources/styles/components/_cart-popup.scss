@@ -186,9 +186,9 @@ body.drawer-open::before {
 
 
 .free-delivery-bar--cart {
-  @apply  flex flex-col gap-1 items-center justify-center content-center pt-1 pb-2 px-4;
+  @apply  flex flex-col gap-1 items-center justify-center content-center pt-1 pb-2 px-0 lg:px-4;
   p {
-    @apply text-14 text-green text-center my-1;
+    @apply text-13 lg:text-14 text-green text-center my-1;
     span {
       @apply font-bold;
     }
@@ -225,16 +225,16 @@ body.drawer-open::before {
   ul {
     @apply animate-marquee;
     li {
-      @apply text-black;
+      @apply text-black ;
       p {
-        @apply text-black;
+        @apply text-black ;
       }
     }
   }
 }
 
 .cart-popup .cross-sells {
-  @apply before:hidden after:hidden relative my-4 lg:m-0 w-full lg:w-[260px] rounded-md lg:rounded-none lg:fixed lg:top-0 lg:bottom-0 lg:right-[480px] py-2 lg:px-0 lg:py-4 lg:overflow-y-auto  transition-all duration-200 bg-[#f2f2f2] lg:shadow-[inset_-10px_0_15px_-10px_rgba(0,0,0,0.15)];
+  @apply border-none before:hidden after:hidden relative my-4 lg:m-0 w-full lg:w-[260px] rounded-md lg:rounded-none lg:fixed lg:top-0 lg:bottom-0 lg:right-[480px] py-2 lg:px-0 lg:py-4 lg:overflow-y-auto  transition-all duration-200 bg-[#f2f2f2] lg:shadow-[inset_-10px_0_15px_-10px_rgba(0,0,0,0.15)];
 
   ;
   h2 {
@@ -242,7 +242,7 @@ body.drawer-open::before {
   }
 
   .products {
-    @apply flex-nowrap flex-row lg:items-center lg:flex-col mx-2 lg:mx-0 gap-4 lg:gap-0 lg:pb-6 ;
+    @apply flex flex-nowrap flex-row lg:items-center lg:flex-col mx-2 lg:mx-0 gap-4 lg:gap-0 lg:pb-6 h-auto lg:h-full;
     .product {
       @apply lg:mx-4 lg:my-2 max-w-[200px] min-w-[200px];
     }
@@ -254,6 +254,12 @@ body.drawer-open::before {
 
   .product-loop-title-container {
     @apply flex items-center justify-center flex-col;
+    .button {
+      @apply p-0 inline-flex w-auto bg-transparent text-black underline hover:text-main text-14;
+    }
+  }
+
+  .woocommerce-card__header {
     .button {
       @apply p-0 inline-flex w-auto bg-transparent text-black underline hover:text-main text-14;
     }

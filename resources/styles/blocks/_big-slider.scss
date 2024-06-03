@@ -1,5 +1,8 @@
 .slider-home {
   @apply h-auto ;
+  .swiper-wrapper {
+    @apply h-auto ;
+  }
   .swiper-slide {
     @apply h-auto;
     .desktop {

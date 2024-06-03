@@ -19,10 +19,6 @@
     @apply border-t border-black/10 pt-4 mt-4;
   }
 
-  .onsale {
-    @apply absolute left-0 top-4 text-14  px-3 py-1 ;
-  }
-
   .woocommerce-product-gallery {
     @apply w-full xl:w-1/2 xl:max-w-[800px] relative min-w-0 block md:flex flex-col items-center;
     .flex-viewport {
