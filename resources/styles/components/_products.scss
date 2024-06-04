@@ -23,7 +23,7 @@
 
 .products .product,
 .swiper-products .product {
-  @apply relative rounded-md flex flex-col content-start items-center justify-start bg-white  mt-0 pt-0 transition-all duration-200 hover:transition-all hover:duration-200 hover:shadow-xl hover:z-20 before:hidden hover:before:block md:before:content-[''] before:bg-white before:shadow-xl before:invisible before:absolute before:-left-2 before:-right-2 before:-bottom-2 before:-top-2 before:opacity-0 before:rounded-md  hover:before:visible hover:before:opacity-100;
+  @apply relative flex flex-col content-start items-center justify-start bg-white mt-0 pt-0 transition-all duration-200 hover:transition-all hover:duration-200 hover:z-20 before:hidden hover:before:block md:before:content-[''] before:bg-white  before:invisible before:absolute before:-left-2 before:-right-2 before:-bottom-2 before:-top-2 before:opacity-0 before:rounded-md  hover:before:visible hover:before:opacity-100;
 }
 
 .products .product .product-loop--container,
@@ -48,8 +48,19 @@
 
 .products .product .woocommerce-LoopProduct-link img,
 .swiper-products .product .woocommerce-LoopProduct-link img {
-  @apply w-full ;
+  @apply w-full;
 }
+
+.products .product .secondary-image,
+.swiper-products .product .secondary-image {
+  @apply absolute invisible opacity-0 -z-10 top-0 duration-300 transition-all ;
+}
+
+.products .product:hover .secondary-image,
+.swiper-products .product:hover .secondary-image {
+  @apply z-10 visible opacity-100;
+}
+
 
 .products .product .woocommerce-card__header,
 .swiper-products .product .woocommerce-card__header {
@@ -59,7 +70,7 @@
 .products .product,
 .swiper-products .product  {
   .wishlist-button-wrapper {
-    @apply absolute top-2 right-2;
+    @apply absolute top-2 right-2 z-50;
     .woosw-btn {
       @apply bg-white/90 hover:bg-main/20 text-black hover:text-main text-24 p-2 rounded-sm;
     }
@@ -72,7 +83,7 @@
 
 .products .product .button,
 .swiper-products .product .button {
-  @apply absolute left-4 right-4 -top-[60px] border-none bg-main text-white hover:bg-black py-2 px-6 invisible opacity-0 whitespace-nowrap transition-all duration-200 hover:transition-all hover:duration-200;
+  @apply absolute z-60 left-4 right-4 -top-[60px] border-none bg-main text-white hover:bg-black py-2 px-6 invisible opacity-0 whitespace-nowrap transition-all duration-200 hover:transition-all hover:duration-200;
 }
 
 .products .product:hover .button,

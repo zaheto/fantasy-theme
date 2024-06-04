@@ -33,6 +33,17 @@ add_action('enqueue_block_editor_assets', function () {
  * @return void
  */
 add_action('after_setup_theme', function () {
+
+    load_theme_textdomain('fantasy', get_template_directory() . '/resources/lang');
+
+
+
+
+    add_theme_support('woocommerce');
+    // add_theme_support('wc-product-gallery-zoom');
+    add_theme_support('wc-product-gallery-lightbox');
+    add_theme_support('wc-product-gallery-slider');
+
     /**
      * Disable full-site editing support.
      *
@@ -40,13 +51,6 @@ add_action('after_setup_theme', function () {
      */
     remove_theme_support('block-templates');
 
-    load_theme_textdomain('fantasy', get_template_directory() . '/resources/lang');
-
-
-    add_theme_support('woocommerce');
-    // add_theme_support('wc-product-gallery-zoom');
-    add_theme_support('wc-product-gallery-lightbox');
-    add_theme_support('wc-product-gallery-slider');
 
     /**
      * Register the navigation menus.

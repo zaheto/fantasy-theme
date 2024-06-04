@@ -1,5 +1,5 @@
 .onsale {
-  @apply bg-main text-white py-0.5 px-2 text-13 z-10 rounded-sm ;
+  @apply bg-main text-white py-0.5 px-2 text-13 z-10 rounded-sm;
 }
 
 .product-label {

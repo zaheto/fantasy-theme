@@ -45,7 +45,7 @@ const config = {
       container: {
           center: true,
           screens: {
-            '2xl': '1480px',
+            '2xl': '1640px',
         },
       },
       zIndex: {

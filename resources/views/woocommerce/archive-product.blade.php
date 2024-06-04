@@ -49,11 +49,18 @@ the readme will list any important changes.
               @endphp
               <div class="swiper-slide">
                   <a href="{{ esc_url($category_link) }}">
-                    @if ($image_url && @exif_read_data($image_path))
-                      <img src="{{ esc_url($image_url) }}" alt="{{ esc_attr($subcategory->name) }}">
-                    @else
-                      <img src="{{ esc_url($no_thumbnail_url) }}" alt="{{ esc_attr($subcategory->name) }}">
-                    @endif
+                      @if ($image_url && @getimagesize($image_path))
+                          @php
+                              $image = safe_imagecreatefromjpeg($image_path);
+                          @endphp
+                          @if ($image !== false)
+                              <img src="{{ esc_url($image_url) }}" alt="{{ esc_attr($subcategory->name) }}">
+                          @else
+                              <img src="{{ esc_url($no_thumbnail_url) }}" alt="{{ esc_attr($subcategory->name) }}">
+                          @endif
+                      @else
+                          <img src="{{ esc_url($no_thumbnail_url) }}" alt="{{ esc_attr($subcategory->name) }}">
+                      @endif
                       <h3>{{ esc_html($subcategory->name) }}</h3>
                   </a>
               </div>
@@ -64,6 +71,9 @@ the readme will list any important changes.
       </div>
   @endif
 @endif
+
+
+
 
 </header>
 

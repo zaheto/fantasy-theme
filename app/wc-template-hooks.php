@@ -352,6 +352,3 @@ add_filter( 'woocommerce_add_to_cart_fragments', 'fantasy_cart_link_fragment' );
 
 
 
-
-
-
