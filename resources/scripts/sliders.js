@@ -7,6 +7,60 @@ export default function initSliders() {
 
   jQuery(function($) {
 
+    // Initialize the subcategories slider
+    var subcategoriesSlider = new Swiper('.subcategories-slider', {
+        loop: true,
+        spaceBetween: 8,
+        keyboard: {
+            enabled: true,
+        },
+        navigation: {
+            nextEl: '.slider-subcategories-next',
+            prevEl: '.slider-subcategories-prev',
+            hideOnClick: true,
+        },
+        breakpoints: {
+            320: { // Mobile
+                slidesPerView: 3,
+                spaceBetween: 8,
+            },
+            768: { // Tablet
+                slidesPerView: 4,
+                spaceBetween: 8,
+            },
+            1024: { // Desktop
+                slidesPerView: 7,
+                spaceBetween: 8,
+            },
+        },
+    });
+
+    // Show/hide navigation buttons based on the number of slides
+    var numberOfSlides = document.querySelectorAll('.subcategories-slider .swiper-slide').length;
+    var maxSlidesPerView = 7;
+
+    if (numberOfSlides <= maxSlidesPerView) {
+        var nextButton = document.querySelector('.slider-subcategories-next');
+        var prevButton = document.querySelector('.slider-subcategories-prev');
+
+        if (nextButton) {
+            nextButton.style.display = 'none';
+        }
+        if (prevButton) {
+            prevButton.style.display = 'none';
+        }
+    } else {
+        var nextButton = document.querySelector('.slider-subcategories-next');
+        var prevButton = document.querySelector('.slider-subcategories-prev');
+
+        if (nextButton) {
+            nextButton.style.display = 'flex';
+        }
+        if (prevButton) {
+            prevButton.style.display = 'flex';
+        }
+    }
+
 
     // Initialize the homepage slider
     var homepageSlider = new Swiper(".slider-home", {
@@ -56,44 +110,6 @@ export default function initSliders() {
         },
       },
     });
-
-    // Define the necessary variables first
-    var nextEl = ".slider-subcategories-next";
-    var prevEl = ".slider-subcategories-prev";
-    var numberOfSlides = document.querySelectorAll('.subcategories-slider .swiper-slide').length;
-    var maxSlidesPerView = 7;
-    var slidesPerView = numberOfSlides < maxSlidesPerView ? 'auto' : maxSlidesPerView;
-
-    // Initialize the Swiper
-    var gallerySubcategories = new Swiper(".subcategories-slider", {
-      loop: true,
-      slidesPerView: numberOfSlides < 2 ? 'auto' : 2,
-      spaceBetween: 8,
-      keyboardControl: true,
-      keyboard: true,
-      navigation: numberOfSlides > maxSlidesPerView ? { nextEl: nextEl, prevEl: prevEl } : undefined,
-      breakpoints: {
-        768: {
-          slidesPerView: numberOfSlides < 7 ? 'auto' : 7,
-          spaceBetween: 8 // Add spaceBetween inside the breakpoints as well
-        },
-      },
-    });
-
-    // Show navigation buttons if there are more slides than the maxSlidesPerView
-    if (numberOfSlides > maxSlidesPerView) {
-      var nextButton = document.querySelector(nextEl);
-      var prevButton = document.querySelector(prevEl);
-
-      if (nextButton) {
-        nextButton.style.display = "flex";
-      }
-      if (prevButton) {
-        prevButton.style.display = "flex";
-      }
-    }
-
-
 
     var categorySlider = new Swiper(".category-list-builder", {
       autoHeight: true,
@@ -371,5 +387,10 @@ export default function initSliders() {
       galleryTop.update();
       galleryTop.slideToLoop(parseInt(slideNumber, 10), 0);
     }
+
+
+
+
+
   });
 }

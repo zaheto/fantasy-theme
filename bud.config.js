@@ -35,7 +35,7 @@ export default async (app) => {
    */
   app
     .setUrl('http://localhost:3000')
-    .setProxyUrl('https://fantasy.local:8890')
+    .setProxyUrl('https://fantasy-theme.test')
     .watch(['resources/views', 'app']);
 
   /**

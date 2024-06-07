@@ -25,62 +25,51 @@ the readme will list any important changes.
     do_action('woocommerce_archive_description')
   @endphp
 
-@if (is_product_category())
-@php
-    $current_category = get_queried_object();
-    $args = array(
-        'taxonomy' => 'product_cat',
-        'parent' => $current_category->term_id,
-        'hide_empty' => false,
-    );
-    $subcategories = get_terms($args);
-    $no_thumbnail_url = get_template_directory_uri() . '/resources/images/no-image.svg'; // Path to your default no-thumbnail image
-@endphp
+  @if (is_product_category())
+    @php
+      $current_category = get_queried_object();
+      $args = array(
+          'taxonomy' => 'product_cat',
+          'parent' => $current_category->term_id,
+          'hide_empty' => false,
+      );
+      $subcategories = get_terms($args);
+      $no_thumbnail_url = get_template_directory_uri() . '/resources/images/no-image.svg'; // Path to your default no-thumbnail image
+    @endphp
 
-  @if (!empty($subcategories))
+      @if (!empty($subcategories))
       <div class="swiper subcategories-slider">
-        <div class="swiper-wrapper">
-          @foreach ($subcategories as $subcategory)
-              @php
-                  $category_link = get_term_link($subcategory->term_id, 'product_cat');
-                  $thumbnail_id = get_term_meta($subcategory->term_id, 'thumbnail_id', true);
-                  $image_url = $thumbnail_id ? wp_get_attachment_url($thumbnail_id) : $no_thumbnail_url;
-                  $image_path = get_attached_file($thumbnail_id);
-              @endphp
-              <div class="swiper-slide">
-                  <a href="{{ esc_url($category_link) }}">
-                      @if ($image_url && @getimagesize($image_path))
-                          @php
-                              $image = safe_imagecreatefromjpeg($image_path);
-                          @endphp
-                          @if ($image !== false)
-                              <img src="{{ esc_url($image_url) }}" alt="{{ esc_attr($subcategory->name) }}">
-                          @else
-                              <img src="{{ esc_url($no_thumbnail_url) }}" alt="{{ esc_attr($subcategory->name) }}">
-                          @endif
-                      @else
-                          <img src="{{ esc_url($no_thumbnail_url) }}" alt="{{ esc_attr($subcategory->name) }}">
-                      @endif
-                      <h3>{{ esc_html($subcategory->name) }}</h3>
-                  </a>
-              </div>
-          @endforeach
-        </div>
-        <div class="swiper-button-next slider-subcategories-next"></div>
-        <div class="swiper-button-prev slider-subcategories-prev"></div>
+          <div class="swiper-wrapper">
+              @foreach ($subcategories as $subcategory)
+                  @php
+                      $category_link = get_term_link($subcategory->term_id, 'product_cat');
+                      $thumbnail_id = get_term_meta($subcategory->term_id, 'thumbnail_id', true);
+                      $image_url = $thumbnail_id ? wp_get_attachment_url($thumbnail_id) : $no_thumbnail_url;
+                  @endphp
+                  <div class="swiper-slide">
+                      <a href="{{ esc_url($category_link) }}">
+                          <img src="{{ esc_url($image_url) }}" alt="{{ esc_attr($subcategory->name) }}">
+                          <h3>{{ esc_html($subcategory->name) }}</h3>
+                      </a>
+                  </div>
+              @endforeach
+          </div>
+          <!-- Navigation arrows -->
+          <div class="swiper-button-next slider-subcategories-next"></div>
+          <div class="swiper-button-prev slider-subcategories-prev"></div>
       </div>
+      @endif
+
+
+
+
   @endif
-@endif
-
-
-
-
 </header>
 
 @section('content')
   @if(is_active_sidebar('sidebar-shop'))
     <aside id="aside" class="left shadow-lg lg:shadow-none transition-all duration-150">
-      <h2 class="hidden text-18 text-black font-bold font-Inter pb-2 mb-2 border-b border-black/10 "> {{ __('Filters','zah') }}</h2>
+      <h2 class="hidden text-18 text-black font-bold font-Inter pb-2 mb-2 border-b border-black/10"> {{ __('Filters','zah') }}</h2>
       @php
         dynamic_sidebar('sidebar-shop');
       @endphp
@@ -91,39 +80,36 @@ the readme will list any important changes.
     do_action('woocommerce_before_main_content');
   @endphp
 
-
-
   @if (woocommerce_product_loop())
-    @php
-      do_action('woocommerce_before_shop_loop');
-      woocommerce_product_loop_start();
-    @endphp
 
-    @if (wc_get_loop_prop('total'))
-      @while (have_posts())
-        @php
-          the_post();
-          do_action('woocommerce_shop_loop');
-          wc_get_template_part('content', 'product');
-        @endphp
-      @endwhile
-    @endif
+      @php
+        do_action('woocommerce_before_shop_loop');
+        woocommerce_product_loop_start();
+      @endphp
 
-    @php
-      woocommerce_product_loop_end();
-      do_action('woocommerce_after_shop_loop');
-    @endphp
+      @if (wc_get_loop_prop('total'))
+        @while (have_posts())
+          @php
+            the_post();
+            do_action('woocommerce_shop_loop');
+            wc_get_template_part('content', 'product');
+          @endphp
+        @endwhile
+      @endif
+
+      @php
+        woocommerce_product_loop_end();
+        do_action('woocommerce_after_shop_loop');
+      @endphp
+
   @else
     @php
       do_action('woocommerce_no_products_found')
     @endphp
   @endif
 
-
-
   @php
     do_action('woocommerce_after_main_content');
-
     do_action('get_footer', 'shop');
   @endphp
 @endsection

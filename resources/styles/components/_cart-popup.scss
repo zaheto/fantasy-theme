@@ -298,12 +298,12 @@ body.drawer-open::before {
   @apply transition-all duration-300 opacity-100 visible ease-in-out transform translate-x-0  delay-100;
 }
 
-.quick-view-modal {
-  @apply fixed right-0 top-0 bottom-0 z-100 opacity-0 invisible bg-white shadow-lg transform translate-x-[100%] transition-all duration-200 w-[96%] md:w-[480px];
-  &.active {
-    @apply transition-all duration-200 opacity-100 visible transform translate-x-0;
-  }
-}
+// .quick-view-modal {
+//   @apply fixed right-0 top-0 bottom-0 z-100 opacity-0 invisible bg-white shadow-lg transform translate-x-[100%] transition-all duration-200 w-[96%] md:w-[480px];
+//   &.active {
+//     @apply transition-all duration-200 opacity-100 visible transform translate-x-0;
+//   }
+// }
 
 #ajax-loading {
 	position: absolute;
