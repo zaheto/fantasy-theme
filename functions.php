@@ -1801,53 +1801,6 @@ function enqueue_quick_view_scripts() {
     wp_localize_script('quick-view', 'fantasy_quick_view', array('ajax_url' => admin_url('admin-ajax.php')));
 }
 add_action('wp_enqueue_scripts', 'enqueue_quick_view_scripts');
-// AJAX handler for Quick View
-function quick_view_modal_content() {
-    $product_id = intval($_POST['product_id']);
-    if ($product_id) {
-        $product = wc_get_product($product_id);
-
-        if ($product) {
-            ob_start();
-            ?>
-            <div class="quick-view-content">
-                <h2><?php echo esc_html($product->get_title()); ?></h2>
-                <div class="product-image">
-                    <?php echo $product->get_image(); ?>
-                </div>
-                <div class="product-price">
-                    <?php echo $product->get_price_html(); ?>
-                </div>
-                <?php if ($product->is_type('variable')) : ?>
-                    <form class="variations_form cart" method="post" enctype='multipart/form-data' data-product_id="<?php echo absint($product->get_id()); ?>">
-                        <?php
-                        $attributes = $product->get_variation_attributes();
-                        $available_variations = $product->get_available_variations();
-                        wc_get_template('single-product/add-to-cart/variable.php', array(
-                            'available_variations' => $available_variations,
-                            'attributes' => $attributes,
-                            'selected_attributes' => $product->get_default_attributes(),
-                        ));
-                        ?>
-                    </form>
-                <?php endif; ?>
-                <a href="<?php echo esc_url(get_permalink($product_id)); ?>"><?php _e('View more', 'fantasy'); ?></a>
-            </div>
-            <?php
-            $content = ob_get_clean();
-            wp_send_json_success(['html' => $content]);
-        } else {
-            wp_send_json_error(['error' => 'Product not found']);
-        }
-    } else {
-        wp_send_json_error(['error' => 'Invalid product ID']);
-    }
-
-    wp_die();
-}
-add_action('wp_ajax_quick_view_modal_content', 'quick_view_modal_content');
-add_action('wp_ajax_nopriv_quick_view_modal_content', 'quick_view_modal_content');
-
 
 // Handle AJAX request for quick view
 function load_quick_view() {
@@ -1880,19 +1833,21 @@ function load_quick_view() {
 add_action('wp_ajax_load_quick_view', 'load_quick_view');
 add_action('wp_ajax_nopriv_load_quick_view', 'load_quick_view');
 
-
 // Add quick view modal to footer
 function add_quick_view_modal() {
     ?>
-    <div id="quick-view-modal" class="quick-view-modal" style="display:none;">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
+    <div id="quick-view-modal" class="quick-view-modal hidden fixed inset-0 z-50 flex items-center justify-center bg-gray-800 bg-opacity-75">
+        <div class="modal-content bg-white p-4 rounded-lg relative">
+            <span class="close-modal absolute top-2 right-2 cursor-pointer text-2xl">&times;</span>
+            <div id="quick-view-content"></div>
         </div>
     </div>
     <?php
 }
 add_action('wp_footer', 'add_quick_view_modal');
 
+add_action('wp_ajax_fantasy_load_product_quick_view', 'fantasy_load_product_quick_view');
+add_action('wp_ajax_nopriv_fantasy_load_product_quick_view', 'fantasy_load_product_quick_view');
 
 function fantasy_load_product_quick_view() {
     if (!isset($_POST['product_id'])) {
@@ -1915,19 +1870,34 @@ function fantasy_load_product_quick_view() {
 
     ob_start();
 
-    echo '<h2>' . esc_html($product->get_title()) . '</h2>';
-    echo '<div class="product-images">' . $product->get_image() . '</div>';
-    echo '<div class="product-short-description">' . $product->get_short_description() . '</div>';
-    echo '<div class="product-price">' . $product->get_price_html() . '</div>';
-    echo '<div class="product-variation-form">';
-    woocommerce_variable_add_to_cart();
-    echo '</div>';
-    echo '<a href="' . get_permalink($product_id) . '">' . __('View More', 'fantasy') . '</a>';
+    // Make product object available globally
+    $GLOBALS['product'] = $product;
 
+    ?>
+    <div class="quick-view-content">
+        <h2><?php echo esc_html($product->get_title()); ?></h2>
+        <div class="product-image">
+            <?php echo $product->get_image(); ?>
+        </div>
+        <div class="product-price">
+            <?php echo $product->get_price_html(); ?>
+        </div>
+        <?php if ($product->is_type('variable')) : ?>
+            <form class="variations_form cart" action="<?php echo esc_url(apply_filters('woocommerce_add_to_cart_form_action', $product->get_permalink())); ?>" method="post" enctype='multipart/form-data' data-product_id="<?php echo absint($product->get_id()); ?>" data-product_variations="<?php echo htmlspecialchars(wp_json_encode($product->get_available_variations())); ?>">
+                <?php
+                wc_get_template('single-product/add-to-cart/variable.php', array(
+                    'available_variations' => $product->get_available_variations(),
+                    'attributes' => $product->get_variation_attributes(),
+                    'selected_attributes' => $product->get_default_attributes(),
+                ));
+                ?>
+            </form>
+        <?php endif; ?>
+        <a href="<?php echo esc_url(get_permalink($product_id)); ?>"><?php _e('View more', 'fantasy'); ?></a>
+    </div>
+    <?php
+
+    // Clean output buffer and send response
     $output = ob_get_clean();
-
     wp_send_json_success(['html' => $output]);
 }
-add_action('wp_ajax_fantasy_load_product_quick_view', 'fantasy_load_product_quick_view');
-add_action('wp_ajax_nopriv_fantasy_load_product_quick_view', 'fantasy_load_product_quick_view');
-

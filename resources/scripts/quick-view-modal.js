@@ -1,34 +1,37 @@
-jQuery(document).ready(function ($) {
-  $('.quick-view-button').on('click', function (e) {
+jQuery(document).ready(function($) {
+  $('body').on('click', '.quick-view-button', function(e) {
       e.preventDefault();
-
       var productId = $(this).data('product-id');
-      var ajaxUrl = fantasy_quick_view.ajax_url;
+      console.log('Quick view button clicked. Product ID:', productId);
 
       $.ajax({
-          url: ajaxUrl,
+          url: fantasy_quick_view.ajax_url,
           type: 'POST',
           data: {
-              action: 'quick_view_modal_content',
+              action: 'fantasy_load_product_quick_view',
               product_id: productId
           },
-          success: function (response) {
+          success: function(response) {
+              console.log('AJAX response received:', response);
               if (response.success) {
-                  $('#quick-view-modal .modal-content').html(response.data.html);
-                  $('#quick-view-modal').show();
+                  $('#quick-view-content').html(response.data.html);
+                  $('#quick-view-modal').removeClass('hidden');
+                  console.log('Quick view modal content loaded.');
               } else {
-                  console.error('Error loading quick view:', response.data.error);
-                  alert('Error loading quick view: ' + response.data.error);
+                  alert(response.data.error);
+                  console.error('Error loading quick view content:', response.data.error);
               }
           },
-          error: function () {
-              console.error('Error loading quick view');
+          error: function(xhr, status, error) {
               alert('Error loading quick view');
+              console.error('AJAX request failed:', status, error);
           }
       });
   });
 
-  $('.modal-close').on('click', function () {
-      $('#quick-view-modal').hide();
+  // Close modal
+  $('body').on('click', '.close-modal', function() {
+      $('#quick-view-modal').addClass('hidden');
+      console.log('Quick view modal closed.');
   });
 });
