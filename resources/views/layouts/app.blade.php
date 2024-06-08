@@ -28,6 +28,8 @@
 
       @include('sections.footer')
     </div>
+    <!-- Include the Quick View Modal -->
+    @include('partials.quick-view-modal')
 
     @php(do_action('get_footer'))
     @php(wp_footer())

@@ -1032,6 +1032,7 @@ if ( ! function_exists( 'fantasy_pdp_ajax_atc_enqueue' ) ) {
      */
     function fantasy_pdp_ajax_atc_enqueue() {
         if ( is_product() ) {
+
             wp_enqueue_script( 'fantasy-ajax-script', get_template_directory_uri() . '/resources/scripts/single-product-ajax.js', array( 'jquery' ), '1.0.0', true );
             wp_localize_script(
                 'fantasy-ajax-script',
@@ -1790,114 +1791,101 @@ add_action( 'after_setup_theme', 'phi_theme_support' );
 function add_quick_view_button() {
     global $product;
     if ($product->is_type('variable')) {
-        echo '<button class="button quick-view-button" data-product-id="' . esc_attr($product->get_id()) . '">' . __('Quick View', 'fantasy') . '</button>';
+        echo '<button class="button open-quick-view" data-product-id="' . esc_attr($product->get_id()) . '">' . __('Quick View', 'fantasy') . '</button>';
     }
 }
 add_action('woocommerce_shop_loop_item_title', 'add_quick_view_button', 5);
 
-// Enqueue quick view scripts
-function enqueue_quick_view_scripts() {
-    wp_enqueue_script('quick-view', get_template_directory_uri() . '/resources/scripts/quick-view-modal.js', array('jquery'), null, true);
-    wp_localize_script('quick-view', 'fantasy_quick_view', array('ajax_url' => admin_url('admin-ajax.php')));
-}
-add_action('wp_enqueue_scripts', 'enqueue_quick_view_scripts');
-
-// Handle AJAX request for quick view
-function load_quick_view() {
-    $product_id = intval($_POST['product_id']);
-    if ($product_id) {
-        $product = wc_get_product($product_id);
-        if ($product) {
-            error_log('Product found: ' . $product_id . ', Product Type: ' . $product->get_type());
-
-            ?>
-            <div class="quick-view-modal-content">
-                <h2><?php echo esc_html($product->get_name()); ?></h2>
-                <div><?php echo $product->get_image(); ?></div>
-                <div><?php echo $product->get_short_description(); ?></div>
-                <div><?php echo $product->get_price_html(); ?></div>
-                <?php woocommerce_template_single_add_to_cart(); ?>
-                <a href="<?php echo get_permalink($product_id); ?>"><?php _e('View more', 'fantasy'); ?></a>
-            </div>
-            <?php
-        } else {
-            error_log('Product not found for ID: ' . $product_id);
-            echo 'Product not found';
-        }
-    } else {
-        error_log('Invalid product ID: ' . $product_id);
-        echo 'Invalid product ID';
+function enqueue_woocommerce_ajax_add_to_cart_script() {
+    if (class_exists('WooCommerce')) {
+        wp_enqueue_script('wc-add-to-cart-variation');
+        wp_enqueue_script('wc-cart-fragments');
     }
+}
+add_action('wp_enqueue_scripts', 'enqueue_woocommerce_ajax_add_to_cart_script');
+
+
+
+// Enqueue Quick View Script
+add_action('wp_enqueue_scripts', function () {
+    wp_enqueue_script('quick-view-js', get_theme_file_uri('resources/scripts/quick-view.js'), ['jquery'], null, true);
+    wp_localize_script('quick-view-js', 'quickViewAjax', [
+        'ajaxurl' => admin_url('admin-ajax.php'),
+        'nonce' => wp_create_nonce('woosq-security'),
+    ]);
+});
+
+function quick_view_load_product() {
+    if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'woosq-security')) {
+        wp_send_json_error('Invalid nonce');
+    }
+
+    $product_id = absint($_POST['product_id']);
+    $product = wc_get_product($product_id);
+
+    if (!$product) {
+        wp_send_json_error('Invalid product');
+    }
+
+    // Get the post object
+    $post = get_post($product_id);
+
+    if (!$post) {
+        wp_send_json_error('Invalid post');
+    }
+
+    // Set up product data
+    setup_postdata($post);
+
+    // Output product content using Blade template
+    ob_start();
+    echo view('woocommerce.content-quick-view-variable', compact('product'))->render();
+    $output = ob_get_clean();
+
+    wp_send_json_success($output);
+
     wp_die();
 }
-add_action('wp_ajax_load_quick_view', 'load_quick_view');
-add_action('wp_ajax_nopriv_load_quick_view', 'load_quick_view');
+add_action('wp_ajax_woosq_quickview', 'quick_view_load_product');
+add_action('wp_ajax_nopriv_woosq_quickview', 'quick_view_load_product');
 
-// Add quick view modal to footer
-function add_quick_view_modal() {
-    ?>
-    <div id="quick-view-modal" class="quick-view-modal hidden fixed inset-0 z-50 flex items-center justify-center bg-gray-800 bg-opacity-75">
-        <div class="modal-content bg-white p-4 rounded-lg relative">
-            <span class="close-modal absolute top-2 right-2 cursor-pointer text-2xl">&times;</span>
-            <div id="quick-view-content"></div>
-        </div>
-    </div>
-    <?php
-}
-add_action('wp_footer', 'add_quick_view_modal');
-
-add_action('wp_ajax_fantasy_load_product_quick_view', 'fantasy_load_product_quick_view');
-add_action('wp_ajax_nopriv_fantasy_load_product_quick_view', 'fantasy_load_product_quick_view');
-
-function fantasy_load_product_quick_view() {
-    if (!isset($_POST['product_id'])) {
-        error_log('Product ID not set in POST data');
-        wp_send_json_error(['error' => 'Invalid product ID']);
-        die();
+function quick_view_add_to_cart() {
+    if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'woosq-security')) {
+        wp_send_json_error('Invalid nonce');
     }
 
-    $product_id = intval($_POST['product_id']);
-    error_log('Fetching product with ID: ' . $product_id);
+    $product_id = intval($_POST['add-to-cart']);
+    $quantity = isset($_POST['quantity']) ? wc_stock_amount($_POST['quantity']) : 1;
+    $variation_id = intval($_POST['variation_id']);
+    $variation = !empty($_POST['variation']) ? $_POST['variation'] : [];
 
-    $product = wc_get_product($product_id);
-    if (!$product) {
-        error_log('Product not found with ID: ' . $product_id);
-        wp_send_json_error(['error' => 'Product not found']);
-        die();
+    $product_status = get_post_status($product_id);
+
+    if ($product_status !== 'publish') {
+        wp_send_json_error(['error' => true, 'product_url' => get_permalink($product_id)]);
+        return;
     }
 
-    error_log('Product found: ' . $product_id . ', Product Type: ' . $product->get_type());
+    $cart_item_data = [];
 
-    ob_start();
+    if (WC()->cart->add_to_cart($product_id, $quantity, $variation_id, $variation, $cart_item_data)) {
+        do_action('woocommerce_ajax_added_to_cart', $product_id);
 
-    // Make product object available globally
-    $GLOBALS['product'] = $product;
+        if ('yes' === get_option('woocommerce_cart_redirect_after_add')) {
+            wc_add_to_cart_message([$product_id => $quantity], true);
+        }
 
-    ?>
-    <div class="quick-view-content">
-        <h2><?php echo esc_html($product->get_title()); ?></h2>
-        <div class="product-image">
-            <?php echo $product->get_image(); ?>
-        </div>
-        <div class="product-price">
-            <?php echo $product->get_price_html(); ?>
-        </div>
-        <?php if ($product->is_type('variable')) : ?>
-            <form class="variations_form cart" action="<?php echo esc_url(apply_filters('woocommerce_add_to_cart_form_action', $product->get_permalink())); ?>" method="post" enctype='multipart/form-data' data-product_id="<?php echo absint($product->get_id()); ?>" data-product_variations="<?php echo htmlspecialchars(wp_json_encode($product->get_available_variations())); ?>">
-                <?php
-                wc_get_template('single-product/add-to-cart/variable.php', array(
-                    'available_variations' => $product->get_available_variations(),
-                    'attributes' => $product->get_variation_attributes(),
-                    'selected_attributes' => $product->get_default_attributes(),
-                ));
-                ?>
-            </form>
-        <?php endif; ?>
-        <a href="<?php echo esc_url(get_permalink($product_id)); ?>"><?php _e('View more', 'fantasy'); ?></a>
-    </div>
-    <?php
+        WC_AJAX::get_refreshed_fragments();
+    } else {
+        wp_send_json_error(['error' => true, 'product_url' => get_permalink($product_id)]);
+    }
 
-    // Clean output buffer and send response
-    $output = ob_get_clean();
-    wp_send_json_success(['html' => $output]);
+    wp_die();
 }
+add_action('wp_ajax_woocommerce_ajax_add_to_cart', 'quick_view_add_to_cart');
+add_action('wp_ajax_nopriv_woocommerce_ajax_add_to_cart', 'quick_view_add_to_cart');
+
+
+
+
+
