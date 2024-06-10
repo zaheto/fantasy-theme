@@ -31,12 +31,16 @@
   }
 
   .page-header {
-    @apply pt-10 px-0 pb-3;
+    @apply pt-4 px-0 pb-1;
     h1 {
-      @apply font-bold text-32;
+      @apply font-bold text-24 md:text-h3;
     }
   }
 
+}
+
+.wc-block-components-main.wc-block-checkout__main {
+  @apply relative px-10 md:px-10
 }
 
 form.woocommerce-checkout {
@@ -308,6 +312,10 @@ form.woocommerce-checkout  {
   @apply text-base font-bold block text-black;
 }
 
+.wc-block-components-sidebar-layout.wc-block-checkout {
+  @apply flex items-start;
+}
+
 
 @media only screen and (max-width: 678px) {
   form.woocommerce-checkout .to-address #nele_place_field,
@@ -319,4 +327,67 @@ form.woocommerce-checkout  {
   form.woocommerce-checkout .to-address #nele_street_num_field {
     @apply w-[38%] float-right clear-none;
   }
+}
+
+.wc-block-components-checkout-step__heading {
+  @apply relative mt-6 mx-0 mb-2;
+}
+
+.wc-block-components-checkout-place-order-button {
+  @apply inline-flex items-center content-center justify-center rounded-md px-8 py-3 text-base font-bold border gap-2 transition-all duration-300 hover:transition-all hover:duration-300 bg-main border-main text-white hover:bg-button-hover  hover:border-button-hover hover:shadow-md hover:shadow-main/20;
+}
+
+.wc-block-components-title {
+  @apply text-18;
+}
+
+.wc-block-components-checkout-step--with-step-number .wc-block-components-checkout-step__container:after {
+  @apply border-l border-black/20;
+}
+
+.wc-block-components-address-address-wrapper {
+  @apply border-2 rounded;
+  &.is-editing {
+    @apply border-none;
+  }
+}
+
+.wc-block-checkout__payment-method .wc-block-components-checkout-step__container .wc-block-components-radio-control .wc-block-components-radio-control__option {
+  @apply pb-0 mb-0
+}
+
+.wc-block-checkout__payment-method .wc-block-components-checkout-step__container .wc-block-components-radio-control .wc-block-components-radio-control-accordion-content {
+  @apply pb-4;
+}
+
+.woocommerce-checkout .wc-block-components-address-card__edit {
+  @apply text-main;
+}
+
+.wc-block-components-panel__button {
+  @apply mb-4;
+}
+
+.wc-block-components-order-summary__button-text {
+  @apply underline font-semibold;
+}
+
+.wc-block-components-validation-error {
+  p {
+    @apply m-0 text-13 text-second;
+  }
+}
+
+.woocommerce-checkout .wc-block-components-product-metadata .wc-block-components-product-metadata__description {
+  @apply hidden
+}
+
+.wc-block-components-checkout-step__description {
+  @apply leading-tight text-black/80;
+}
+
+.wc-block-components-radio-control--highlight-checked .wc-block-components-radio-control-accordion-option--checked-option-highlighted,
+.wc-block-components-radio-control--highlight-checked label.wc-block-components-radio-control__option--checked-option-highlighted {
+
+  @apply shadow-none border-2 border-black
 }

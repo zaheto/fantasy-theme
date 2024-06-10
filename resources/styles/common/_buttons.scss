@@ -1,4 +1,4 @@
-.btn, .button {
+.btn, .button, .wc-block-components-product-button__button {
   @apply inline-flex items-center content-center justify-center rounded-md px-8 py-3 text-base font-bold border gap-2 transition-all duration-300 hover:transition-all hover:duration-300;
 }
 
@@ -18,7 +18,7 @@
   @apply  px-3 py-1 text-14 ;
 }
 
-.btn-main, .button.checkout,  .single_add_to_cart_button {
+.btn-main, .button.checkout,  .single_add_to_cart_button, .wc-block-components-product-button__button {
   @apply bg-main border-main text-white hover:bg-button-hover  hover:border-button-hover hover:shadow-md hover:shadow-main/20;
 }
 

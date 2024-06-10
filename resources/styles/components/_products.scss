@@ -70,7 +70,7 @@
 .products .product,
 .swiper-products .product  {
   .wishlist-button-wrapper {
-    @apply absolute top-2 right-2 z-50;
+    @apply absolute top-2 right-2 z-30;
     .woosw-btn {
       @apply bg-white/90 hover:bg-main/20 text-black hover:text-main text-24 p-2 rounded-sm;
     }
@@ -119,7 +119,8 @@
 
 .cross-sells,
 .related.products,
-.upsells.products {
+.upsells.products,
+.wp-block-woocommerce-cart-cross-sells-block {
   @apply block text-center border-t border-black/10 relative pt-10 md:pt-16 pb-2 md:pb-14 bg-white before:content-[''] before:block before:absolute before:top-0 before:bottom-0 before:-left-full before:w-full before:bg-white after:block after:absolute after:top-0 after:bottom-0 after:-right-full after:w-full after:bg-white;
   .swiper {
     @apply pb-8;
@@ -177,8 +178,6 @@
   @apply hidden md:flex m-0 text-black/80 text-14;
 }
 
-
-
-
-
-
+.product-type-variable .product-loop--container .product_type_variable.add_to_cart_button {
+  @apply hidden;
+}

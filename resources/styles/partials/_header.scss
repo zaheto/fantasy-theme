@@ -1,3 +1,11 @@
+body.header-design-1 {
+  @apply pt-[86px] lg:pt-[184px];
+}
+
+body.header-design-2 {
+  @apply pt-[86px] lg:pt-[155px];
+}
+
 .announce-bar {
   @apply overflow-x-hidden relative bg-main flex;
 }
@@ -16,6 +24,10 @@
 
 .announce-bar ul li a {
   @apply underline;
+}
+
+.header {
+  @apply z-100 relative;
 }
 
 .header .inner-header {
@@ -136,6 +148,10 @@
   @apply w-full rounded-full bg-white lg:bg-transparent border-transparent lg:border lg:border-black/10 m-1;
 }
 
+.search-box .aws-container .aws-search-form {
+  @apply m-0 p-0;
+}
+
 .search-box .aws-container .aws-search-form .aws-form-btn {
   @apply rounded-full border-none bg-main w-[38px] min-w-[38px] h-[38px] mt-[3px] mr-[3px];
 }
@@ -247,12 +263,28 @@
   @apply absolute lg:relative right-3 lg:right-auto flex items-center gap-4;
 }
 
+.header .header--my-account {
+  @apply flex items-center;
+}
+
 .header .header--my-account .icon-wrap  {
   @apply flex w-[32px] h-[32px];
 }
 
 .header .header--my-account .icon-wrap .icon {
   @apply  w-[32px] h-[32px] transition-all duration-200 scale-100 hover:scale-95 transform;
+}
+
+.header .header--wishlist {
+  @apply relative ;
+}
+
+.header .header--wishlist .count {
+  @apply text-center  before:content-[attr(data-count)] before:bg-second before:rounded-full before:text-white before:text-12 before:font-semibold before:w-[18px] before:h-[18px] before:flex before:items-center before:justify-center before:content-center before:bottom-0 before:-right-[8px] before:absolute;
+}
+
+.header .header--wishlist .icon {
+  @apply w-[32px] h-[32px]  transition-all duration-200 scale-100 hover:scale-95 transform;
 }
 
 .header .cart-info .icon {
@@ -398,7 +430,7 @@
   }
 
   .header-right {
-    @apply absolute  right-3  flex items-center gap-4;
+    @apply absolute right-3 flex items-center gap-2;
   }
 
   .logo-wrap  {

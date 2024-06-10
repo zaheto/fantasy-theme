@@ -34,6 +34,10 @@
     @apply w-full xl:w-1/2;
   }
 
+  .summary .onsale {
+    @apply hidden;
+  }
+
   .product_title {
     @apply text-28 xl:text-h2 tracking-normal font-semibold mb-4;
   }
@@ -79,12 +83,36 @@
 
 }
 
+.woocommerce-product-gallery--with-images .flex-control-thumbs {
+  @apply gap-2;
+}
+
+.woocommerce-product-gallery--with-images .woocommerce-product-gallery__image {
+  @apply flex items-center;
+}
+
+.woocommerce-product-gallery--with-images .woocommerce-product-gallery__image a {
+  @apply flex items-center;
+}
+
+.woocommerce-product-gallery--with-images .woocommerce-product-gallery__image a img {
+  @apply text-center m-auto;
+}
+
 .inside-product--buy-buttons {
-  @apply flex flex-row items-center my-6 ;
+  @apply flex flex-row items-center my-6 gap-4;
 }
 
 .inside-product--buy-buttons .quantity {
-  @apply w-[88px];
+  @apply w-[104px];
+}
+
+.inside-product--buy-buttons .woosw-btn {
+  @apply border border-black/20 rounded-md px-4 h-[52px] flex items-center justify-center;
+}
+
+.inside-product--buy-buttons .woosw-btn .woosw-btn-icon {
+  @apply text-24;
 }
 
 .woocommerce-variation-add-to-cart-disabled > button.btn {
@@ -350,7 +378,9 @@
       @apply font-semibold text-black text-24;
     }
 
-
+    .onsale {
+      @apply hidden;
+    }
 
     .product_meta {
       @apply  items-center content-center justify-center border-black/10;
@@ -513,7 +543,7 @@ div.product table.variations select {
 }
 
 .cart .single_add_to_cart_button {
-  @apply text-base w-[calc(100%-80px)] md:w-[calc(100%-90px)] h-[52px] ml-3 md:ml-6 pt-0 pb-0 rounded-md outline-0 font-semibold leading-[52px] text-center transition-all duration-200 uppercase;
+  @apply text-base w-[calc(100%-80px)] md:w-[calc(100%-80px)] h-[52px] pt-0 pb-0 rounded-md outline-0 font-semibold leading-[52px] text-center transition-all duration-200 uppercase;
 }
 
 .quantity.hidden + .single_add_to_cart_button,

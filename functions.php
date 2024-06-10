@@ -275,16 +275,27 @@ function fantasy_product_loop_close() {
 
 
 //Product loop open div
-add_action( 'woocommerce_before_add_to_cart_quantity', 'fantasy_product_button_open' );
+add_action('woocommerce_before_add_to_cart_quantity', 'fantasy_product_button_open');
 function fantasy_product_button_open() {
   echo '<section class="inside-product--buy-buttons">';
 }
 
+// Insert the wishlist button after the add to cart button but within the open/close div
+add_action('woocommerce_after_add_to_cart_button', 'add_wishlist_button_inside_buy_buttons');
+function add_wishlist_button_inside_buy_buttons() {
+    global $product;
+    if (function_exists('do_shortcode')) {
+        $product_id = $product->get_id();
+        echo do_shortcode('[woosw id="' . $product_id . '"]');
+    }
+}
+
 //Product loop open div
-add_action( 'woocommerce_after_add_to_cart_button', 'fantasy_product_button_close' );
+add_action('woocommerce_after_add_to_cart_button', 'fantasy_product_button_close', 20);
 function fantasy_product_button_close() {
   echo '</section>';
 }
+
 
 /**
  * @snippet       Hide ALL shipping rates in ALL zones when Free Shipping is available
@@ -697,7 +708,20 @@ if ( ! function_exists( 'fantasy_header_cart' ) ) {
 // Hook the header cart function to an action hook
 add_action( 'fantasy_minicart_header', 'fantasy_header_cart' );
 
+function fantasy_add_header_class_to_body($classes) {
+    $header_design = get_field('choose_header_design', 'option');
+    $header_class = 'header-design-1';
 
+    if ($header_design == 'Header-2') {
+        $header_class = 'header-design-2';
+    } elseif ($header_design == 'Header-3') {
+        $header_class = 'header-design-3';
+    }
+
+    $classes[] = $header_class;
+    return $classes;
+}
+add_filter('body_class', 'fantasy_add_header_class_to_body');
 
 
 if ( ! function_exists( 'fantasy_header_cart_drawer' ) ) {
@@ -1245,62 +1269,63 @@ function fantasy_upsell_display() {
  * @param string $type Type of notification.
  */
 function custom_free_shipping_notification($type) {
-if (WC()->cart->is_empty()) {
-    return;
-}
+    if (WC()->cart->is_empty()) {
+        return;
+    }
 
-$packages = WC()->cart->get_shipping_packages();
-$package = reset($packages);
+    $packages = WC()->cart->get_shipping_packages();
+    $package = reset($packages);
 
-$min_amount = 0;
-$progressPercentage = 0;
-$free_shipping_available = false;
+    $min_amount = 0;
+    $progressPercentage = 0;
+    $free_shipping_available = false;
 
-if ($package) {
-    $zone = wc_get_shipping_zone($package);
-    if ($zone) {
-        $shippingMethods = $zone->get_shipping_methods(true);
-        $shippingCartTotal = WC()->cart->shipping_total ?? 0;
-        $cartTotal = WC()->cart->total ?? 0;
+    if ($package) {
+        $zone = wc_get_shipping_zone($package);
+        if ($zone) {
+            $shippingMethods = $zone->get_shipping_methods(true);
+            $shippingCartTotal = floatval(WC()->cart->shipping_total ?? 0);
+            $cartTotal = floatval(WC()->cart->total ?? 0);
 
-        foreach ($shippingMethods as $method) {
-            if ($method->id === 'free_shipping') {
-                $min_amount = $method->get_option('min_amount') ?? 0;
-                $awayFromFreeDelivery = $min_amount - (floatval($cartTotal) - floatval($shippingCartTotal));
-                $free_shipping_available = true;
-                break;
+            foreach ($shippingMethods as $method) {
+                if ('free_shipping' === $method->id) {
+                    $min_amount = floatval($method->get_option('min_amount') ?? 0);
+                    $awayFromFreeDelivery = $min_amount - ($cartTotal - $shippingCartTotal);
+                    $free_shipping_available = true;
+                    break;
+                }
             }
         }
     }
-}
 
-if ($min_amount > 0) {
-    $progressPercentage = (WC()->cart->total / $min_amount) * 100;
-    if ($progressPercentage > 100) {
-        $progressPercentage = 100;
+    if ($min_amount > 0) {
+        $progressPercentage = ($cartTotal / $min_amount) * 100;
+        if ($progressPercentage > 100) {
+            $progressPercentage = 100;
+        }
+    } else {
+        $awayFromFreeDelivery = 0;
     }
-} else {
-    $awayFromFreeDelivery = 0;
+
+    if ($free_shipping_available) {
+        ?>
+        <div class="free-delivery-bar--cart">
+            <?php if ($cartTotal <= $min_amount) : ?>
+                <div class="bar-body">
+                    <span style="width: <?php echo esc_attr($progressPercentage); ?>%;"></span>
+                </div>
+                <p>👋 <?php esc_html_e('You are ', 'fantasy'); ?> <span data-min="<?php echo esc_attr($min_amount); ?>" data-total="<?php echo esc_attr($cartTotal); ?>" data-shipping="<?php echo esc_attr($shippingCartTotal); ?>"><?php echo wc_price($awayFromFreeDelivery); ?></span> <?php esc_html_e(' away from free delivery', 'fantasy'); ?></p>
+            <?php else : ?>
+                <div class="bar-body">
+                    <span style="width: 100%;"></span>
+                </div>
+                <p class="unlocked flex gap-2 items-center"><span class="icon icon-tick-circle"></span> <?php esc_html_e('Congrats! You\'ve reached free shipping.', 'fantasy'); ?></p>
+            <?php endif; ?>
+        </div>
+        <?php
+    }
 }
 
-if ($free_shipping_available) {
-    ?>
-    <div class="free-delivery-bar--cart">
-        <?php if (WC()->cart->total <= $min_amount) : ?>
-            <div class="bar-body">
-                <span style="width: <?php echo esc_attr($progressPercentage); ?>%;"></span>
-            </div>
-            <p>👋 <?php esc_html_e('You are ', 'fantasy'); ?> <span data-min="<?php echo esc_attr($min_amount); ?>" data-total="<?php echo esc_attr(WC()->cart->total); ?>" data-shipping="<?php echo esc_attr(WC()->cart->shipping_total); ?>"><?php echo wc_price($awayFromFreeDelivery); ?></span> <?php esc_html_e(' away from free delivery', 'fantasy'); ?></p>
-        <?php else : ?>
-            <div class="bar-body">
-                <span style="width: 100%;"></span>
-            </div>
-            <p class="unlocked flex gap-2 items-center"><span class="icon icon-tick-circle"></span> <?php esc_html_e('Congrats! You\'ve reached free shipping.', 'fantasy'); ?></p>
-        <?php endif; ?>
-    </div>
-    <?php
-}
-}
 
 /**
  * Display custom content when mini cart is empty.
@@ -1413,15 +1438,6 @@ global $post;
     echo '<div class="woocommerce-loop-product__title"><a tabindex="0" href="' . get_the_permalink() . '" aria-label="' . get_the_title() . '" class="woocommerce-LoopProduct-link woocommerce-loop-product__link">' . get_the_title() . '</a></div>';
 }
 
-/**
- * Single Product Page - Display upsells before related.
- */
-// add_action( 'after_setup_theme', 'cg_upsells_related', 99 );
-
-// function cg_upsells_related() {
-//     remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_upsell_display', 25 );
-//     add_action( 'woocommerce_after_single_product_summary', 'woocommerce_upsell_display', 18 );
-// }
 
 /**
  * Display discounted % on product loop.
@@ -1723,20 +1739,29 @@ function woocommerce_rename_coupon_field_on_cart( $translated_text, $text, $doma
 }
 
 
+// Include the plugin.php file to use is_plugin_active if it's not already included
+if (!function_exists('is_plugin_active')) {
+    include_once(ABSPATH . 'wp-admin/includes/plugin.php');
+}
+
 // Hook into the product listing loop to add the wishlist button
 add_action('woocommerce_before_shop_loop_item_title', 'add_wishlist_button_to_product_listing', 10);
 
 function add_wishlist_button_to_product_listing() {
-    global $product;
-    $product_id = $product->get_id();
+    // Check if the wishlist plugin is active
+    if (is_plugin_active('woo-smart-wishlist/wpc-smart-wishlist.php')) {
+        global $product;
+        $product_id = $product->get_id();
 
-    // Generate the wishlist button shortcode
-    $wishlist_button = do_shortcode('[woosw id="' . $product_id . '"]');
+        // Generate the wishlist button shortcode only if the plugin is active
+        if (function_exists('do_shortcode')) {
+            $wishlist_button = do_shortcode('[woosw id="' . $product_id . '"]');
 
-    // Output the wishlist button
-    echo '<div class="wishlist-button-wrapper">' . $wishlist_button . '</div>';
+            // Output the wishlist button
+            echo '<div class="wishlist-button-wrapper">' . $wishlist_button . '</div>';
+        }
+    }
 }
-
 
 // Remove default WooCommerce Add to Cart button
 remove_action('woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 10);
@@ -1786,6 +1811,23 @@ function phi_theme_support() {
 }
 add_action( 'after_setup_theme', 'phi_theme_support' );
 
+// Remove default Add to Cart button for variable products in related and cross-sells sections
+function remove_variable_add_to_cart_button_related_cross_sells() {
+    global $product;
+    if ($product->is_type('variable')) {
+        remove_action('woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 10);
+    }
+}
+add_action('woocommerce_after_shop_loop_item', 'remove_variable_add_to_cart_button_related_cross_sells', 1);
+
+// Remove default Add to Cart button for variable products
+add_action('woocommerce_after_shop_loop_item', 'remove_variable_add_to_cart_button', 1);
+function remove_variable_add_to_cart_button() {
+    global $product;
+    if ($product->is_type('variable')) {
+        remove_action('woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 10);
+    }
+}
 
 // Add Quick View button to product loop
 function add_quick_view_button() {

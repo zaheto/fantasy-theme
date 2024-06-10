@@ -63,11 +63,19 @@
                 @endif
               </ul><!-- account -->
 
+              @if (class_exists('WPCleverWoosw'))
+              <ul class="header--wishlist">
+                <li>
+                    <a href="{{ esc_url(WPCleverWoosw::get_url()) }}">
+                        <x-iconsax-lin-heart class="icon" />
+                        {{-- <span class="count" data-count="{{ esc_attr(WPCleverWoosw::get_count()) }}"></span> --}}
+                    </a>
+                </li>
+              </ul>
+              @endif
+
               @php global $woocommerce; @endphp
-              <a href="javascript:;" class="cart-info">
-                <x-iconsax-lin-bag-happy class="icon" />
-                @if(WC()->cart->get_cart_contents_count())<div class="cart-total cart-items-count mini-cart-count" id="cartTotalsHeader" data-total="{{ $woocommerce->cart->total }}">@if(WC()->cart->get_cart_contents_count())<span class="cart-quantity-label ">{{ WC()->cart->get_cart_contents_count() }}</span>@endif</div>@endif
-              </a>
+              @php do_action( 'fantasy_minicart_header' ); @endphp
         </div>
         <!-- END OF HEADER RIGHT -->
     </div><!-- container -->

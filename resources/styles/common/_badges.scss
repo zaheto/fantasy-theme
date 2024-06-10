@@ -1,3 +1,7 @@
+.products-badges {
+  @apply absolute top-2 left-2 flex flex-col items-start gap-1 z-30;
+}
+
 .onsale {
   @apply bg-main text-white py-0.5 px-2 text-13 z-10 rounded-sm ;
 }
@@ -8,8 +12,4 @@
 
 .product-out-of-stock {
   @apply bg-black/50 text-white py-0.5 px-2 text-13 text-center inline-block  rounded-sm;
-}
-
-.products-badges {
-  @apply absolute top-2 left-2 flex flex-col items-start gap-1 z-50;
 }

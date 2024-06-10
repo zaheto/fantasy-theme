@@ -13,7 +13,7 @@ jQuery(document).ready(function($) {
 
       if (cartTotal < minAmount) {
           $('.free-delivery-bar--cart p span').text(wc_price(awayFromFreeDelivery));
-          $('.free-delivery-bar--cart p').html(`👋 AYou are <span>${wc_price(awayFromFreeDelivery)}</span> away from free delivery`);
+          $('.free-delivery-bar--cart p').html(`👋 You are <span>${wc_price(awayFromFreeDelivery)}</span> away from free delivery`);
       } else {
           $('.free-delivery-bar--cart p').html(`<span class="icon icon-tick-circle"></span> A Congrats! You've reached free shipping.`);
       }

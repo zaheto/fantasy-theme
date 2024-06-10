@@ -77,6 +77,10 @@ input[type='number']::-webkit-outer-spin-button {
     margin: 0;
 }
 
+.wc-block-components-combobox .wc-block-components-combobox-control label.components-base-control__label, .wc-block-components-form .wc-block-components-combobox .wc-block-components-combobox-control label.components-base-control__label {
+  @apply -top-[3px]
+}
+
 // .quantity-inner {
 //   @apply flex justify-between items-center py-2 md:py-3.5 px-2 gap-2 bg-white border border-black/30 rounded-md relative;
 // }
@@ -140,4 +144,15 @@ input[type='number']::-webkit-outer-spin-button {
     @apply bg-main border-main text-white hover:bg-button-hover uppercase hover:border-button-hover hover:shadow-md hover:shadow-main/20;
   }
 
+}
+
+
+.page.woocommerce-account .main .page-header,
+.page.woocommerce-cart .main .page-header {
+  @apply  py-6;
+}
+
+.page.woocommerce-account .main .page-header h1,
+.page.woocommerce-cart .main .page-header h1 {
+  @apply font-bold text-h3 lg:text-h2;
 }

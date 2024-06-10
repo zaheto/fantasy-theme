@@ -5,7 +5,7 @@
         <div class="header-left">
           <a href="javascript:;" id="desktop-menu" class="icon-wrap hidden lg:flex"><x-iconsax-lin-menu class="icon"/></a>
           <a href="javascript:;" id="mobile-menu" class="icon-wrap flex items-center content-center lg:hidden absolute top-1/2 -translate-y-1/2 left-1 z-50"><x-iconsax-lin-menu class="icon "/></a>
-          <a href="javascript:;" id="search-menu" class="icon-wrap "><x-iconsax-lin-search-normal-1 class="icon"/></a>
+          <a href="javascript:;" id="search-menu" class="icon-wrap "><x-iconsax-lin-search-normal-1 class=" w-[28px] h-[28px]"/></a>
         </div>
         <!-- END OF HEADER LEFT -->
 
@@ -33,7 +33,23 @@
                   </a>
                 </li>
                 @endif
+                <li>
+                  @if (class_exists('WPCleverWoosw'))
+                      <div class="header-icon" data-toggle="tooltip" data-placement="bottom"
+                          data-title="{{ esc_attr(__('Wishlist', 'electro')) }}">
+                          <div class="woosw-menu-item">
+                              <a href="{{ esc_url(WPCleverWoosw::get_url()) }}">
+                                  <x-iconsax-lin-heart  class="icon" />
+                                  {{-- <span class="woosw-menu-item-inner"
+                                        data-count="{{ esc_attr(WPCleverWoosw::get_count()) }}"></span> --}}
+                              </a>
+                          </div>
+                      </div>
+                  @endif
+
+                </li>
               </ul><!-- account -->
+
 
               @php global $woocommerce; @endphp
 
