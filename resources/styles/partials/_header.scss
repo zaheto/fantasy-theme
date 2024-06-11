@@ -6,6 +6,10 @@ body.header-design-2 {
   @apply pt-[86px] lg:pt-[155px];
 }
 
+body.header-design-3 {
+  @apply pt-[86px] lg:pt-[116px];
+}
+
 .announce-bar {
   @apply overflow-x-hidden relative bg-main flex;
 }
@@ -39,7 +43,7 @@ body.header-design-2 {
 }
 
 .header .inner-header .header-left .icon-wrap  {
-  @apply w-[32px] h-[32px] mr-4 ;
+  @apply w-[32px] h-[32px];
 }
 
 .header .logo-wrap  {
@@ -198,7 +202,8 @@ body.header-design-2 {
   @apply -top-9 transition-all duration-100;
 }
 
-.header.headroom--not-top .logo {
+.header-1 .header.headroom--not-top .logo,
+.header-2 .header.headroom--not-top .logo {
   @apply ml-0 lg:ml-12;
 }
 
@@ -218,7 +223,7 @@ body.header-design-2 {
 }
 
 .mobile-nav {
-  @apply md:max-w-[440px] flex flex-col lg:hidden fixed top-0 bottom-0 right-6 bg-white z-100 shadow-lg transition-all duration-200;
+  @apply md:max-w-[440px] flex flex-col lg:hidden fixed top-0 bottom-0 right-6 bg-white z-[9999] shadow-lg transition-all duration-200;
   .icon-wrap {
     @apply flex items-center justify-start px-4 pt-4 pb-3 mb-0;
   }
@@ -260,7 +265,7 @@ body.header-design-2 {
 }
 
 .header .header-right {
-  @apply absolute lg:relative right-3 lg:right-auto flex items-center gap-4;
+  @apply absolute lg:relative right-3 lg:right-auto flex items-center gap-2;
 }
 
 .header .header--my-account {
@@ -450,6 +455,58 @@ body.header-design-2 {
   }
 
 }//header 2
+
+.header-3 {
+  .main-nav .container {
+    @apply flex flex-col lg:flex-row justify-center;
+  }
+
+  .search-box {
+    @apply flex-auto rounded-none hidden invisible opacity-0 lg:opacity-100 lg:flex absolute w-auto top-[60px] lg:top-[81px] -left-2 lg:left-2 -right-2 lg:right-2 bg-white py-2 px-6 lg:px-2 lg:py-2 z-[200] shadow-md lg:shadow-none before:content-[''] before:block before:absolute before:top-0 before:bottom-0 before:-left-full before:w-full before:bg-white after:block after:absolute after:top-0 after:bottom-0 after:-right-full after:w-full after:bg-white;
+  }
+
+  .search-box .aws-container {
+    @apply bg-gray rounded-full overflow-hidden;
+  }
+
+  .search-box.active {
+    @apply visible opacity-100 flex;
+  }
+
+  .main-nav {
+    @apply w-auto border-none lg:visible lg:opacity-100 lg:block ;
+  }
+
+  .inner-header .header-left {
+    @apply flex-1 lg:flex-auto lg:justify-center lg:max-w-max;
+  }
+
+  .header-right {
+    @apply flex justify-end items-center flex-1 relative top-auto left-auto right-auto;
+  }
+
+  .header-right .header-account ,
+  .header-right .header-search {
+    @apply hidden lg:block ;
+  }
+
+  .logo-wrap {
+    @apply lg:-order-1 lg:flex-1 block relative w-auto;
+  }
+
+  .logo {
+    @apply m-0 min-w-[122px] max-w-[122px] lg:min-w-[138px] lg:max-w-[138px];
+  }
+
+  #search-menu {
+    @apply flex items-center content-center z-50;
+  }
+
+  &.headroom--not-top #search-menu {
+    @apply lg:left-14;
+  }
+
+}//header 3
 
 
 

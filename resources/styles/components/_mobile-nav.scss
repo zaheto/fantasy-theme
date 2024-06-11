@@ -3,7 +3,7 @@
 }
 
 .mobile-nav.active {
-  @apply  visible left-0 opacity-100 transition-all duration-300 z-100;
+  @apply  visible left-0 opacity-100 transition-all duration-300 z-[99999];
 }
 
 .mobile-nav .navbar ul li a {

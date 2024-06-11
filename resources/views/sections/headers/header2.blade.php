@@ -33,22 +33,19 @@
                   </a>
                 </li>
                 @endif
-                <li>
-                  @if (class_exists('WPCleverWoosw'))
-                      <div class="header-icon" data-toggle="tooltip" data-placement="bottom"
-                          data-title="{{ esc_attr(__('Wishlist', 'electro')) }}">
-                          <div class="woosw-menu-item">
-                              <a href="{{ esc_url(WPCleverWoosw::get_url()) }}">
-                                  <x-iconsax-lin-heart  class="icon" />
-                                  {{-- <span class="woosw-menu-item-inner"
-                                        data-count="{{ esc_attr(WPCleverWoosw::get_count()) }}"></span> --}}
-                              </a>
-                          </div>
-                      </div>
-                  @endif
 
-                </li>
               </ul><!-- account -->
+
+              @if (class_exists('WPCleverWoosw'))
+              <ul class="header--wishlist">
+                <li>
+                    <a href="{{ esc_url(WPCleverWoosw::get_url()) }}">
+                        <x-iconsax-lin-heart class="icon" />
+                        {{-- <span class="count" data-count="{{ esc_attr(WPCleverWoosw::get_count()) }}"></span> --}}
+                    </a>
+                </li>
+              </ul>
+              @endif
 
 
               @php global $woocommerce; @endphp

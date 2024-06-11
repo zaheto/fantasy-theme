@@ -22,7 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 ?>
 <section class="filterby-top flex flex-col lg:flex-row items-center justify-between py-2 ">
-	<a href="javascript:;" id="toggleFilters" class="flex w-full lg:hidden rounded-md bg-main text-white font-bold text-base uppercase items-center content-center justify-center py-4 mb-4">
+	<a href="javascript:;" id="toggleFilters" class="flex w-full lg:hidden rounded-md bg-main text-white font-bold text-base uppercase items-center content-center justify-center py-2 mb-4">
   <?php _e('Filters','fantasy'); ?>
 	</a>
 <p class="woocommerce-result-count hidden lg:flex text-14 text-black/40 mb-0">

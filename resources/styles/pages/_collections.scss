@@ -1,7 +1,7 @@
 
 
 .subcategories-slider {
-  @apply m-4 h-auto w-full;
+  @apply m-0 md:m-4 h-auto w-full;
   .swiper-wrapper {
     @apply flex justify-center w-full;
   }
@@ -19,7 +19,7 @@
 
 .subcategories-slider:hover .swiper-button-next,
 .subcategories-slider:hover .swiper-button-prev {
-  @apply opacity-100
+  @apply opacity-100;
 }
 
 .widget_product_categories {

@@ -83,7 +83,7 @@
 
 .products .product .button,
 .swiper-products .product .button {
-  @apply absolute z-60 left-4 right-4 -top-[60px] border-none bg-main text-white hover:bg-black py-2 px-6 invisible opacity-0 whitespace-nowrap transition-all duration-200 hover:transition-all hover:duration-200;
+  @apply absolute z-60 left-4 right-4 -top-[50px] md:-top-[60px] border-none bg-main text-white hover:bg-black py-1 md:py-2 px-6 md:invisible md:opacity-0 whitespace-nowrap transition-all duration-200 hover:transition-all hover:duration-200;
 }
 
 .products .product:hover .button,
@@ -119,8 +119,7 @@
 
 .cross-sells,
 .related.products,
-.upsells.products,
-.wp-block-woocommerce-cart-cross-sells-block {
+.upsells.products  {
   @apply block text-center border-t border-black/10 relative pt-10 md:pt-16 pb-2 md:pb-14 bg-white before:content-[''] before:block before:absolute before:top-0 before:bottom-0 before:-left-full before:w-full before:bg-white after:block after:absolute after:top-0 after:bottom-0 after:-right-full after:w-full after:bg-white;
   .swiper {
     @apply pb-8;
@@ -158,6 +157,10 @@
 //   @apply bg-[#f2f2f2] before:bg-[#f2f2f2] after:bg-[#f2f2f2];
 // }
 
+.wp-block-woocommerce-cart-cross-sells-block {
+  @apply block text-center border-t border-black/10 relative pt-10 md:pt-16 pb-2 md:pb-14 bg-white;
+}
+
 
 .more-products-slider {
   .swiper-button-prev,
@@ -168,6 +171,10 @@
 
 .product-filters {
   @apply flex items-center justify-between py-4;
+}
+
+.woocommerce-ordering {
+  @apply m-0
 }
 
 .product-filters .woocommerce-ordering {

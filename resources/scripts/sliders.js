@@ -21,7 +21,7 @@ export default function initSliders() {
         },
         breakpoints: {
             320: { // Mobile
-                slidesPerView: 3,
+                slidesPerView: 2,
                 spaceBetween: 8,
             },
             768: { // Tablet

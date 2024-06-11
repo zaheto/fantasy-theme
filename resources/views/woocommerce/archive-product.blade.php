@@ -16,7 +16,7 @@ the readme will list any important changes.
 
 @extends('layouts.app')
 
-<header class="woocommerce-products-header bg-[#D0F1F1] flex flex-col items-center content-center justify-center py-6 md:py-12 px-2">
+<header class="woocommerce-products-header bg-gray flex flex-col items-center content-center justify-center py-6 md:py-12 md:px-2">
   @if (apply_filters('woocommerce_show_page_title', true))
     <h1 class="woocommerce-products-header__title page-title text-24 lg:text-32 text-black text-center font-bold font-Inter">{!! woocommerce_page_title(false) !!}</h1>
   @endif

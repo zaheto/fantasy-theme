@@ -18,13 +18,20 @@ jQuery(document).ready(function($) {
       success: function(response) {
         if (response.success) {
           $('#quick-view-product-details').html(response.data);
-          $('#quick-view-modal').fadeIn();
+          $('#quick-view-modal').addClass('active');
 
           // Initialize WooCommerce variation form
           $('.variations_form').each(function() {
             $(this).wc_variation_form();
             $(this).find('.variations select').change();
           });
+
+          // Hide the quantity input and set it to 1 by default
+          var quantityInput = $('.variations_form').find('input.qty');
+          if (quantityInput.length > 0) {
+            quantityInput.val(1).hide();
+            console.log('Quantity input set to:', quantityInput.val()); // Debugging
+          }
 
           // Add listener for variation change
           $('form.variations_form').on('woocommerce_variation_select_change', function() {
@@ -38,11 +45,15 @@ jQuery(document).ready(function($) {
             e.preventDefault();
             var form = $(this);
 
+            // Set quantity to 1 explicitly
+            var quantityInput = form.find('input.qty');
+            quantityInput.val(1);
+
             var formData = form.serialize() + '&add-to-cart=' + form.find('input[name="product_id"]').val();
             formData += '&action=woocommerce_ajax_add_to_cart';
             formData += '&nonce=' + quickViewAjax.nonce; // Add nonce to the form data
 
-            console.log('Form Data:', formData); // Debugging
+            console.log('Form Data before AJAX:', formData); // Debugging
 
             $.ajax({
               url: quickViewAjax.ajaxurl,
@@ -55,10 +66,14 @@ jQuery(document).ready(function($) {
                   $(document.body).trigger('added_to_cart', [response.fragments, response.cart_hash]);
 
                   // Close the modal
-                  $('#quick-view-modal').fadeOut();
+                  $('#quick-view-modal').removeClass('active');
 
                   // Open the cart drawer
                   $('body').addClass('drawer-open');
+
+                  // Check the quantity in the mini cart
+                  var miniCartQuantity = $('.fantasy-custom-quantity-mini-cart_input').val();
+                  console.log('Mini Cart Quantity after adding:', miniCartQuantity); // Debugging
                 } else {
                   console.log('Error adding to cart:', response.error);
                 }
@@ -80,13 +95,13 @@ jQuery(document).ready(function($) {
 
   // Close quick view modal
   $(document).on('click', '.close-quick-view', function() {
-    $('#quick-view-modal').fadeOut();
+    $('#quick-view-modal').removeClass('active');
   });
 
   // Close modal on overlay click
   $(document).on('click', '#quick-view-modal', function(e) {
     if (e.target.id === 'quick-view-modal') {
-      $('#quick-view-modal').fadeOut();
+      $('#quick-view-modal').removeClass('active');
     }
   });
 });

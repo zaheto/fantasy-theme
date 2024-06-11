@@ -751,13 +751,13 @@ if ( ! function_exists( 'fantasy_header_cart_drawer' ) ) {
 
             <?php do_action( 'fantasy_before_cart_popup' ); ?>
 			<div class="cart-heading"><?php echo __('Your cart', 'fantasy'); ?></div>
-			<button type="button" aria-label="Close drawer" class="close-drawer">
-				<span aria-hidden="true"><svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 19L19 7" stroke="#292D32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M19 19L7 7" stroke="#292D32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-			</button>
+                <button type="button" aria-label="Close drawer" class="close-drawer w-[28px] h-[28px]">
+                    <span aria-hidden="true" class="w-[28px] h-[28px]"><svg class="w-[28px] h-[28px]" width="24" height="24" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 19L19 7" stroke="#292D32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M19 19L7 7" stroke="#292D32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                </button>
 
 			<?php the_widget( 'WC_Widget_Cart', 'title=' ); ?>
 
-			</div>
+		</div>
 
         <?php
     }
@@ -1181,11 +1181,7 @@ if ( ! function_exists( 'minicart_fantasy_get_styles' ) ) {
  * Enqueue scripts
  */
 function minicart_fantasy_get_scripts() {
-
-
-
-        wp_enqueue_script( 'custom-fantasy-quantity-js', get_theme_file_uri( '/resources/scripts/minicart-quantity.js' ), array( 'jquery' ), time(), true );
-
+    wp_enqueue_script( 'custom-fantasy-quantity-js', get_theme_file_uri( '/resources/scripts/minicart-quantity.js' ), array( 'jquery' ), time(), true );
 }
 }
 add_action( 'wp_enqueue_scripts', 'minicart_fantasy_get_scripts', 30 );
@@ -1722,6 +1718,13 @@ function woocommerce_add_to_cart_button_text_archives() {
     return __( 'Add to cart', 'fantasy' );
 }
 
+// Change the Add to Cart button text on the single product page
+add_filter('woocommerce_product_single_add_to_cart_text', 'custom_add_to_cart_text');
+function custom_add_to_cart_text() {
+    return __( 'Add to cart', 'fantasy' );
+}
+
+
 // Rename the coupon field on the cart page
 add_filter( 'gettext', 'woocommerce_rename_coupon_field_on_cart', 10, 3 );
 function woocommerce_rename_coupon_field_on_cart( $translated_text, $text, $domain ) {
@@ -1928,6 +1931,15 @@ add_action('wp_ajax_woocommerce_ajax_add_to_cart', 'quick_view_add_to_cart');
 add_action('wp_ajax_nopriv_woocommerce_ajax_add_to_cart', 'quick_view_add_to_cart');
 
 
+remove_action('woocommerce_cart_collaterals', 'woocommerce_cross_sell_display');
 
 
 
+function enqueue_woocommerce_scripts() {
+    if (class_exists('WooCommerce')) {
+        // Enqueue WooCommerce scripts
+
+        wp_enqueue_script('wc-single-product');
+    }
+}
+add_action('wp_enqueue_scripts', 'enqueue_woocommerce_scripts');
