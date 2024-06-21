@@ -19,25 +19,9 @@ msgid "Fantasy Theme"
 msgstr ""
 
 #. Theme URI of the theme
-msgid "https://fantasysoft.co/"
-msgstr ""
-
-#. Description of the theme
-msgid "Sage is a WordPress starter theme."
-msgstr ""
-
-#. Author of the theme
-msgid "Viktor Zahov"
-msgstr ""
-
 #. Author URI of the theme
 msgid "https://fantasysoft.co/"
 msgstr ""
-
-
-#: resources/views/woocommerce/single-product/tabs/description.php:40
-msgid "Read More"
-msgstr "Прочети повече"
 
 #. Description of the theme
 msgid "Sage is a WordPress starter theme."
@@ -46,6 +30,10 @@ msgstr "Sage is a WordPress starter theme."
 #. Author of the theme
 msgid "Viktor Zahov"
 msgstr "Viktor Zahov"
+
+#: resources/views/woocommerce/single-product/tabs/description.php:40
+msgid "Read More"
+msgstr "Прочети повече"
 
 #. Name of the theme
 msgid "Zah Theme"

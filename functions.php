@@ -457,7 +457,7 @@ function custom_features_product() {
         foreach ($feature_bar as $item) {
             echo '<li>';
             echo '<span><img src="' . esc_html($item['feature_icon']) . '" /></span>';
-            echo '<h3>' . esc_html($item['feature_text']) . '</h3>';
+            echo '<div class="content"><h3>' . esc_html($item['feature_text']) . '</h3><p>' . esc_html($item['feature_description']) . '</p></div>';
             echo '</li>';
         }
         echo '</ul>';
@@ -1943,3 +1943,36 @@ function enqueue_woocommerce_scripts() {
     }
 }
 add_action('wp_enqueue_scripts', 'enqueue_woocommerce_scripts');
+
+// Add additional logging to functions.php
+add_action('wp_ajax_log_to_debug', 'log_to_debug');
+add_action('wp_ajax_nopriv_log_to_debug', 'log_to_debug');
+
+function log_to_debug() {
+    if (isset($_POST['message'])) {
+        $message = sanitize_text_field($_POST['message']);
+        if (defined('WP_DEBUG_LOG') && WP_DEBUG_LOG) {
+            error_log($message);
+        }
+    }
+    wp_die();
+}
+
+// Log quantity change
+add_filter('woocommerce_add_to_cart_quantity', 'log_quantity_change', 10, 2);
+function log_quantity_change($quantity, $product_id) {
+    error_log("Product ID: $product_id, Quantity being added: $quantity");
+    return $quantity;
+}
+
+// Log cart contents
+add_action('woocommerce_add_to_cart', 'log_cart_contents', 10, 6);
+function log_cart_contents($cart_item_key, $product_id, $quantity, $variation_id, $variation, $cart_item_data) {
+    $cart = WC()->cart->get_cart();
+    $total_quantity = 0;
+    foreach ($cart as $item) {
+        $total_quantity += $item['quantity'];
+    }
+    error_log("Total Cart Quantity after adding: $total_quantity");
+}
+

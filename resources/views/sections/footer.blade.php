@@ -1,3 +1,18 @@
+@php
+
+    $footer_design = get_field('choose_footer_design', 'option');
+    $footer_class = 'footer-1';
+    $footer_template = 'footer1';
+
+    if ($footer_design == 'Footer-2') {
+        $footer_class = 'footer-2';
+        $footer_template = 'footer2';
+    } elseif ($footer_design == 'Footer-3') {
+        $footer_class = 'footer-3';
+        $footer_template = 'footer3';
+    }
+@endphp
+
 @if(!is_page('checkout'))
 <section class="newsletter bg-main bg-newsletter-image bg-right bg-no-repeat bg-cover hidden">
   <div class="container flex items-center content-center justify-center py-20">
@@ -12,6 +27,6 @@
 @php do_action('before_footer_content'); @endphp
 
 <footer class="footer footer-white">
-  @include('sections.footers.footer2')
+  @include('sections.footers.' . $footer_template)
 </footer>
 @endif

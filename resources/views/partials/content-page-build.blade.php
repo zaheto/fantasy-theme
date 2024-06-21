@@ -11,12 +11,16 @@
             ])
         @endif
 
+        @if($row['acf_fc_layout'] == 'banner_box_section')
+            @include('blocks.banner-box', ['add_banner' => $row['add_banner']])
+        @endif
+
         @if($row['acf_fc_layout'] == 'product_list_section')
             @include('blocks.product-list', ['block_data' => $row])
         @endif
 
         @if($row['acf_fc_layout'] == 'category_list_section')
-            @include('blocks.category-list', ['category_list_builder' => $row['category_list_builder']])
+            @include('blocks.category-list', [  'category_list_builder' => $row['category_list_builder'] ])
         @endif
 
         @if($row['acf_fc_layout'] == 'half_section')
@@ -58,8 +62,5 @@
         @if($row['acf_fc_layout'] == 'landing_in_the_box_section')
             @include('blocks.landing-in-the-box', ['block_data' => $row])
         @endif
-
-
-
     @endforeach
 @endif

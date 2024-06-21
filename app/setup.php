@@ -59,11 +59,11 @@ add_action('after_setup_theme', function () {
      */
     register_nav_menus([
         'main_menu' => __('Main navigation', 'sage'),
-        'second_menu_right' => __('Header second navigation ', 'sage'),
-        'footer_pages1' => __('Footer Problems', 'sage'),
-        'footer_pages2' => __('Footer Categories', 'sage'),
-        'footer_pages5' => __('Footer Categories2', 'sage'),
-        'footer_pages3' => __('Footer Pages', 'sage'),
+        'second_menu_right' => __('Main navigation - Right ', 'sage'),
+        'footer_pages1' => __('Footer Menu 1', 'sage'),
+        'footer_pages2' => __('Footer Menu 2', 'sage'),
+        'footer_pages5' => __('Footer Menu 3', 'sage'),
+        'footer_pages3' => __('Footer Menu 4', 'sage'),
     ]);
 
     /**

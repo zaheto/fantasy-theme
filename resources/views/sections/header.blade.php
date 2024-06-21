@@ -8,6 +8,9 @@
     do_action('fantasy_before_site');
     do_action('fantasy_before_header');
 
+    // Directly retrieve the color value for the announce bar
+    $announce_bar_header_color = get_field('announce_bar_header_color', 'option') ?? '#f2f2f2'; // Default to a light grey if not set
+
     $header_design = get_field('choose_header_design', 'option');
     $header_class = 'header-1';
     $header_template = 'header1';
@@ -19,6 +22,7 @@
         $header_class = 'header-3';
         $header_template = 'header3';
     }
+
 @endphp
 
 <header id="header" class="header header-white {{ $header_class }}">
@@ -26,7 +30,7 @@
         @php do_action('fantasy_announce_bar'); @endphp
 
         @if(get_field('announce_bar_header', 'option'))
-            <section class="announce-bar">
+            <section class="announce-bar" style="background-color: {{ $announce_bar_header_color }};">
                 <div class="container">
                     <ul>
                         @foreach(get_field('announce_bar_header', 'option') as $item)

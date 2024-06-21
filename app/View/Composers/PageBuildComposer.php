@@ -23,7 +23,7 @@ class PageBuildComposer extends Composer
         'blocks.landing-how-to',
         'blocks.landing-product-size',
         'blocks.landing-in-the-box',
-
+        'blocks.banner-box',
     ];
 
     public function with()
@@ -31,9 +31,11 @@ class PageBuildComposer extends Composer
         $id = get_the_ID();
         $page_build = get_field('page_build', $id);
         $big_slider = get_field('big_slider', $id);
-        $boxed_slider = get_field('boxed_slider', $id); // Add this line
+        $add_banner = get_field('add_banner', $id);
+        $boxed_slider = get_field('boxed_slider', $id);
         $product_list_builder = get_field('product_list_builder', $id);
         $section_heading_product_list = get_field('section_heading_product_list', $id);
+        $view_all = get_field('view_all', $id);
         $heading_color = get_field('heading_color', $id);
         $is_slider = get_field('is_slider', $id);
         $category_list_builder = get_field('category_list_builder', $id);
@@ -48,12 +50,8 @@ class PageBuildComposer extends Composer
         $landing_product_size = get_field('landing_product_size', $id);
         $landing_in_the_box_section = get_field('landing_in_the_box_section', $id);
 
-
-
-
-
-
-
-        return compact('page_build', 'big_slider', 'section_heading_product_list', 'is_slider', 'heading_color', 'product_list_builder', 'category_list_builder', 'half_section', 'seo_section', 'landing_hero_section', 'landing_introduction_section', 'landing_half_section', 'landing_spacer', 'landing_gallery_section', 'landing_how_to_section', 'landing_product_size', 'landing_in_the_box_section');
+        return compact('page_build', 'big_slider', 'add_banner', 'section_heading_product_list', 'view_all', 'is_slider', 'heading_color', 'product_list_builder', 'category_list_builder',  'half_section', 'seo_section', 'landing_hero_section', 'landing_introduction_section', 'landing_half_section', 'landing_spacer', 'landing_gallery_section', 'landing_how_to_section', 'landing_product_size', 'landing_in_the_box_section');
     }
+
+
 }

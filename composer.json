@@ -43,6 +43,7 @@
     "blade-ui-kit/blade-icons": "^1.6",
     "generoi/sage-woocommerce": "^1.1",
     "log1x/acf-composer": "^3.0",
+    "rarst/laps": "^2.0",
     "roots/acorn": "^4.2",
     "roots/acorn-prettify": "^1.0",
     "saade/blade-iconsax": "^1.2"
@@ -56,7 +57,10 @@
   "config": {
     "optimize-autoloader": true,
     "preferred-install": "dist",
-    "sort-packages": true
+    "sort-packages": true,
+    "allow-plugins": {
+      "composer/installers": true
+    }
   },
   "minimum-stability": "dev",
   "prefer-stable": true,

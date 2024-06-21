@@ -42,7 +42,7 @@
 }
 
 .link {
-  @apply flex items-center font-medium gap-2 text-main text-14 no-underline hover:underline relative;
+  @apply flex items-center font-medium gap-2 text-main text-14 no-underline hover:underline relative whitespace-nowrap;
   &.link-green {
     @apply text-green;
   }

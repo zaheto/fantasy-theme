@@ -1,15 +1,14 @@
 # Copyright (C) 2024 Roots
 # This file is distributed under the MIT License.
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Fantasy Theme 10.8.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/fantasy-theme\n"
 "POT-Creation-Date: 2024-05-23T17:01:35+00:00\n"
-"PO-Revision-Date: 2024-06-21 08:42+0300\n"
+"PO-Revision-Date: 2024-06-21 08:41+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
-"Language: bg_BG\n"
+"Language: el\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -18,12 +17,12 @@ msgstr ""
 
 #. Theme Name of the theme
 msgid "Fantasy Theme"
-msgstr ""
+msgstr "Fantasy Theme"
 
 #. Theme URI of the theme
 #. Author URI of the theme
 msgid "https://fantasysoft.co/"
-msgstr ""
+msgstr "https://fantasysoft.co/"
 
 #. Description of the theme
 msgid "Sage is a WordPress starter theme."
@@ -35,138 +34,138 @@ msgstr "Viktor Zahov"
 
 #: resources/views/woocommerce/single-product/tabs/description.php:40
 msgid "Read More"
-msgstr "Прочети повече"
+msgstr "Διαβάστε περισσότερα"
 
 #. Name of the theme
 msgid "Zah Theme"
 msgstr "Zah Theme"
 
 msgid "Email address"
-msgstr "Имейл адрес"
+msgstr "Ηλεκτρονικη διευθυνση"
 
 msgid "Call us now"
-msgstr "Позвънете на"
+msgstr "Καλώ"
 
 msgid "copy footer"
 msgstr "©2024 XXXXXXX. Всички права запазени."
 
 msgid "Your account"
-msgstr "Твоят профил"
+msgstr "Το προφίλ σου"
 
 msgid "Filters"
-msgstr "Филтри"
+msgstr "Φίλτρα"
 
 msgid "Loading..."
-msgstr "Зарежда…"
+msgstr "Φόρτωση…"
 
 msgid "My Cart"
-msgstr "Моята количка"
+msgstr "Το καρότσι μου"
 
 msgid "Your bag is empty"
-msgstr "Количката е празна"
+msgstr "Το καλάθι είναι άδειο"
 
 msgid "Continue shopping"
-msgstr "Продължете с пазаруването"
+msgstr "Συνεχίστε τις αγορές"
 
 msgid "To cart"
-msgstr "Продължи с пазаруването"
+msgstr "Συνεχίστε τις αγορές"
 
 msgid "Remove"
-msgstr "Премахни"
+msgstr "Αφαιρώ"
 
 msgid "Calculate at checkout"
-msgstr "Цената за доставка се начислява при плащане."
+msgstr "Τα έξοδα αποστολής χρεώνονται στο ταμείο."
 
 msgid "Free shipping"
-msgstr "Безплатна доставка"
+msgstr "Δωρεάν αποστολή"
 
 msgid "Checkout"
-msgstr "ЗАВЪРШИ ПОРЪЧКАТА"
+msgstr "ΟΛΟΚΛΗΡΩΣΗ ΑΓΟΡΑΣ"
 
 msgid "You are "
-msgstr "Остават ви"
+msgstr "Σου έχουν μείνει"
 
 msgid " away from free delivery"
-msgstr "до БЕЗПЛАТНА ДОСТАВКА"
+msgstr "σε ΔΩΡΕΑΝ ΑΠΟΣΤΟΛΗ"
 
 msgid "Congrats! You've reached free shipping."
-msgstr "Честито! Достигнахте безплатна доставка."
+msgstr "Συγχαρητήρια! Έχετε φτάσει στη δωρεάν αποστολή."
 
 msgid "Related products"
-msgstr "Подобни продукти"
+msgstr "Παρόμοια προϊόντα"
 
 msgid "You may also like"
-msgstr "Може да харесате"
+msgstr "Μπορεί να σας αρέσει"
 
 msgid "You may be interested in"
-msgstr "Може да харесате, още"
+msgstr "Μπορεί να σας αρέσει περισσότερο"
 
 msgid "Information"
-msgstr "Информация"
+msgstr "Πληροφορίες"
 
 msgid "Reviews"
-msgstr "Ревюта"
+msgstr "Κριτικές"
 
 msgid "Gallery"
-msgstr "Галерия"
+msgstr "Εκθεσιακός χώρος"
 
 msgid "In the box"
-msgstr "В кутията"
+msgstr "Στο κουτί"
 
 msgid "Video"
-msgstr "Видео"
+msgstr "βίντεο"
 
 msgid "BUY NOW"
-msgstr "ДОБАВИ В КОЛИЧКАТА"
+msgstr "ΑΓΟΡΑΣΕ ΤΩΡΑ"
 
 msgid "Prices from:"
-msgstr "Цени от:"
+msgstr "Τιμές από:"
 
 msgid "Quick order with phone"
-msgstr "Бърза поръчка"
+msgstr "Γρήγορη παραγγελία"
 
 msgid "Landing Feature 1"
-msgstr "Бързи и сигурни покупки"
+msgstr "Γρήγορες και ασφαλείς αγορές"
 
 msgid "Landing Feature 2"
-msgstr "14 дни гаранция за връщане на парите"
+msgstr "Γρήγορες και ασφαλείς αγορές"
 
 msgid "Landing Feature 3"
-msgstr "Доставка до куриерска фирма или адрес"
+msgstr "Παράδοση σε εταιρεία ταχυμεταφορών ή διεύθυνση"
 
 msgid "Landing Feature 4"
-msgstr "Срок на доставка 1-3 работни дни"
+msgstr "Χρόνος παράδοσης 1-3 εργάσιμες ημέρες"
 
 msgid "Add to cart"
-msgstr "Добави"
+msgstr "Προσθήκη"
 
 msgid "Quick View"
-msgstr "Бърз преглед"
+msgstr "Γρήγορη αναθεώρηση"
 
 msgid "Your cart"
-msgstr "Твоята количка"
+msgstr "Το καλάθι σας"
 
 msgid "Shopping Cart"
-msgstr "Количка"
+msgstr "Καροτσάκι"
 
 msgid "Shipping and Checkout"
-msgstr "Доставка и плащане"
+msgstr "Παράδοση και Πληρωμή"
 
 msgid "Confirmation"
-msgstr "Потвърждение"
+msgstr "Επιβεβαίωση"
 
 #: includes/class-frontend.php:58
 msgid "Select options"
-msgstr "TTTT"
+msgstr "Επιλέξτε επιλογές"
 
 msgid "Apply Coupon"
-msgstr "Приложи"
+msgstr "Ισχύουν"
 
 msgid "Enter Coupon Code"
-msgstr "Въведи промо код"
+msgstr "Εισαγάγετε τον κωδικό προσφοράς"
 
 msgid "In stock"
-msgstr "Налично"
+msgstr "Διαθέσιμος"
 
 msgid "Out of stock"
-msgstr "Изчерпано"
+msgstr "Εξαντλημένος"

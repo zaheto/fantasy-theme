@@ -57,7 +57,7 @@ const config = {
       },
 
       colors: {
-        'main': '#0095DA',
+        'main': '#ccb083',
         'second': '#ED1C24',
         'third': '#FFCB05',
         'gray': '#F3F3F3',
