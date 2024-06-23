@@ -1,6 +1,11 @@
 @php
+    // Retrieve the layout design group
+    $layout_design = get_field('layout_design', 'option');
 
-    $footer_design = get_field('choose_footer_design', 'option');
+    // Access sub-fields within the group
+    $footer_design = $layout_design['choose_footer_design'] ?? 'Footer-1';
+    $dark_footer = $layout_design['dark_footer'] ?? false;
+
     $footer_class = 'footer-1';
     $footer_template = 'footer1';
 
@@ -11,7 +16,15 @@
         $footer_class = 'footer-3';
         $footer_template = 'footer3';
     }
+
+    // Add dark class if dark_footer is checked
+    if ($dark_footer) {
+        $footer_class .= ' footer-black';
+    } else {
+        $footer_class .= ' footer-white';
+    }
 @endphp
+
 
 @if(!is_page('checkout'))
 <section class="newsletter bg-main bg-newsletter-image bg-right bg-no-repeat bg-cover hidden">
@@ -26,7 +39,7 @@
 
 @php do_action('before_footer_content'); @endphp
 
-<footer class="footer footer-white">
+<footer class="footer {{ $footer_class }}">
   @include('sections.footers.' . $footer_template)
 </footer>
 @endif

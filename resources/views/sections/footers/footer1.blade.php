@@ -1,9 +1,14 @@
+@php
+    $layout_design = get_field('layout_design', 'option');
+    $logo_footer = $layout_design['logo_footer'] ?? '';
+@endphp
+
 <div class="container">
   <div class="flex align-center content-center justify-between py-14">
     <a href="{{ home_url('/') }}">
-        @if(get_field('logo_footer', 'options'))
-        <img src="{{ get_field('logo_footer', 'options') }}" alt="{{ get_bloginfo('name', 'display') }}">
-        @endif
+      @if($logo_footer)
+        <img src="{{ $logo_footer }}" alt="{{ get_bloginfo('name', 'display') }}">
+      @endif
     </a>
 
      @if(get_field('social_links', 'option'))

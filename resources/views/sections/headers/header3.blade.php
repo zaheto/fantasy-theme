@@ -1,12 +1,24 @@
+@php
+    $layout_design = get_field('layout_design', 'option');
+    $logo_header = $layout_design['logo_header'] ?? '';
+
+    // Access the logo size fields within the group
+    $logo_size = $layout_design['logo_size'] ?? [];
+    $desktop_logo_width = $logo_size['desktop_logo_width'] ?? 138; // Default value if not set
+    $mobile_logo_width = $logo_size['mobile_logo_width'] ?? 102;  // Default value if not set
+
+    // Add units to the width values
+    $desktop_logo_width .= 'px';
+    $mobile_logo_width .= 'px';
+@endphp
+
 <div class="inner-header ">
-        <div class="search-box">
-          <?php aws_get_search_form( true ); ?>
-      </div><!-- search-box -->
+
         <div class="header-left">
 
          <ul class="flex lg:hidden items-center gap-2 ">
-          <li  class="header-mobile-menu"><a href="javascript:;" id="mobile-menu" class="icon-wrap "><x-iconsax-lin-menu class="w-[28px] h-[28px] " /></a> </li>
-          <li  class="header-search"><a href="javascript:;" id="search-menu" class="icon-wrap "><x-iconsax-lin-search-normal-1 class="w-[28px] h-[28px]" /></a></li>
+          <li class="header-mobile-menu"><a href="javascript:;" id="mobile-menu" class="icon-wrap "><x-iconsax-lin-menu class="w-[28px] h-[28px] " /></a> </li>
+          <li class="header-search"><a href="javascript:;" class="icon-wrap search-menu"><x-iconsax-lin-search-normal-1 class="w-[28px] h-[28px]" /></a></li>
          </ul>
 
           <div class="main-nav">
@@ -46,21 +58,17 @@
         </div>
         <!-- END OF HEADER LEFT -->
 
-
-
-
-       <div class="logo-wrap">
-        <a class="logo " href="{{ get_site_url('/') }}">
-          @if(get_field('logo_header', 'options'))
-          <img src="{{ get_field('logo_header', 'options') }}" alt="{{ get_bloginfo('name', 'display') }}">
+        <div class="logo-wrap">
+          <a class="logo" href="{{ get_site_url('/') }}" style="min-width: {{ $mobile_logo_width }}; max-width: {{ $mobile_logo_width }};">
+          @if($logo_header)
+              <img src="{{ $logo_header }}" alt="{{ get_bloginfo('name', 'display') }}" style="width: 100%; max-width: {{ $desktop_logo_width }};" class="lg:max-w-{{ $desktop_logo_width }}">
           @endif
-        </a>
-       </div>
-
+          </a>
+        </div>
 
         <div class="header-right">
           <ul class="flex items-center gap-2">
-            <li class="header-search"><a href="javascript:;" id="search-menu" class="icon-wrap "><x-iconsax-lin-search-normal-1 class="w-[28px] h-[28px]" /></a></li>
+            <li class="header-search"><a href="javascript:;" class="icon-wrap search-menu"><x-iconsax-lin-search-normal-1 class="w-[28px] h-[28px]" /></a></li>
             @if(is_user_logged_in())
             <li  class="header-account logged">
               <a href="{{ get_permalink( wc_get_page_id( 'myaccount' ) ) }}" class="icon-wrap">
@@ -87,6 +95,9 @@
 
         </div>
         <!-- END OF HEADER RIGHT -->
+        <div class="search-box">
+          <?php aws_get_search_form( true ); ?>
+        </div><!-- search-box -->
     </div><!-- container -->
 
 

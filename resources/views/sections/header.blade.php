@@ -8,10 +8,17 @@
     do_action('fantasy_before_site');
     do_action('fantasy_before_header');
 
-    // Directly retrieve the color value for the announce bar
-    $announce_bar_header_color = get_field('announce_bar_header_color', 'option') ?? '#f2f2f2'; // Default to a light grey if not set
+    // Retrieve the layout design group
+    $layout_design = get_field('layout_design', 'option');
 
-    $header_design = get_field('choose_header_design', 'option');
+    // Access sub-fields within the group
+    $announce_bar_header_color = $layout_design['announce_bar_header_color'] ?? '#f2f2f2';
+    $announce_bar_header_text_color = $layout_design['announce_bar_header_text_color'] ?? '#ffffff';
+    $announce_bar_header = $layout_design['announce_bar_header'] ?? [];
+
+    $header_design = $layout_design['choose_header_design'] ?? 'Header-1';
+    $dark_header = $layout_design['dark_header'] ?? false;
+
     $header_class = 'header-1';
     $header_template = 'header1';
 
@@ -23,18 +30,25 @@
         $header_template = 'header3';
     }
 
+    // Add dark class if dark_header is checked
+    if ($dark_header) {
+        $header_class .= ' header-black';
+    } else {
+        $header_class .= ' header-white';
+    }
+
 @endphp
 
-<header id="header" class="header header-white {{ $header_class }}">
+<header id="header" class="header {{ $header_class }}">
     @if(!is_page('checkout'))
         @php do_action('fantasy_announce_bar'); @endphp
 
-        @if(get_field('announce_bar_header', 'option'))
+        @if($announce_bar_header)
             <section class="announce-bar" style="background-color: {{ $announce_bar_header_color }};">
                 <div class="container">
                     <ul>
-                        @foreach(get_field('announce_bar_header', 'option') as $item)
-                            <li>{!! $item['annonce_text'] !!}</li>
+                        @foreach($announce_bar_header as $item)
+                            <li style="color: {{ $announce_bar_header_text_color }};">{!! $item['annonce_text'] !!}</li>
                         @endforeach
                     </ul>
                 </div>
@@ -93,15 +107,5 @@
 </div>
 
 @if(!is_page('cart'))
-    {{-- <section class="cart-popup">
-        <div class="cart-popup--inner">
-            <div class="cart-popup-info">
-                @include('woocommerce.cart.cart-custom')
-            </div>
-        </div>
-    </section>
 
-    <section id="quick-view-modal" class="quick-view-modal">
-        @include('woocommerce.cart.quick-view-modal')
-    </section> --}}
 @endif

@@ -611,8 +611,6 @@ function fantasy_enqueue_quantity_script() {
 }
 add_action( 'wp_enqueue_scripts', 'fantasy_enqueue_quantity_script' );
 
-
-
 /**
 * Checks if ACF is active.
 *
@@ -626,6 +624,7 @@ if ( ! function_exists( 'fantasy_is_acf_activated' ) ) {
 		return class_exists( 'acf' ) ? true : false;
 	}
 }
+
 
 if ( ! function_exists( 'fantasy_cart_link_fragment' ) ) {
 	/**
@@ -672,11 +671,11 @@ if ( ! function_exists( 'fantasy_cart_link' ) ) {
         <div class="cart-click">
             <a class="cart-contents" href="#" title="<?php esc_attr_e( 'View your shopping cart', 'fantasy' ); ?>">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M8.5 14.25C8.5 16.17 10.08 17.75 12 17.75C13.92 17.75 15.5 16.17 15.5 14.25" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M8.81 2L5.19 5.63" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M15.19 2L18.81 5.63" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M2 7.84998C2 5.99998 2.99 5.84998 4.22 5.84998H19.78C21.01 5.84998 22 5.99998 22 7.84998C22 9.99998 21.01 9.84998 19.78 9.84998H4.22C2.99 9.84998 2 9.99998 2 7.84998Z" stroke="#292D32" stroke-width="1.5"/>
-                    <path d="M3.5 10L4.91 18.64C5.23 20.58 6 22 8.86 22H14.89C18 22 18.46 20.64 18.82 18.76L20.5 10" stroke="#292D32" stroke-width="1.5" stroke-linecap="round"/>
+                    <path d="M8.5 14.25C8.5 16.17 10.08 17.75 12 17.75C13.92 17.75 15.5 16.17 15.5 14.25" stroke="#000000" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M8.81 2L5.19 5.63" stroke="#000000" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M15.19 2L18.81 5.63" stroke="#000000" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M2 7.84998C2 5.99998 2.99 5.84998 4.22 5.84998H19.78C21.01 5.84998 22 5.99998 22 7.84998C22 9.99998 21.01 9.84998 19.78 9.84998H4.22C2.99 9.84998 2 9.99998 2 7.84998Z" stroke="#000000" stroke-width="1.5"/>
+                    <path d="M3.5 10L4.91 18.64C5.23 20.58 6 22 8.86 22H14.89C18 22 18.46 20.64 18.82 18.76L20.5 10" stroke="#000000" stroke-width="1.5" stroke-linecap="round"/>
                 </svg>
                 <!-- <span class="amount"> -->
                     <?php //echo wp_kses_post( WC()->cart->get_cart_subtotal() ); ?>
@@ -709,7 +708,11 @@ if ( ! function_exists( 'fantasy_header_cart' ) ) {
 add_action( 'fantasy_minicart_header', 'fantasy_header_cart' );
 
 function fantasy_add_header_class_to_body($classes) {
-    $header_design = get_field('choose_header_design', 'option');
+    // Retrieve the layout design group
+    $layout_design = get_field('layout_design', 'option');
+
+    // Access the header design within the group
+    $header_design = $layout_design['choose_header_design'] ?? 'Header-1';
     $header_class = 'header-design-1';
 
     if ($header_design == 'Header-2') {

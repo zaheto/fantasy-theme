@@ -281,7 +281,7 @@ domReady(async () => {
       $(document.body).removeClass('disable-scroll');
     });
 
-    $('#search-menu').on('click', function(e) {
+    $('.search-menu').on('click', function(e) {
       e.preventDefault()
       $('.search-box').toggleClass('active')
     });

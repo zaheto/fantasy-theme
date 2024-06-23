@@ -1,13 +1,16 @@
+@php
+    $layout_design = get_field('layout_design', 'option');
+    $logo_footer = $layout_design['logo_footer'] ?? '';
+@endphp
+
 <div class="container pt-14">
-
-
   <div class="flex  flex-wrap lg:flex-nowrap flex-row mb-6 md:mb-14 w-full justify-between gap-6 md:gap-0 lg:gap-10">
 
     <div class="footer-company-info">
       <a href="{{ home_url('/') }}">
-          @if(get_field('logo_footer', 'options'))
-          <img src="{{ get_field('logo_footer', 'options') }}" alt="{{ get_bloginfo('name', 'display') }}">
-          @endif
+        @if($logo_footer)
+          <img src="{{ $logo_footer }}" alt="{{ get_bloginfo('name', 'display') }}">
+        @endif
       </a>
 
       @if(get_field('footer_text', 'options'))
